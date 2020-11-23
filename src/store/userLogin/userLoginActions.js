@@ -34,8 +34,6 @@ export const logOut = () => {
 export const login = ({ email, password }) => async (dispatch, getState) => {
   dispatch(appLoading());
 
-  console.log("EMAIL / PASSWORD", email, password);
-
   try {
     const response = await axios.post("/login", { email, password });
 
@@ -48,6 +46,27 @@ export const login = ({ email, password }) => async (dispatch, getState) => {
         1500
       )
     );
+    dispatch(appDoneLoading());
+  } catch (e) {
+    if (e.response) {
+      console.log(e.response.data.message);
+      dispatch(setMessage("danger", true, e.response.data.message));
+    } else {
+      console.log(e.message);
+      dispatch(setMessage("danger", true, e.message));
+    }
+    dispatch(appDoneLoading());
+  }
+};
+
+export const signup = (signupData) => async (dispatch, getState) => {
+  dispatch(appLoading());
+
+  try {
+    const response = await axios.post("/signup", { ...signupData });
+
+    dispatch(loginSuccess(response.data));
+    dispatch(showMessageWithTimeout("success", true, "account created"));
     dispatch(appDoneLoading());
   } catch (e) {
     if (e.response) {

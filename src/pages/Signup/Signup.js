@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
+import "./Signup.css";
 
 function Signup() {
   const [signupData, setSignupData] = useState({
@@ -101,7 +102,6 @@ function Signup() {
               placeholder="Email"
             />
           </Form.Group>
-
           <Form.Group controlId="formBasicDate">
             <Form.Control
               onChange={(e) => {
@@ -143,7 +143,7 @@ function Signup() {
           </Form.Group>
           <Form.Group className="mt-4">
             <Button onClick={handleSubmit} variant="primary" type="submit">
-              Signup
+              Submit
             </Button>
           </Form.Group>
         </Form>
