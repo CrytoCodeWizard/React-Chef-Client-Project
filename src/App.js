@@ -4,14 +4,14 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
-import MessageBox from "./components/MessageBox";
+import MessageBox from "./components/MessageBox/MessageBox";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSelectedDate, selectAppLoading } from "./store/appState/appStateSelectors";
 import { getUserWithStoredToken } from "./store/userLogin/userLoginActions";
 import { createDate, setSelectedDate } from "./store/appState/appStateActions";
 import moment from "moment";
-import Loading from "./components/Loading";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   const dispatch = useDispatch();
