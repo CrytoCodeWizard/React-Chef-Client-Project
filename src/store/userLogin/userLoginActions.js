@@ -31,14 +31,13 @@ export const logOut = () => {
   };
 };
 
-export const login = (email, password) => async (dispatch, getState) => {
+export const login = ({ email, password }) => async (dispatch, getState) => {
   dispatch(appLoading());
 
+  console.log("EMAIL / PASSWORD", email, password);
+
   try {
-    const response = await axios.post("/login", {
-      email,
-      password,
-    });
+    const response = await axios.post("/login", { email, password });
 
     dispatch(loginSuccess(response.data));
     dispatch(showMessageWithTimeout("success", false, "Welcome back!", 1500));
@@ -69,6 +68,8 @@ export const getUserWithStoredToken = () => async (dispatch, getState) => {
     const response = await axios.get(`/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    console.log("ME RESPONSE", response.data);
 
     // token is still valid
     dispatch(tokenStillValid(response.data));

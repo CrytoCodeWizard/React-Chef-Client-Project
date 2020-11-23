@@ -17,7 +17,11 @@ const userLoginReducer = (state = initialState, action) => {
       return { ...initialState, token: null };
 
     case TOKEN_STILL_VALID:
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        ...action.payload,
+        name: `${action.payload.firstName} ${action.payload.lastName}`,
+      };
 
     default:
       return state;

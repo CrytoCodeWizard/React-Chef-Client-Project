@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Container, Form, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { login } from "../../store/userLogin/userLoginActions";
 import "./Login.css";
 
 function Login() {
@@ -14,7 +15,13 @@ function Login() {
   const handleSubmit = (e) => {
     console.log("Submit");
     e.preventDefault();
+
+    dispatch(login(loginData));
+
+    // setLoginData({ email: "", password: "" });
   };
+
+  console.log(loginData);
 
   return (
     <Container>
@@ -28,19 +35,22 @@ function Login() {
           >
             <h1 className="mt-5 mb-5">Login</h1>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                id="email"
-                onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                onChange={(e) => {
+                  setLoginData({ ...loginData, email: e.target.value });
+                }}
                 value={loginData.email}
                 type="email"
                 placeholder="Enter email"
               />
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
-              <Form.Label htmlFor="email">Password</Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
-                onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                onChange={(e) => {
+                  setLoginData({ ...loginData, password: e.target.value });
+                }}
                 value={loginData.password}
                 type="password"
                 placeholder="password"
