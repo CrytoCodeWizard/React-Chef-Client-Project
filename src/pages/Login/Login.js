@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Col } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../../store/userLogin/userLoginActions";
+import { selectToken } from "../../store/userLogin/userLoginSelectors";
 import "./Login.css";
 
 function Login() {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(() => {
+    if (token !== null) {
+      history.push("/");
+    }
+  }, [token, history]);
+
   const handleSubmit = (e) => {
-    console.log("Submit");
     e.preventDefault();
-
-    dispatch(login(loginData));
-
-    // setLoginData({ email: "", password: "" });
+    dispatch(login({ ...loginData }));
+    setLoginData({ email: "", password: "" });
   };
 
   console.log(loginData);
