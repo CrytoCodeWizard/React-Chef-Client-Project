@@ -40,7 +40,14 @@ export const login = ({ email, password }) => async (dispatch, getState) => {
     const response = await axios.post("/login", { email, password });
 
     dispatch(loginSuccess(response.data));
-    dispatch(showMessageWithTimeout("success", false, "Welcome back!", 1500));
+    dispatch(
+      showMessageWithTimeout(
+        "success",
+        false,
+        `Welcome back! ${getState().userLogin.firstName}`,
+        1500
+      )
+    );
     dispatch(appDoneLoading());
   } catch (e) {
     if (e.response) {
