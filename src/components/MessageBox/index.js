@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMessage } from "../../store/appState/selectors";
+import { selectMessage } from "../../store/appState/appStateSelectors";
 import { Alert } from "react-bootstrap";
-import { clearMessage } from "../../store/appState/actions";
+import { clearMessage } from "../../store/appState/appStateActions";
 
-export default function MessageBox() {
+function MessageBox() {
   const message = useSelector(selectMessage);
   const dispatch = useDispatch();
   const showMessage = message !== null;
@@ -21,3 +21,5 @@ export default function MessageBox() {
     </Alert>
   );
 }
+
+export default MessageBox;
