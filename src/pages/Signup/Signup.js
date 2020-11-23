@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { signup } from "../../store/userLogin/userLoginActions";
 import "./Signup.css";
 
 function Signup() {
+  const dispatch = useDispatch();
   const [signupData, setSignupData] = useState({
     firstName: "",
     lastName: "",
@@ -19,6 +22,8 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    dispatch(signup({ ...signupData }));
+
     setSignupData({
       firstName: "",
       lastName: "",
@@ -32,8 +37,6 @@ function Signup() {
       postalCode: "",
     });
   };
-
-  console.log(signupData);
 
   return (
     <Container>
@@ -105,9 +108,9 @@ function Signup() {
           <Form.Group controlId="formBasicDate">
             <Form.Control
               onChange={(e) => {
-                setSignupData({ ...signupData, date: e.target.value });
+                setSignupData({ ...signupData, dateOfBirth: e.target.value });
               }}
-              value={signupData.date}
+              value={signupData.dateOfBirth}
               type="date"
             />
           </Form.Group>
