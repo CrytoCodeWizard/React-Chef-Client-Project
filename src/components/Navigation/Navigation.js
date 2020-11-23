@@ -9,7 +9,7 @@ function Navigation() {
       <Navbar.Brand as={NavLink} to="/">
         <div className="Navbar-brand-box">
           <i className="las la-utensils la-2x"></i>
-          <span>Chef</span>_Exchange()
+          <span>Chef</span>_Available()
         </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
