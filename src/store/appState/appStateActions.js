@@ -4,12 +4,14 @@ export const APP_LOADING = "APP_LOADING";
 export const APP_DONE_LOADING = "APP_DONE_LOADING";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const SET_CURRENT_DATE = "SET_CURRENT_DATE";
+export const SET_SELECTED_DATE = "SET_SELECTED_DATE";
 
 export const appLoading = () => ({ type: APP_LOADING });
 export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
 export const clearMessage = () => ({ type: CLEAR_MESSAGE });
-export const setCurrentDate = (date) => ({ type: "SET_CURRENT_DATE", payload: date });
-export const setSelectedDate = (date) => ({ type: "SET_SELECTED_DATE", payload: date });
+export const setCurrentDate = (date) => ({ type: SET_CURRENT_DATE, payload: date });
+export const setSelectedDate = (date) => ({ type: SET_SELECTED_DATE, payload: date });
 
 // REFERENCE 02- DATE MECHANICS REFERENCED FROM STACK OVERFLOW
 export const createDate = () => (dispatch, getState) => {

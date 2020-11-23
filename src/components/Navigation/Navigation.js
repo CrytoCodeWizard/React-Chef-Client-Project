@@ -16,6 +16,7 @@ function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem align path="/" linkText="Home" />
+          <NavBarItem align path="/login" linkText="Login" />
 
           {/* {loginLogoutControls} */}
         </Nav>

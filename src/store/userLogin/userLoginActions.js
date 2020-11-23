@@ -1,4 +1,4 @@
-import axios from "../../config/constants";
+import { axios } from "../../config/constants";
 import { selectToken } from "../userLogin/userLoginSelectors";
 import {
   appLoading,
