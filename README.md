@@ -23,6 +23,20 @@ As an employer I want to send messages to get in contact with chefs on the platf
 As a chef I want to be notified if somebody wants to hire / get in contact with me.
       
 As an employer I want to leave reviews about chefs I have worked with.
-.
 
+## Wireframe
+
+https://wireframepro.mockflow.com/view/M1a7cdbf85114bbbc76b1f601042341311605703879138
+
+## DB Diagram
+
+[Diagrams](https://dbdiagram.io/d/5f9bddd43a78976d7b79cfde)
+
+## Backend Repo
+
+[Backend](https://github.com/RDOToole89/chef-available-server)
+
+## Project Board
+
+[Project Board](https://github.com/RDOToole89/chef-available-client/projects/1)
       
