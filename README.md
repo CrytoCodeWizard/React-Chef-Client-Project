@@ -26,7 +26,7 @@ As an employer I want to leave reviews about chefs I have worked with.
 
 ## Wireframe
 
-https://wireframepro.mockflow.com/view/M1a7cdbf85114bbbc76b1f601042341311605703879138
+[Wireframe](https://wireframepro.mockflow.com/view/M1a7cdbf85114bbbc76b1f601042341311605703879138)
 
 ## DB Diagram
 
