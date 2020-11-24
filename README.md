@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Chef Available!?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Chef available?! is an application where chefs of all levels can create an account and share their availability with potential employers. In the hospitality sector there is always a need for chefs. At times somebody will not show up, or a staff member gets sick. In these moments it is essential for employers to find a replacement quickly. On the other hand chefs sometimes have odd schedules, or just want to make an extra buck on days that they are available. The service is intended as a low key way of connecting chefs with employers.
 
-## Available Scripts
+The app allows chefs to create a profile which describes their skills and experience. Chefs can add their availability to a calender on their profile which allows employers to see when they are available. Employers can search for chefs based on selected criteria and required date. If a chef is available an employer can send him or her a message to discuss further details and perform a booking if mutual terms are met.
 
-In the project directory, you can run:
 
-### `npm start`
+## User Stories
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As a user I want to be able to create an account so I can login.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+As a Chef I want to create a profile where I can tell something about myself as a professional.
 
-### `npm test`
+As a user I want to show a calender on my page that displays my availability as a chef.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As an employer I want to see an overview of chefs who are registered with the service.
 
-### `npm run build`
+As an employer I would like to find chefs that meet my criteria. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As an employer I want to send messages to get in contact with chefs on the platform.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a chef I want to be notified if somebody wants to hire / get in contact with me.
+      
+As an employer I want to leave reviews about chefs I have worked with.
+.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      
