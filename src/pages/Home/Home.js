@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ChefCard from "../../components/ChefCard/ChefCard";
+import { fetchAllTags } from "../../store/appData/appDataActions";
+import { selectAllTags } from "../../store/appData/appDataSelectors";
 import { fetchAllUsers } from "../../store/users/userActions";
 import { selectAllChefs } from "../../store/users/userSelectors";
 import "./Home.css";
@@ -9,13 +11,19 @@ import "./Home.css";
 function Home() {
   const dispatch = useDispatch();
   const chefs = useSelector(selectAllChefs);
+  const tags = useSelector(selectAllTags);
   const [selectTagOne, setSelectTagOne] = useState(0);
-  const [selectTagTwo, setSelectTageTwo] = useState(0);
+  const [selectTagTwo, setSelectTagTwo] = useState(0);
 
-  console.log(chefs);
+  // console.log("CHEFS", chefs);
+  // console.log("TAGS", tags);
+
+  console.log("SELECT-TAG-ONE", selectTagOne);
+  console.log("SELECT-TAG-ONE", selectTagTwo);
 
   useEffect(() => {
     dispatch(fetchAllUsers());
+    dispatch(fetchAllTags());
   }, [dispatch]);
 
   return (
@@ -27,31 +35,38 @@ function Home() {
       <Container>
         <div className="Home-selector-wrapper">
           <select
-            className="select-on-tag"
+            className="Home-selector"
             onChange={(e) => {
               setSelectTagOne(parseInt(e.target.value));
             }}
           >
-            <option value="">Select a tag</option>
-            <option value="1">Michelin</option>
-            <option value="2">British</option>
-            <option value="3">Dutch</option>
-            <option value="4">French</option>
-            <option value="5">Mediterranean</option>
-            <option value="6">Personal Chef</option>
-            <option value="7">Italian</option>
-            <option value="8">Pizza</option>
-            <option value="9">Head Chef</option>
-            <option value="10">Chef de Parti</option>
-            <option value="11">Mexican</option>
-            <option value="12">BBQ</option>
+            <option value="">Select on tag</option>
+            {tags.map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.tagName}
+              </option>
+            ))}
           </select>
 
-          <select className="select-on-tag">
-            <options></options>
+          <select
+            className="Home-selector"
+            onChange={(e) => {
+              setSelectTagTwo(parseInt(e.target.value));
+            }}
+          >
+            <option value="">Select on tag</option>
+            {tags.map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.tagName}
+              </option>
+            ))}
           </select>
-          <select className="select-on-rating">
-            <options></options>
+          <select className="Home-selector">
+            <option value="">5 star</option>
+            <option value="">4 star</option>
+            <option value="">3 star</option>
+            <option value="">2 star</option>
+            <option value="">1 star</option>
           </select>
         </div>
 

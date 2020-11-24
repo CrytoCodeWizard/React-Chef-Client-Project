@@ -3,3 +3,13 @@
   flex-wrap: wrap;
   height: au;
 }
+
+.Home-selector-wrapper {
+  display: flex;
+  padding: 2em 0 4em 0;
+  justify-content: center;
+}
+
+.Home-selector {
+  margin-left: 1em;
+}

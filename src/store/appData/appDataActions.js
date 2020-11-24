@@ -11,7 +11,7 @@ export const saveAllTags = (tags) => {
 
 export const fetchAllTags = () => async (dispatch, getState) => {
   try {
-    const response = axios.get("/tags");
+    const response = await axios.get("/tags");
 
     dispatch(saveAllTags(response.data));
   } catch (e) {
