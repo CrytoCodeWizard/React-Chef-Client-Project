@@ -14,6 +14,7 @@ function Home() {
   const tags = useSelector(selectAllTags);
   const [selectTagOne, setSelectTagOne] = useState(0);
   const [selectTagTwo, setSelectTagTwo] = useState(0);
+  const [selectRating, setRating] = useState(0);
 
   // console.log("CHEFS", chefs);
   // console.log("TAGS", tags);
@@ -28,46 +29,53 @@ function Home() {
 
   return (
     <div className="Home">
-      <Jumbotron>
-        <h1>Home</h1>
+      <Jumbotron className="Home-jumbotron">
+        <h1 className="Home-jumbotron-header">Home</h1>
       </Jumbotron>
 
       <Container>
+        <h1 className="Home-header">Meet our chefs</h1>
         <div className="Home-selector-wrapper">
-          <select
-            className="Home-selector"
-            onChange={(e) => {
-              setSelectTagOne(parseInt(e.target.value));
-            }}
-          >
-            <option value="">Select on tag</option>
-            {tags.map((x) => (
-              <option key={x.id} value={x.id}>
-                {x.tagName}
-              </option>
-            ))}
-          </select>
+          <div className="Home-selector-date">
+            <input type="date" />
+          </div>
+          <div className="Home-selector-tag">
+            <select
+              className="Home-selector"
+              onChange={(e) => {
+                setSelectTagOne(parseInt(e.target.value));
+              }}
+            >
+              <option value="">Select on tag</option>
+              {tags.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.tagName}
+                </option>
+              ))}
+            </select>
 
-          <select
-            className="Home-selector"
-            onChange={(e) => {
-              setSelectTagTwo(parseInt(e.target.value));
-            }}
-          >
-            <option value="">Select on tag</option>
-            {tags.map((x) => (
-              <option key={x.id} value={x.id}>
-                {x.tagName}
-              </option>
-            ))}
-          </select>
-          <select className="Home-selector">
-            <option value="">5 star</option>
-            <option value="">4 star</option>
-            <option value="">3 star</option>
-            <option value="">2 star</option>
-            <option value="">1 star</option>
-          </select>
+            <select
+              className="Home-selector"
+              onChange={(e) => {
+                setSelectTagTwo(parseInt(e.target.value));
+              }}
+            >
+              <option value="">Select on tag</option>
+              {tags.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.tagName}
+                </option>
+              ))}
+            </select>
+
+            <select className="Home-selector">
+              <option value="5">5 star</option>
+              <option value="4">4 star</option>
+              <option value="3">3 star</option>
+              <option value="2">2 star</option>
+              <option value="1">1 star</option>
+            </select>
+          </div>
         </div>
 
         <div className="Home-profile-wrapper">

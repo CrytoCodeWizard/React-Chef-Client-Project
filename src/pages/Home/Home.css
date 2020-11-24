@@ -1,13 +1,37 @@
+.Home-jumbotron {
+  display: flex;
+  justify-content: flex-start;
+  background: url("https://storage.googleapis.com/prodhgv234hv/header_image/image/17/dcf8c51baf.jpg")
+    no-repeat center center/cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+    url("https://storage.googleapis.com/prodhgv234hv/header_image/image/17/dcf8c51baf.jpg");
+  height: 12em;
+}
+
+.Home-jumbotron-header {
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.2);
+  padding-right: 8em;
+}
+
+.Home-header {
+  text-align: center;
+}
+
 .Home-profile-wrapper {
   display: flex;
   flex-wrap: wrap;
-  height: au;
 }
 
 .Home-selector-wrapper {
   display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 2em 0 4em 0;
   justify-content: center;
+}
+
+.Home-selector-date {
+  padding: 1em;
 }
 
 .Home-selector {
