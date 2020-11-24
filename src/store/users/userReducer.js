@@ -5,10 +5,14 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  switch (action) {
-    case SAVE_ALL_USERS:
-      return { ...state, all: [...action.payload] };
-
+  console.log("WHAT's IN THE PAYLOAD??", action.payload);
+  switch (action.type) {
+    case SAVE_ALL_USERS: {
+      return {
+        ...state,
+        all: [...action.payload],
+      };
+    }
     default:
       return state;
   }

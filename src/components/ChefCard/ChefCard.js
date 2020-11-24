@@ -20,15 +20,15 @@ function ChefCard(props) {
         <div className="ChefCard-tag">Italian</div>
       </div>
       <div className="ChefCard-rating">
-        <i class="las la-star"></i>
-        <i class="las la-star"></i>
-        <i class="las la-star"></i>
-        <i class="las la-star"></i>
-        <i class="las la-star"></i>
+        <i className="las la-star"></i>
+        <i className="las la-star"></i>
+        <i className="las la-star"></i>
+        <i className="las la-star"></i>
+        <i className="las la-star"></i>
         <div>4.8 / 5</div>
       </div>{" "}
       <h4>
-        <i class="las la-map-marker"> </i>Amsterdam
+        <i className="las la-map-marker"> </i>Amsterdam
       </h4>
     </div>
   );

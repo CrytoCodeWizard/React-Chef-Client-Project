@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Jumbotron } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import ChefCard from "../../components/ChefCard/ChefCard";
+import { fetchAllUsers } from "../../store/users/userActions";
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
+
   return (
     <div className="Home">
       <Jumbotron>
