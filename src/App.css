@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", Arial, sans-serif;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoorthing: grayscale;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+input,
+select,
+textarea,
+button {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.2rem;
+  font-family: "Open Sans", Arial, sans-serif;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoorthing: grayscale;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import { Jumbotron } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
+import ChefCard from "../../components/ChefCard/ChefCard";
 
 function Home() {
   return (
@@ -7,6 +8,11 @@ function Home() {
       <Jumbotron>
         <h1>Home</h1>
       </Jumbotron>
+      <Container>
+        <div className="Home-profile-wrapper">
+          <ChefCard />
+        </div>
+      </Container>
     </div>
   );
 }

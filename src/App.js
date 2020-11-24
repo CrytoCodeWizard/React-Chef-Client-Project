@@ -12,6 +12,8 @@ import { getUserWithStoredToken } from "./store/userLogin/userLoginActions";
 import { createDate, setSelectedDate } from "./store/appState/appStateActions";
 import moment from "moment";
 import Loading from "./components/Loading/Loading";
+import Profile from "./pages/Profile/Profile";
+import MyProfile from "./pages/MyProfile/MyProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
+        <Route exact path="/profile" component={MyProfile} />
+        <Route exact path="/users/:id/profile" component={Profile} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />
