@@ -6,12 +6,13 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../../store/userLogin/userLoginSelectors";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
+import "./Navigation.css";
 
 function Navigation() {
   const token = useSelector(selectToken);
 
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
+    <Navbar className="Navbar" expand="lg" bg="dark" variant="dark">
       <Navbar.Brand as={NavLink} to="/">
         <div className="Navbar-brand-box">
           <i className="las la-utensils la-2x"></i>

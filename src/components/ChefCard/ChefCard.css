@@ -1,5 +1,34 @@
 .ChefCard {
   padding: 1.25em;
+  border: 0.1rem solid #c0c0c0c0;
+  background-color: #f8f8f8;
+  border-radius: 1rem;
+  width: 22%;
+  margin-left: 3em;
+}
+
+.ChefCard-img-wrapper {
+  padding-bottom: 0.6em;
+  height: 40%;
+}
+
+.ChefCard-tagbox {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.5em;
+}
+
+.ChefCard-tag {
+  background-color: orangered;
+  color: white;
+  font-size: 0.6rem;
+  padding: 0.4em;
   border: 1px solid black;
-  width: 23%;
+  border-radius: 2rem;
+  margin-left: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.ChefCard-icon {
+  color: goldenrod;
 }

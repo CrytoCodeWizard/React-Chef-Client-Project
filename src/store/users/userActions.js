@@ -3,20 +3,20 @@ import { appDoneLoading, appLoading } from "../appState/appStateActions";
 
 export const SAVE_ALL_USERS = "SAVE_ALL_USERS";
 
-export const saveAllUser = (users) => {
+export const saveAllUsers = (users) => {
   return {
     type: "SAVE_ALL_USERS",
     payload: [...users],
   };
 };
 
-export const fetchAllUser = () => (dispatch, getState) => {
+export const fetchAllUsers = () => async (dispatch, getState) => {
   dispatch(appLoading());
   try {
-    const response = axios.get("/users");
+    const response = await axios.get("/users");
 
-    console.log("RESPONSE DATA", response.data);
-    dispatch(appDoneLoading);
+    dispatch(saveAllUsers(response.data));
+    dispatch(appDoneLoading());
   } catch (e) {
     console.log(e);
   }
