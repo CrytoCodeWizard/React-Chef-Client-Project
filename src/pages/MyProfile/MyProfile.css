@@ -1,5 +1,5 @@
 .MyProfile-top {
-  padding: 4em 0 4em 0;
+  padding: 4em 0 2em 0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 3em;
@@ -7,8 +7,8 @@
 }
 
 .MyProfile-img-wrapper {
-  height: 15.5em;
-  width: 15.5em;
+  height: 12.5em;
+  width: 12.5em;
 }
 
 .MyProfile-img {
@@ -51,7 +51,22 @@
   grid-column: 3 / span 4;
 }
 
+.MyProfile-main-detail-wrapper {
+  padding: 1em 0 1em 0;
+}
+
+.MyProfile-main-detail {
+  font-size: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.MyProfile-main-description {
+  font-size: 0.85rem;
+}
+
 .MyProfile-main-tagbox {
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1em;

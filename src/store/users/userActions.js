@@ -31,6 +31,7 @@ export const fetchAllUsers = () => async (dispatch, getState) => {
 };
 
 export const fetchUser = (id) => async (dispatch, getState) => {
+  console.log("ID IN FETCH REQUEST?!", id);
   dispatch(appLoading());
 
   try {
@@ -38,6 +39,20 @@ export const fetchUser = (id) => async (dispatch, getState) => {
 
     dispatch(saveUser(response.data));
     dispatch(appDoneLoading());
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteUserTag = (userId, tagId) => async (dispatch, getState) => {
+  const token = getState().user.token;
+
+  try {
+    const response = await axios.delete(`/users/:id`, {
+      headers: { Authorization: `Bearer ${token}`, userId: userId, tagId: tagId },
+    });
+
+    console.log(response);
   } catch (e) {
     console.log(e);
   }

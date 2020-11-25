@@ -1,12 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../store/users/userActions";
+import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 
 function MyProfile() {
   const dispatch = useDispatch();
+  const chef = useSelector(selectChef);
+  const [editMode, setEditMode] = useState(false);
+  console.log("CHEF", chef);
 
-  useEffect(() => {}, []);
+  console.log(editMode);
+
+  useEffect(() => {
+    dispatch(fetchUser(1));
+  }, [dispatch]);
 
   return (
     <Container>
@@ -28,29 +37,33 @@ function MyProfile() {
       </div>
       <div className="MyProfile-main">
         <div className="MyProfile-main-left">
-          <h4 className="MyProfile-main-heading">Chef Roibin O'Toole</h4>
+          <h4 className="MyProfile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
           <div className="MyProfile-main-detail-wrapper">
-            <p className="MyProfile-main-detail">14 years of experience</p>
-            <p className="MyProfile-main-detail">Hourly rate: 34,50</p>
-            <p className="MyProfile-main-detail">Head Chef</p>
-            <p className="MyProfile-main-detail">Amsterdam</p>
+            <p className="MyProfile-main-detail">
+              {chef.profile?.yearsOfExperience} years of experience
+            </p>
+            <p className="MyProfile-main-detail">Hourly rate: {chef.profile?.hourlyRate}</p>
+            <p className="MyProfile-main-detail">{chef.profile?.position}</p>
+            <p className="MyProfile-main-detail">{chef?.city}</p>
           </div>
           <div className="MyProfile-main-tagbox">
-            <div className="ChefCard-tag">tosser</div>
-            <div className="ChefCard-tag">french</div>
-            <div className="ChefCard-tag">crap chef</div>
-            <div className="ChefCard-tag">burned food</div>
+            {chef.profile?.specializationTags.map((x) => (
+              <div key={x.id} className="ChefCard-tag">
+                {x.tagName}
+              </div>
+            ))}
           </div>
-          <p className="MyProfile-main-description">
-            Chef Roibin O'Toole is a passionate chef with over 14 years of experience cooking in
-            various restaurants in Amsterdam. He specializes in French / Mediterranean cuisine and
-            is available for work in a 20km radius around Amsterdam.
-          </p>
+          <p className="MyProfile-main-description">{chef.profile?.description}</p>
+          {editMode && (
+            <textarea rows="6" cols="30">
+              {chef.profile.description}
+            </textarea>
+          )}
         </div>
         <div className="MyProfile-main-right">
           <h1>right</h1>
         </div>
-        <button>Edit Profile</button>
+        <button onClick={() => setEditMode(!editMode)}>Edit Profile</button>
       </div>
     </Container>
   );
