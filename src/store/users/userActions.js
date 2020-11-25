@@ -39,7 +39,22 @@ export const fetchUser = (id) => async (dispatch, getState) => {
     dispatch(saveUser(response.data));
     dispatch(appDoneLoading());
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
+  }
+};
+
+export const addUserTag = (tagName, profileId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.post(`/tags/user`, {
+      tagName,
+      profileId,
+    });
+
+    dispatch(fetchUser(getState().users.single.id));
+
+    console.log("ADD USER TAG", response.data);
+  } catch (e) {
+    console.log(e.message);
   }
 };
 

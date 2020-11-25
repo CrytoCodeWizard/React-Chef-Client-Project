@@ -77,3 +77,16 @@
   width: 80%;
   border: 1px solid black;
 }
+
+.MyProfile-editMode-wrapper {
+  margin: 1em 0 1em 0;
+}
+
+.MyProfile-editMode-input {
+  height: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.MyProfile-editMode-textarea {
+  margin: 1em 0 1em 0;
+}
