@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../store/users/userActions";
+import { selectUser } from "../../store/userLogin/userLoginSelectors";
+import { deleteUserTag, fetchUser } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 
 function MyProfile() {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
+  const userId = parseInt(user.id);
   const [editMode, setEditMode] = useState(false);
-  console.log("CHEF", chef);
-
-  console.log(editMode);
 
   useEffect(() => {
-    dispatch(fetchUser(1));
-  }, [dispatch]);
+    dispatch(fetchUser(userId));
+  }, [dispatch, userId]);
+
+  const deleteTag = (tagId) => () => {
+    dispatch(deleteUserTag(tagId, userId));
+    console.log(tagId);
+  };
+
+  const tagDeleteStyle = {
+    cursor: "pointer",
+    backgroundColor: "red",
+  };
 
   return (
     <Container>
@@ -29,7 +39,7 @@ function MyProfile() {
             />
           </div>
           <div className="MyProfile-msg">
-            <i class="las la-envelope la-2x"></i>2 new messages
+            <i className="las la-envelope la-2x"></i>2 new messages
           </div>
           <button className="MyProfile-booking-btn">My Bookings</button>
           <button className="MyProfile-inbox-btn">Inbox</button>
@@ -47,17 +57,26 @@ function MyProfile() {
             <p className="MyProfile-main-detail">{chef?.city}</p>
           </div>
           <div className="MyProfile-main-tagbox">
-            {chef.profile?.specializationTags.map((x) => (
-              <div key={x.id} className="ChefCard-tag">
-                {x.tagName}
-              </div>
-            ))}
+            {editMode
+              ? chef.profile?.specializationTags.map((x) => (
+                  <div
+                    style={tagDeleteStyle}
+                    onClick={deleteTag(x.id)}
+                    key={x.id}
+                    className="ChefCard-tag"
+                  >
+                    {x.tagName}
+                  </div>
+                ))
+              : chef.profile?.specializationTags.map((x) => (
+                  <div onClick={deleteTag(x.id)} key={x.id} className="ChefCard-tag">
+                    {x.tagName}
+                  </div>
+                ))}
           </div>
           <p className="MyProfile-main-description">{chef.profile?.description}</p>
           {editMode && (
-            <textarea rows="6" cols="30">
-              {chef.profile.description}
-            </textarea>
+            <textarea defaultValue={chef.profile.description} rows="6" cols="30"></textarea>
           )}
         </div>
         <div className="MyProfile-main-right">

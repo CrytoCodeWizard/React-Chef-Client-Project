@@ -95,7 +95,7 @@ export const getUserWithStoredToken = () => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    console.log("ME RESPONSE", response.data);
+    // console.log("ME RESPONSE", response.data);
 
     // token is still valid
     dispatch(tokenStillValid(response.data));
