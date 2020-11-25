@@ -1,36 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../store/userLogin/userLoginSelectors";
-import { addUserTag, deleteUserTag, fetchUser } from "../../store/users/userActions";
+import { useHistory } from "react-router-dom";
+import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
+import {
+  addUserTag,
+  deleteUserTag,
+  fetchUser,
+  updateUserProfile,
+} from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 
 function MyProfile() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const token = useSelector(selectToken);
   const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
+
   const userId = parseInt(user.id);
   const profileId = parseInt(chef.profile?.id);
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
+
   const [editProfile, setEditProfile] = useState({
-    yearsOfExperience: "years of experience",
-    hourlyRate: "hourly rate",
-    position: "position",
-    city: "city",
-    description: "",
+    yearsOfExperience: chef.profile?.yearsOfExperience,
+    hourlyRate: chef.profile?.hourlyRate,
+    position: chef.profile?.position,
+    city: chef.city,
+    description: chef.profile?.description,
   });
 
-  console.log(editProfile);
-
   useEffect(() => {
+    if (!token || token === null) {
+      history.push("/");
+    }
     dispatch(fetchUser(userId));
-  }, [dispatch, userId]);
+  }, [dispatch, userId, history, token]);
 
   const deleteTag = (tagId) => () => {
     dispatch(deleteUserTag(tagId, userId));
-    console.log(tagId);
   };
 
   const addTag = () => (e) => {
@@ -39,13 +49,19 @@ function MyProfile() {
     }
   };
 
+  const handleSaveProfile = () => {
+    setEditMode(!editMode);
+
+    dispatch(updateUserProfile(editProfile, userId, profileId));
+  };
+
   const tagDeleteStyle = {
     cursor: "pointer",
     backgroundColor: "red",
   };
 
   return (
-    <Container>
+    <Container className="height">
       <div className="MyProfile">
         <div className="MyProfile-top">
           <div className="MyProfile-img-wrapper">
@@ -94,7 +110,7 @@ function MyProfile() {
               <input
                 onChange={(e) => setNewTag(e.target.value)}
                 onKeyPress={addTag()}
-                className="MyProfile-main-taginput"
+                className="MyProfile-main-tagInput"
                 placeholder="Add a tag"
                 type="text"
               />
@@ -103,6 +119,7 @@ function MyProfile() {
           <p className="MyProfile-main-description">{chef.profile?.description}</p>
           {editMode && (
             <div className="MyProfile-editMode-wrapper">
+              <h5>Edit profile details...</h5>
               <input
                 onChange={(e) =>
                   setEditProfile({ ...editProfile, yearsOfExperience: e.target.value })
@@ -134,9 +151,8 @@ function MyProfile() {
                 onChange={(e) => setEditProfile({ ...editProfile, description: e.target.value })}
                 rows="6"
                 cols="30"
-              >
-                {chef && chef.profile.description}
-              </textarea>
+                defaultValue={chef && chef.profile.description}
+              ></textarea>
             </div>
           )}
         </div>
@@ -145,11 +161,17 @@ function MyProfile() {
         </div>
         {editMode ? (
           <div>
-            <button onClick={() => setEditMode(!editMode)}>Cancel</button>
-            <button onClick={() => setEditMode(!editMode)}>Save</button>
+            <button className="MyProfile-editMode-btn" onClick={() => handleSaveProfile()}>
+              Save
+            </button>
+            <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
+              Cancel
+            </button>
           </div>
         ) : (
-          <button onClick={() => setEditMode(!editMode)}>Edit Profile</button>
+          <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
+            Edit Profile
+          </button>
         )}
       </div>
     </Container>

@@ -1,3 +1,7 @@
+.height {
+  height: 150vh;
+}
+
 .MyProfile-top {
   padding: 4em 0 2em 0;
   display: grid;
@@ -72,6 +76,11 @@
   margin-bottom: 1em;
 }
 
+.MyProfile-main-tagInput {
+  margin: 0.5em 0 0.5em 0;
+  height: 1em;
+}
+
 .MyProfile-main-description {
   padding: 1em;
   width: 80%;
@@ -89,4 +98,8 @@
 
 .MyProfile-editMode-textarea {
   margin: 1em 0 1em 0;
+}
+
+.MyProfile-editMode-btn {
+  margin-right: 1em;
 }

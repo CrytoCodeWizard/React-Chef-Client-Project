@@ -43,6 +43,21 @@ export const fetchUser = (id) => async (dispatch, getState) => {
   }
 };
 
+export const updateUserProfile = (updatedProfile, userId, profileId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    const response = await axios.put(`/users/profile`, { ...updatedProfile, userId, profileId });
+
+    dispatch(fetchUser(userId));
+
+    console.log(response);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
 export const addUserTag = (tagName, profileId) => async (dispatch, getState) => {
   try {
     const response = await axios.post(`/tags/user`, {
@@ -68,6 +83,6 @@ export const deleteUserTag = (tagId, userId) => async (dispatch, getState) => {
 
     console.log(response);
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 };

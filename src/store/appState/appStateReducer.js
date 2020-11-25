@@ -1,4 +1,11 @@
-import { APP_LOADING, APP_DONE_LOADING, SET_MESSAGE, CLEAR_MESSAGE } from "./appStateActions";
+import {
+  APP_LOADING,
+  APP_DONE_LOADING,
+  SET_MESSAGE,
+  CLEAR_MESSAGE,
+  SET_CURRENT_DATE,
+  SET_SELECTED_DATE,
+} from "./appStateActions";
 
 const initialState = {
   loading: false,
@@ -21,10 +28,10 @@ const appStateReducer = (state = initialState, action) => {
     case CLEAR_MESSAGE:
       return { ...state, message: null };
 
-    case "SET_CURRENT_DATE": {
+    case SET_CURRENT_DATE: {
       return { ...state, currentDate: action.payload };
     }
-    case "SET_SELECTED_DATE": {
+    case SET_SELECTED_DATE: {
       return { ...state, selectedDate: action.payload };
     }
 
