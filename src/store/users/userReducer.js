@@ -1,7 +1,8 @@
-import { SAVE_ALL_USERS } from "./userActions";
+import { SAVE_ALL_USERS, SAVE_USER } from "./userActions";
 
 const initialState = {
   all: [],
+  single: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,6 +13,14 @@ const userReducer = (state = initialState, action) => {
         all: [...action.payload],
       };
     }
+
+    case SAVE_USER: {
+      return {
+        ...state,
+        single: { ...action.payload },
+      };
+    }
+
     default:
       return state;
   }

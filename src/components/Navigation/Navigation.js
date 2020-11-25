@@ -23,7 +23,7 @@ function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem align path="/" linkText="Home" />
-          <NavBarItem align path="/profile" linkText="My Profile" />
+          {token && <NavBarItem align path="/profile" linkText="My Profile" />}
           {token ? <LoggedIn /> : <LoggedOut />}
         </Nav>
       </Navbar.Collapse>

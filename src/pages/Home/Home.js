@@ -12,17 +12,12 @@ function Home() {
   const dispatch = useDispatch();
   const chefs = useSelector(selectAllChefs);
   const tags = useSelector(selectAllTags);
+  // eslint-disable-next-line no-unused-vars
   const [selectDate, setSelectDate] = useState("");
   const [selectTagOne, setSelectTagOne] = useState("");
   const [selectTagTwo, setSelectTagTwo] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [selectRating, setSelectRating] = useState(0);
-
-  // console.log("CHEFS", chefs);
-  // console.log("TAGS", tags);
-  console.log("SELECT-DATE", selectDate);
-  // console.log("SELECT-TAG-ONE", selectTagOne);
-  // console.log("SELECT-TAG-TWO", selectTagTwo);
-  console.log("SELECT-RATING", selectRating);
 
   const sortChefsByTags = chefs.filter((chef) => {
     const chefTags = chef.profile.specializationTags;
@@ -33,7 +28,6 @@ function Home() {
   });
 
   const sortedChefs = selectTagOne === "" && selectTagTwo === "" ? chefs : sortChefsByTags;
-  // console.log("SORTEDCHEFS", sortedChefs);
 
   useEffect(() => {
     dispatch(fetchAllUsers());

@@ -1,0 +1,105 @@
+.height {
+  height: 150vh;
+}
+
+.MyProfile-top {
+  padding: 4em 0 2em 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 3em;
+  align-items: center;
+}
+
+.MyProfile-img-wrapper {
+  height: 12.5em;
+  width: 12.5em;
+}
+
+.MyProfile-img {
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.MyProfile-msg {
+  display: flex;
+  align-items: center;
+  grid-column: 2 / span 2;
+  margin-top: 2em;
+  align-self: start;
+}
+
+.MyProfile-inbox-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.MyProfile-booking-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.MyProfile-main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.MyProfile-main-left {
+  grid-column: 1 / span 2;
+}
+
+.MyProfile-main-right {
+  grid-column: 3 / span 4;
+}
+
+.MyProfile-main-detail-wrapper {
+  padding: 1em 0 1em 0;
+}
+
+.MyProfile-main-detail {
+  font-size: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.MyProfile-main-description {
+  font-size: 0.85rem;
+}
+
+.MyProfile-main-tagbox {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.MyProfile-main-tagInput {
+  margin: 0.5em 0 0.5em 0;
+  height: 1em;
+}
+
+.MyProfile-main-description {
+  padding: 1em;
+  width: 80%;
+  border: 1px solid black;
+}
+
+.MyProfile-editMode-wrapper {
+  margin: 1em 0 1em 0;
+}
+
+.MyProfile-editMode-input {
+  height: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.MyProfile-editMode-textarea {
+  margin: 1em 0 1em 0;
+}
+
+.MyProfile-editMode-btn {
+  margin-right: 1em;
+}
