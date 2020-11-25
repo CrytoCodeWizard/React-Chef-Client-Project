@@ -1,0 +1,64 @@
+.MyProfile-top {
+  padding: 4em 0 4em 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 3em;
+  align-items: center;
+}
+
+.MyProfile-img-wrapper {
+  height: 15.5em;
+  width: 15.5em;
+}
+
+.MyProfile-img {
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.MyProfile-msg {
+  display: flex;
+  align-items: center;
+  grid-column: 2 / span 2;
+  margin-top: 2em;
+  align-self: start;
+}
+
+.MyProfile-inbox-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.MyProfile-booking-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.MyProfile-main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.MyProfile-main-left {
+  grid-column: 1 / span 2;
+}
+
+.MyProfile-main-right {
+  grid-column: 3 / span 4;
+}
+
+.MyProfile-main-tagbox {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.MyProfile-main-description {
+  padding: 1em;
+  width: 80%;
+  border: 1px solid black;
+}
