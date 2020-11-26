@@ -16,7 +16,7 @@ export default function Calendar({ value, onChange }) {
 
   useEffect(() => {
     setCalendar(buildCalendar(value));
-  }, [value, dispatch]);
+  }, [value, dispatch, availableDates]);
 
   function isSelected(day) {
     return value.isSame(day, "day");
