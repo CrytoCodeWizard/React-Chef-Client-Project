@@ -5,7 +5,7 @@ import buildCalendar from "./build";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
-import { addAvailableDate } from "../../store/users/userActions";
+import { addAvailableDate, removeAvailableDate } from "../../store/users/userActions";
 
 export default function Calendar({ value, onChange }) {
   const dispatch = useDispatch();
@@ -88,6 +88,7 @@ export default function Calendar({ value, onChange }) {
                     const availableDate = day.format("YYYY-MM-DD");
                     if (same) {
                       console.log("remove");
+                      dispatch(removeAvailableDate(availableDate));
                     } else {
                       console.log("add");
                       dispatch(addAvailableDate(availableDate));

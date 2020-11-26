@@ -98,3 +98,18 @@ export const addAvailableDate = (availableDate) => async (dispatch, getState) =>
     console.log(e.message);
   }
 };
+
+export const removeAvailableDate = (availableDate) => async (dispatch, getState) => {
+  const profileId = getState().users.single.id;
+
+  try {
+    const response = await axios.delete(`/users/profile/availability`, {
+      availableDate,
+      profileId,
+    });
+
+    console.log(response);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
