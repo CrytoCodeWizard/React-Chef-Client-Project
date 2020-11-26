@@ -86,3 +86,35 @@ export const deleteUserTag = (tagId, userId) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const addAvailableDate = (availableDate) => async (dispatch, getState) => {
+  const profileId = getState().users.single.id;
+
+  try {
+    // eslint-disable-next-line no-unused-vars
+    const response = await axios.post(`/users/profile/availability`, { availableDate, profileId });
+
+    dispatch(fetchUser(profileId));
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const removeAvailableDate = (availableDate) => async (dispatch, getState) => {
+  const profileId = getState().users.single.id;
+  console.log(profileId);
+
+  try {
+    // eslint-disable-next-line no-unused-vars
+    const response = await axios.delete(`/users/profile/availability`, {
+      headers: {
+        availableDate,
+        profileId,
+      },
+    });
+
+    dispatch(fetchUser(profileId));
+  } catch (e) {
+    console.log(e.message);
+  }
+};

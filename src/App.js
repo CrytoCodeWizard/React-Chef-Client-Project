@@ -23,7 +23,6 @@ function App() {
   useEffect(() => {
     dispatch(getUserWithStoredToken());
     dispatch(createDate());
-
     if (!selectedDate) {
       dispatch(setSelectedDate(moment(new Date()).format("YYYY-MM-DD")));
     }

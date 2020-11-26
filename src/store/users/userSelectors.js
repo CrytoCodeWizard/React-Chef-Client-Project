@@ -5,3 +5,7 @@ export const selectAllChefs = (reduxState) => {
 export const selectChef = (reduxState) => {
   return reduxState.users.single;
 };
+
+export const selectAvailableDates = (reduxState) => {
+  return reduxState.users.single.profile.availableDates;
+};

@@ -52,6 +52,10 @@
 }
 
 .MyProfile-main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   grid-column: 3 / span 4;
 }
 
