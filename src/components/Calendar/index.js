@@ -86,10 +86,15 @@ export default function Calendar({ value, onChange }) {
                     onChange(day);
                     console.log(day.format("YYYY-MM-DD"));
                     const availableDate = day.format("YYYY-MM-DD");
-                    dispatch(addAvailableDate(availableDate));
+                    if (same) {
+                      console.log("remove");
+                    } else {
+                      console.log("add");
+                      dispatch(addAvailableDate(availableDate));
+                    }
                   }}
                 >
-                  <div className={dayStyles(day)}>{day.format("D").toString()}</div>
+                  <div className={dayStyles(day)}>{day.format("D")}</div>
                 </div>
               );
             })}
