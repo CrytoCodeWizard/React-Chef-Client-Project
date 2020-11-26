@@ -91,7 +91,7 @@ export const addAvailableDate = (availableDate) => async (dispatch, getState) =>
   const profileId = getState().users.single.id;
 
   try {
-    const response = await axios.post(`/users/profiles/availability`, { availableDate, profileId });
+    const response = await axios.post(`/users/profile/availability`, { availableDate, profileId });
 
     console.log(response);
   } catch (e) {
