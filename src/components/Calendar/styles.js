@@ -1,5 +1,5 @@
-export function isSelected(day, value) {
-  return value.isSame(day, "day");
+export function isSelected(day, selectedDate) {
+  return selectedDate.isSame(day, "day");
 }
 
 export function beforeToday(day) {
@@ -10,9 +10,29 @@ function isToday(day) {
   return day.isSame(new Date(), "day");
 }
 
-export default function dayStyles(day, value) {
-  if (beforeToday(day)) return "Calendar-day before";
-  if (isSelected(day, value)) return "Calendar-day selected";
-  if (isToday(day)) return "Calendar-day today";
+export const availableStyles = (same, hover) => {
+  if (!hover) {
+    if (same) {
+      return {
+        backgroundColor: "#5CB85C",
+      };
+    } else {
+      return { backgroundColor: "#C1272D" };
+    }
+  } else {
+    if (!same) {
+      return {
+        backgroundColor: "#5CB85C",
+      };
+    } else {
+      return { backgroundColor: "#C1272D" };
+    }
+  }
+};
+
+export default function dayStyles(day, selectedDate) {
+  if (beforeToday(day)) return "before";
+  if (isSelected(day, selectedDate)) return "selected";
+  if (isToday(day)) return "today";
   return "";
 }

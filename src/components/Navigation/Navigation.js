@@ -1,7 +1,7 @@
 import React from "react";
 import NavBarItem from "./NavBarItem";
 import { Navbar, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../store/userLogin/userLoginSelectors";
 import LoggedIn from "./LoggedIn";
@@ -9,6 +9,7 @@ import LoggedOut from "./LoggedOut";
 import "./Navigation.css";
 
 function Navigation() {
+  const history = useHistory();
   const token = useSelector(selectToken);
 
   return (
@@ -23,7 +24,9 @@ function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem align path="/" linkText="Home" />
-          {token && <NavBarItem align path="/profile" linkText="My Profile" />}
+          {!token || history.location.pathname === "/profile" ? null : (
+            <NavBarItem align path="/profile" linkText="My Profile" />
+          )}
           {token ? <LoggedIn /> : <LoggedOut />}
         </Nav>
       </Navbar.Collapse>
