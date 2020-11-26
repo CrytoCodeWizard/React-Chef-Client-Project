@@ -86,3 +86,15 @@ export const deleteUserTag = (tagId, userId) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+export const addAvailableDate = (availableDate) => async (dispatch, getState) => {
+  const profileId = getState().users.single.id;
+
+  try {
+    const response = await axios.post(`/users/profiles/availability`, { availableDate, profileId });
+
+    console.log(response);
+  } catch (e) {
+    console.log(e.message);
+  }
+};

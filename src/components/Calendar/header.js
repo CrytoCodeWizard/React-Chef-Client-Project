@@ -35,25 +35,3 @@ export default function CalendarHeader({ value, onChange }) {
     </div>
   );
 }
-
-// function isSelected(day) {
-//   return value.isSame(day, "day");
-// }
-
-// function beforeToday(day) {
-//   return moment(day).isBefore(new Date(), "day");
-// }
-
-// function isToday(day) {
-//   return moment(new Date()).isSame(day, "day");
-// }
-
-// // eslint-disable-next-line no-unused-vars
-// function currMonthName() {
-//   return value.format("MMMM");
-// }
-
-// // eslint-disable-next-line no-unused-vars
-// function currYear() {
-//   return value.format("YYYY");
-// }

@@ -158,26 +158,26 @@ function MyProfile() {
               ></textarea>
             </div>
           )}
+          {editMode ? (
+            <div>
+              <button className="MyProfile-editMode-btn" onClick={() => handleSaveProfile()}>
+                Save
+              </button>
+              <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
+              Edit Profile
+            </button>
+          )}
         </div>
         <div className="MyProfile-main-right">
           <h1>Availability</h1>
 
           <Calendar value={selectedDate} onChange={setSelectedDate} />
         </div>
-        {editMode ? (
-          <div>
-            <button className="MyProfile-editMode-btn" onClick={() => handleSaveProfile()}>
-              Save
-            </button>
-            <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
-              Cancel
-            </button>
-          </div>
-        ) : (
-          <button className="MyProfile-editMode-btn" onClick={() => setEditMode(!editMode)}>
-            Edit Profile
-          </button>
-        )}
       </div>
     </Container>
   );

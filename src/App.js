@@ -14,26 +14,19 @@ import moment from "moment";
 import Loading from "./components/Loading/Loading";
 import Profile from "./pages/Profile/Profile";
 import MyProfile from "./pages/MyProfile/MyProfile";
-import { fetchUser } from "./store/users/userActions";
-import { selectUser } from "./store/userLogin/userLoginSelectors";
 
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
   const selectedDate = useSelector(getSelectedDate);
-  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
     dispatch(createDate());
-    if (user.id) {
-      dispatch(fetchUser(user.id));
-    }
-
     if (!selectedDate) {
       dispatch(setSelectedDate(moment(new Date()).format("YYYY-MM-DD")));
     }
-  }, [dispatch, selectedDate, user.id]);
+  }, [dispatch, selectedDate]);
 
   return (
     <div className="App">

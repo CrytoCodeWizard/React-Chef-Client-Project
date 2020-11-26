@@ -16,10 +16,3 @@ export default function dayStyles(day, value) {
   if (isToday(day)) return "Calendar-day today";
   return "";
 }
-
-// function dayStyles(day) {
-//   if (beforeToday(day)) return "Calendar-day before";
-//   if (isSelected(day, value)) return "Calendar-day selected";
-//   if (isToday(day)) return "Calendar-day today";
-//   return "";
-// }
