@@ -1,24 +1,24 @@
 import React from "react";
 
-export default function CalendarHeader({ value, onChange }) {
+export default function CalendarHeader({ selectedDate, onChange }) {
   function currMonthName() {
-    return value.format("MMMM");
+    return selectedDate.format("MMMM");
   }
 
   function currYear() {
-    return value.format("YYYY");
+    return selectedDate.format("YYYY");
   }
 
   function prevMonth() {
-    return value.clone().subtract(1, "month");
+    return selectedDate.clone().subtract(1, "month");
   }
 
   function nextMonth() {
-    return value.clone().add(1, "month");
+    return selectedDate.clone().add(1, "month");
   }
 
   function thisMonth() {
-    return value.isSame(new Date(), "month");
+    return selectedDate.isSame(new Date(), "month");
   }
 
   return (

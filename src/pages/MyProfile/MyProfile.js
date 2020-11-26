@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import Calendar from "../../components/Calendar/index.js";
+import Calendar from "../../components/Calendar/Calendar.js";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,6 +13,7 @@ import {
 } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
+import EditMode from "./EditMode.js";
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -54,7 +55,6 @@ function MyProfile() {
 
   const handleSaveProfile = () => {
     setEditMode(!editMode);
-
     dispatch(updateUserProfile(editProfile, userId, profileId));
   };
 
@@ -121,42 +121,7 @@ function MyProfile() {
           </div>
           <p className="MyProfile-main-description">{chef.profile?.description}</p>
           {editMode && (
-            <div className="MyProfile-editMode-wrapper">
-              <h5>Edit profile details...</h5>
-              <input
-                onChange={(e) =>
-                  setEditProfile({ ...editProfile, yearsOfExperience: e.target.value })
-                }
-                className="MyProfile-editMode-input"
-                placeholder={editProfile.yearsOfExperience}
-                type="text"
-              />
-              <input
-                onChange={(e) => setEditProfile({ ...editProfile, hourlyRate: e.target.value })}
-                placeholder={editProfile.hourlyRate}
-                className="MyProfile-editMode-input"
-                type="text"
-              />
-              <input
-                onChange={(e) => setEditProfile({ ...editProfile, position: e.target.value })}
-                className="MyProfile-editMode-input"
-                placeholder={editProfile.position}
-                type="text"
-              />
-              <input
-                onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })}
-                className="MyProfile-editMode-input"
-                placeholder={editProfile.city}
-                type="text"
-              />
-              <textarea
-                className="MyProfile-editMode-textarea"
-                onChange={(e) => setEditProfile({ ...editProfile, description: e.target.value })}
-                rows="6"
-                cols="30"
-                defaultValue={chef && chef.profile.description}
-              ></textarea>
-            </div>
+            <EditMode setEditProfile={setEditProfile} chef={chef} editProfile={editProfile} />
           )}
           {editMode ? (
             <div>
@@ -174,9 +139,9 @@ function MyProfile() {
           )}
         </div>
         <div className="MyProfile-main-right">
-          <h1>Availability</h1>
+          <h1 className="MyProfile-main-right-header">Availability</h1>
 
-          <Calendar value={selectedDate} onChange={setSelectedDate} />
+          <Calendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
     </Container>

@@ -102,7 +102,6 @@ export const addAvailableDate = (availableDate) => async (dispatch, getState) =>
 
 export const removeAvailableDate = (availableDate) => async (dispatch, getState) => {
   const profileId = getState().users.single.id;
-  console.log(profileId);
 
   try {
     // eslint-disable-next-line no-unused-vars

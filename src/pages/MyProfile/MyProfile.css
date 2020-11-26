@@ -43,6 +43,7 @@
 }
 
 .MyProfile-main {
+  height: 53em;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
@@ -54,9 +55,13 @@
 .MyProfile-main-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   grid-column: 3 / span 4;
+}
+
+.MyProfile-main-right-header {
+  margin-bottom: 1.5em;
 }
 
 .MyProfile-main-detail-wrapper {
