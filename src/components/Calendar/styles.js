@@ -1,4 +1,4 @@
-function isSelected(day, value) {
+export function isSelected(day, value) {
   return value.isSame(day, "day");
 }
 

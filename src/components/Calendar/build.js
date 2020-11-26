@@ -1,3 +1,6 @@
+// Pure function that creates a DATE matrix.
+// Clone so the initial date objects don't get modified.
+
 export default function buildCalendar(value) {
   const startDay = value.clone().startOf("month").startOf("week");
   const endDay = value.clone().endOf("month").endOf("week");

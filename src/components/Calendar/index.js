@@ -3,6 +3,8 @@ import moment from "moment";
 import Header from "./header";
 import buildCalendar from "./build";
 import "./styles.css";
+import dayStyles from "./styles.js";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
 import { addAvailableDate, removeAvailableDate } from "../../store/users/userActions";
@@ -17,35 +19,6 @@ export default function Calendar({ value, onChange }) {
   useEffect(() => {
     setCalendar(buildCalendar(value));
   }, [value, dispatch, availableDates]);
-
-  function isSelected(day) {
-    return value.isSame(day, "day");
-  }
-
-  function beforeToday(day) {
-    return moment(day).isBefore(new Date(), "day");
-  }
-
-  function isToday(day) {
-    return moment(new Date()).isSame(day, "day");
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  function currMonthName() {
-    return value.format("MMMM");
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  function currYear() {
-    return value.format("YYYY");
-  }
-
-  function dayStyles(day) {
-    if (beforeToday(day)) return "Calendar-day before";
-    if (isSelected(day, value)) return "Calendar-day selected";
-    if (isToday(day)) return "Calendar-day today";
-    return "";
-  }
 
   const available = {
     backgroundColor: "#5CB85C",
@@ -95,7 +68,7 @@ export default function Calendar({ value, onChange }) {
                     }
                   }}
                 >
-                  <div className={dayStyles(day)}>{day.format("D")}</div>
+                  <div className={dayStyles(day, value)}>{day.format("D")}</div>
                 </div>
               );
             })}
