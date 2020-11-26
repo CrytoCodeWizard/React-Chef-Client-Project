@@ -2,7 +2,7 @@ import { SAVE_ALL_USERS, SAVE_USER } from "./userActions";
 
 const initialState = {
   all: [],
-  single: {},
+  single: { profile: { availableDates: [], specializationTags: [] } },
 };
 
 const userReducer = (state = initialState, action) => {

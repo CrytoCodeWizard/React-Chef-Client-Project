@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import Calendar from "../../components/Calendar/index.js";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -21,6 +23,7 @@ function MyProfile() {
 
   const userId = parseInt(user.id);
   const profileId = parseInt(chef.profile?.id);
+  const [selectedDate, setSelectedDate] = useState(moment());
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
 
@@ -157,7 +160,9 @@ function MyProfile() {
           )}
         </div>
         <div className="MyProfile-main-right">
-          <h1>right</h1>
+          <h1>Availability</h1>
+
+          <Calendar value={selectedDate} onChange={setSelectedDate} />
         </div>
         {editMode ? (
           <div>
