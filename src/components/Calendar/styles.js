@@ -11,22 +11,12 @@ function isToday(day) {
 }
 
 export const availableStyles = (same, hover) => {
-  if (!hover) {
-    if (same) {
-      return {
-        backgroundColor: "#5CB85C",
-      };
-    } else {
-      return { backgroundColor: "#C1272D" };
-    }
+  if (same) {
+    return {
+      backgroundColor: "#5CB85C",
+    };
   } else {
-    if (!same) {
-      return {
-        backgroundColor: "#5CB85C",
-      };
-    } else {
-      return { backgroundColor: "#C1272D" };
-    }
+    return { backgroundColor: "#C1272D" };
   }
 };
 
@@ -36,3 +26,6 @@ export default function dayStyles(day, selectedDate) {
   if (isToday(day)) return "today";
   return "";
 }
+
+// if (day < moment(new Date()).startOf("day")) return;
+// onChange(day);

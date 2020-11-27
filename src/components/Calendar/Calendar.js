@@ -7,6 +7,7 @@ import dayStyles, { availableStyles } from "./styles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
 import { addAvailableDate, removeAvailableDate } from "../../store/users/userActions";
+import Day from "./Day";
 
 export default function Calendar({ selectedDate, onChange }) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function Calendar({ selectedDate, onChange }) {
 
   useEffect(() => {
     setCalendar(buildCalendar(selectedDate));
-  }, [selectedDate, dispatch]);
+  }, [selectedDate, dispatch, availableDates]);
 
   return (
     <div className="calendar">
@@ -40,24 +41,22 @@ export default function Calendar({ selectedDate, onChange }) {
               });
 
               return (
-                <div
-                  key={di}
-                  style={availableStyles(same)}
-                  className="day"
-                  onClick={() => {
-                    if (day < moment(new Date()).startOf("day")) return;
-                    onChange(day);
-
-                    const availableDate = day.format("YYYY-MM-DD");
-                    if (same) {
-                      dispatch(removeAvailableDate(availableDate));
-                    } else {
-                      dispatch(addAvailableDate(availableDate));
-                    }
-                  }}
-                >
-                  <div className={dayStyles(day, selectedDate)}>{day.format("D")}</div>
-                </div>
+                <Day key={di} same={same} day={day} selectedDate={selectedDate} />
+                // <div
+                //   key={di}
+                //   style={availableStyles(same)}
+                //   className="day"
+                //   onClick={() => {
+                //     const availableDate = day.format("YYYY-MM-DD");
+                //     if (same) {
+                //       dispatch(removeAvailableDate(availableDate));
+                //     } else {
+                //       dispatch(addAvailableDate(availableDate));
+                //     }
+                //   }}
+                // >
+                //   <div className={dayStyles(day, selectedDate)}>{day.format("D")}</div>
+                // </div>
               );
             })}
           </div>

@@ -1,0 +1,107 @@
+.height {
+  height: 150vh;
+}
+
+.Profile-top {
+  padding: 4em 0 2em 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 3em;
+  align-items: center;
+}
+
+.Profile-img-wrapper {
+  height: 12.5em;
+  width: 12.5em;
+}
+
+.Profile-img {
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.Profile-inbox-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.Profile-booking-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.Profile-main {
+  height: 53em;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.Profile-main-left {
+  grid-column: 1 / span 2;
+}
+
+.Profile-main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column: 4 / -1;
+  grid-row: 1 / span 1;
+}
+
+.Profile-main-right-header {
+  margin-bottom: 1.5em;
+}
+
+.Profile-main-detail-wrapper {
+  padding: 1em 0 1em 0;
+}
+
+.Profile-main-detail {
+  font-size: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.Profile-main-description {
+  font-size: 0.85rem;
+}
+
+.Profile-main-tagbox {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.Profile-main-tagInput {
+  margin: 0.5em 0 0.5em 0;
+  height: 1em;
+}
+
+.Profile-main-description {
+  padding: 1em;
+  width: 80%;
+  border: 1px solid black;
+}
+
+.Profile-editMode-wrapper {
+  margin: 1em 0 1em 0;
+}
+
+.Profile-editMode-input {
+  height: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.Profile-editMode-textarea {
+  margin: 1em 0 1em 0;
+}
+
+.Profile-editMode-btn {
+  margin-right: 1em;
+}
