@@ -33,8 +33,6 @@ export const sendMessage = (message) => async (dispatch, getState) => {
 };
 
 export const fetchUserMessages = (id) => async (dispatch, getState) => {
-  console.log(id);
-
   try {
     const response = await axios.get(`/users/${id}/profile/message`);
 

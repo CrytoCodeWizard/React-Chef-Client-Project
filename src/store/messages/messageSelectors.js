@@ -5,3 +5,7 @@ export const selectModal = (reduxState) => {
 export const selectMessages = (reduxState) => {
   return reduxState.messages.all;
 };
+
+export const newMessageCount = (reduxState) => {
+  return reduxState.messages.all.filter((x) => x.new).length;
+};
