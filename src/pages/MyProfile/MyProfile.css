@@ -29,6 +29,10 @@
 }
 
 .MyProfile-inbox-btn {
+  width: 100%;
+}
+
+.MyProfile-inbox-link {
   align-self: start;
   margin-top: 2em;
   grid-column: 4 / span 1;
