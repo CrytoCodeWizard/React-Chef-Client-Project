@@ -105,7 +105,7 @@ function MyProfile() {
                   </div>
                 ))
               : chef.profile?.specializationTags.map((x) => (
-                  <div onClick={deleteTag(x.id)} key={x.id} className="ChefCard-tag">
+                  <div key={x.id} className="ChefCard-tag">
                     {x.tagName}
                   </div>
                 ))}

@@ -4,9 +4,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 100;
+  z-index: 2;
   position: absolute;
-  width: 400px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
   background-color: orangered;
 }
 

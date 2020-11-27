@@ -17,14 +17,12 @@ function MessageModal() {
     recipientUserId: profile.id || 0,
   });
 
-  console.log(message);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(sendMessage({ ...message }));
   };
-
+  console.log("modal");
   return (
     <div className="message-modal">
       <form onSubmit={handleSubmit}>
