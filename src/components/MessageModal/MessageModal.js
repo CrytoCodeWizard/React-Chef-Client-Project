@@ -7,7 +7,7 @@ function MessageModal() {
   const [message, setMessage] = useState({
     author: 0,
     title: "",
-    message: "",
+    content: "",
     recipientId: 0,
   });
 
@@ -16,13 +16,20 @@ function MessageModal() {
   return (
     <div className="message-modal">
       <div className="message-modal-title-wrapper">
-        <input className="message-modal-input modal-input-title" type="text"></input>
+        <input
+          onChange={(e) => setMessage({ ...message, title: e.target.value })}
+          className="message-modal-input modal-input-title"
+          type="text"
+        />
 
         <span onClick={() => dispatch(switchModal())} className="message-modal-close">
           x
         </span>
       </div>
-      <textarea className="message-modal-input"></textarea>
+      <textarea
+        onChange={(e) => setMessage({ ...message, content: e.target.value })}
+        className="message-modal-input"
+      ></textarea>
 
       <button>Send</button>
     </div>
