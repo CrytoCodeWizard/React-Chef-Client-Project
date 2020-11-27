@@ -17,8 +17,6 @@ function MessageModal() {
     recipientUserId: profile.id || 0,
   });
 
-  console.log(message);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

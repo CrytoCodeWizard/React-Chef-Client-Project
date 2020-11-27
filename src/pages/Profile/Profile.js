@@ -8,6 +8,7 @@ import { selectChef } from "../../store/users/userSelectors";
 import "./Profile.css";
 import { selectModal } from "../../store/messages/messageSelectors.js";
 import { useParams } from "react-router-dom";
+import { switchModal } from "../../store/messages/messageActions.js";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -36,8 +37,9 @@ function Profile() {
               alt="chef"
             />
           </div>
-          <button className="Profile-booking-btn">My Bookings</button>
-          <button className="Profile-inbox-btn">Inbox</button>
+          <button onClick={() => dispatch(switchModal())} className="Profile-booking-btn">
+            Send message
+          </button>
         </div>
       </div>
       <div className="Profile-main">
