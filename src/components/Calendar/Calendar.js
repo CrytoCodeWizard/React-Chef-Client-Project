@@ -38,24 +38,7 @@ export default function Calendar({ selectedDate, onChange }) {
                 return match;
               });
 
-              return (
-                <Day key={di} same={same} day={day} selectedDate={selectedDate} />
-                // <div
-                //   key={di}
-                //   style={availableStyles(same)}
-                //   className="day"
-                //   onClick={() => {
-                //     const availableDate = day.format("YYYY-MM-DD");
-                //     if (same) {
-                //       dispatch(removeAvailableDate(availableDate));
-                //     } else {
-                //       dispatch(addAvailableDate(availableDate));
-                //     }
-                //   }}
-                // >
-                //   <div className={dayStyles(day, selectedDate)}>{day.format("D")}</div>
-                // </div>
-              );
+              return <Day key={di} same={same} day={day} selectedDate={selectedDate} />;
             })}
           </div>
         ))}
