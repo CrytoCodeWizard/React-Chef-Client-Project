@@ -38,7 +38,7 @@ export const fetchUserMessages = (id) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`/users/${id}/profile/message`);
 
-    console.log(response.data);
+    dispatch(saveUserMessages(response.data));
   } catch (e) {
     console.log(e.message);
   }
