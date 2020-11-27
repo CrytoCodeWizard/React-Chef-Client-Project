@@ -21,9 +21,9 @@ export const availableStyles = (same, hover) => {
 };
 
 export default function dayStyles(day, selectedDate) {
-  if (beforeToday(day)) return "before";
-  if (isSelected(day, selectedDate)) return "selected";
-  if (isToday(day)) return "today";
+  if (beforeToday(day)) return "date-box before";
+  if (isSelected(day, selectedDate)) return "date-box selected";
+  if (isToday(day)) return "date-box today";
   return "";
 }
 

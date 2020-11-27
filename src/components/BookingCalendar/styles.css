@@ -1,0 +1,113 @@
+.calendar-booking {
+  box-sizing: border-box;
+  font-size: 1rem;
+  width: 650px;
+}
+
+.calendar-booking .header {
+  background-color: var(--light-blue);
+  text-align: center;
+  min-height: 4rem;
+  line-height: 2rem;
+  color: var(--black);
+  font-family: var(--font-book);
+  font-weight: 700;
+  display: flex;
+}
+
+.calendar-booking .day-names {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.calendar-booking .body {
+  border: 1px solid var(--light-blue);
+}
+
+.calendar-booking .header .previous {
+  flex: 1;
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.calendar-booking .header .next {
+  flex: 1;
+  text-align: right;
+  margin-right: 1rem;
+}
+
+.calendar-booking .week {
+  background-color: white;
+  width: calc(100% / 7);
+  height: 50px;
+  line-height: 44px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--black);
+  font-weight: 400;
+}
+.calendar-booking .week div {
+  width: 100%;
+}
+
+.calendar-booking .day {
+  position: relative;
+  width: calc(100% / 7);
+  height: 100px;
+  display: inline-block;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 1;
+  text-align: center;
+}
+
+.calendar-booking .day div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: var(--black);
+  z-index: 100;
+  line-height: 49px;
+  transition: 100ms all ease-in;
+}
+
+.calendar-booking .day div.before {
+  color: var(--black);
+  background-color: var(--grey);
+  width: 100%;
+  height: 100%;
+}
+
+.book-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  padding: 0;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 0.5rem;
+  width: 75%;
+  height: 20%;
+  transition: 100ms ease-in all;
+}
+
+.book-btn:hover {
+  background: gold;
+}
+
+.book-btn:focus {
+  outline: none;
+}
+
+.message-box {
+  position: absolute;
+  background-color: tomato;
+}

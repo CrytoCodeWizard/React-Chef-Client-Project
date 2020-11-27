@@ -6,19 +6,21 @@ import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
 import Day from "./Day";
+import MessageModal from "../MessageModal/MessageModal";
+import { selectModal } from "../../store/messages/messageSelectors";
 
 export default function Calendar({ selectedDate, onChange }) {
   const dispatch = useDispatch();
   const availableDates = useSelector(selectAvailableDates);
   const [calendar, setCalendar] = useState([]);
   const availableDatesArray = availableDates.map((d) => moment(d.date));
+  const modal = useSelector(selectModal);
 
   useEffect(() => {
     setCalendar(buildCalendar(selectedDate));
-  }, [selectedDate, dispatch]);
-
+  }, [selectedDate, dispatch, availableDates]);
   return (
-    <div className="calendar">
+    <div className="calendar-booking">
       <Header selectedDate={selectedDate} onChange={onChange} />
 
       <div className="body">
@@ -29,6 +31,7 @@ export default function Calendar({ selectedDate, onChange }) {
             </div>
           ))}
         </div>
+        {modal && <MessageModal />}
         {calendar.map((week, wi) => (
           <div key={wi}>
             {week.map((day, di) => {
@@ -38,24 +41,7 @@ export default function Calendar({ selectedDate, onChange }) {
                 return match;
               });
 
-              return (
-                <Day key={di} same={same} day={day} selectedDate={selectedDate} />
-                // <div
-                //   key={di}
-                //   style={availableStyles(same)}
-                //   className="day"
-                //   onClick={() => {
-                //     const availableDate = day.format("YYYY-MM-DD");
-                //     if (same) {
-                //       dispatch(removeAvailableDate(availableDate));
-                //     } else {
-                //       dispatch(addAvailableDate(availableDate));
-                //     }
-                //   }}
-                // >
-                //   <div className={dayStyles(day, selectedDate)}>{day.format("D")}</div>
-                // </div>
-              );
+              return <Day key={di} same={same} day={day} selectedDate={selectedDate} />;
             })}
           </div>
         ))}

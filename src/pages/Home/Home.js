@@ -100,6 +100,7 @@ function Home() {
           {sortedChefs.map((x) => {
             return (
               <ChefCard
+                id={x.id}
                 key={x.id}
                 name={`${x.firstName} ${x.lastName}`}
                 city={x.city}
