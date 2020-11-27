@@ -7,11 +7,15 @@ import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import { fetchUser } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./Profile.css";
+import { selectModal } from "../../store/messages/messageSelectors.js";
 
 function Profile() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
+  const modal = useSelector(selectModal);
+
+  console.log(modal);
 
   const userId = parseInt(user.id);
   const [selectedDate, setSelectedDate] = useState(moment());

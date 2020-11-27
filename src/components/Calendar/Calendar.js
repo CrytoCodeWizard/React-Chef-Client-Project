@@ -3,10 +3,8 @@ import moment from "moment";
 import Header from "./header";
 import buildCalendar from "./build";
 import "./styles.css";
-// import dayStyles, { availableStyles } from "./styles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
-// import { addAvailableDate, removeAvailableDate } from "../../store/users/userActions";
 import Day from "./Day";
 
 export default function Calendar({ selectedDate, onChange }) {
@@ -17,7 +15,7 @@ export default function Calendar({ selectedDate, onChange }) {
 
   useEffect(() => {
     setCalendar(buildCalendar(selectedDate));
-  }, [selectedDate, dispatch, availableDates]);
+  }, [selectedDate, dispatch]);
 
   return (
     <div className="calendar">

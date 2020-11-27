@@ -1,0 +1,29 @@
+.message-modal {
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 100;
+  position: absolute;
+  width: 30%;
+  top: 70%;
+  right: 8%;
+  transform: translate(-50%, -50%);
+  background-color: orangered;
+}
+
+.message-modal-input {
+  width: 90%;
+  align-self: stretch;
+  margin-bottom: 0.5em;
+}
+
+.message-modal-title-wrapper {
+  width: 100%;
+}
+
+.message-modal-close {
+  cursor: pointer;
+  float: right;
+}

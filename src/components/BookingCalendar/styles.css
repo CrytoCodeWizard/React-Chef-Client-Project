@@ -106,3 +106,8 @@
 .book-btn:focus {
   outline: none;
 }
+
+.message-box {
+  position: absolute;
+  background-color: tomato;
+}
