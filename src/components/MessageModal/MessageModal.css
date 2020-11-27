@@ -6,10 +6,7 @@
   align-items: flex-start;
   z-index: 100;
   position: absolute;
-  width: 30%;
-  top: 70%;
-  right: 8%;
-  transform: translate(-50%, -50%);
+  width: 400px;
   background-color: orangered;
 }
 

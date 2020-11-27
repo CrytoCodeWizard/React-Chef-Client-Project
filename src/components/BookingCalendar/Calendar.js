@@ -22,7 +22,7 @@ export default function Calendar({ selectedDate, onChange }) {
   return (
     <div className="calendar-booking">
       <Header selectedDate={selectedDate} onChange={onChange} />
-      {modal && <MessageModal />}
+
       <div className="body">
         <div className="day-names">
           {["s", "m", "t", "w", "t", "f", "s"].map((d, i) => (
@@ -31,6 +31,7 @@ export default function Calendar({ selectedDate, onChange }) {
             </div>
           ))}
         </div>
+        {modal && <MessageModal />}
         {calendar.map((week, wi) => (
           <div key={wi}>
             {week.map((day, di) => {
