@@ -3,7 +3,7 @@ import moment from "moment";
 import Calendar from "../../components/Calendar/Calendar.js";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import {
   addUserTag,
@@ -77,8 +77,10 @@ function MyProfile() {
           <div className="MyProfile-msg">
             <i className="las la-envelope la-2x"></i>2 new messages
           </div>
-          <button className="MyProfile-booking-btn">My Bookings</button>
-          <button className="MyProfile-inbox-btn">Inbox</button>
+          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+          <Link className="MyProfile-inbox-link" to="/profile/inbox">
+            <button className="MyProfile-inbox-btn">Inbox</button>
+          </Link>
         </div>
       </div>
       <div className="MyProfile-main">

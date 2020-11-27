@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./Profile.css";
-import { selectModal } from "../../store/messages/messageSelectors.js";
 import { useParams } from "react-router-dom";
 import { switchModal } from "../../store/messages/messageActions.js";
 
@@ -14,10 +13,6 @@ function Profile() {
   const dispatch = useDispatch();
   const params = useParams();
   const chef = useSelector(selectChef);
-  const modal = useSelector(selectModal);
-
-  console.log(modal);
-  console.log(params);
 
   const userId = parseInt(params.id);
   const [selectedDate, setSelectedDate] = useState(moment());

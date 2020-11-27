@@ -14,12 +14,7 @@ const Day = (props) => {
       style={availableStyles(same)}
       className="day"
       onClick={() => {
-        // const availableDate = day.format("YYYY-MM-DD");
-        // if (same) {
-        //   dispatch(removeAvailableDate(availableDate));
-        // } else {
-        //   dispatch(addAvailableDate(availableDate));
-        // }
+        console.log("click");
       }}
     >
       <div className={dayStyles(day, selectedDate)}>

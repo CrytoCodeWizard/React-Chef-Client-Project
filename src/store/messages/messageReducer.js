@@ -1,8 +1,8 @@
-import { MODAL_SWITCH } from "./messageActions";
+import { MODAL_SWITCH, SAVE_USER_MESSAGES } from "./messageActions";
 
 const initialState = {
   modal: false,
-  messages: [],
+  all: [],
 };
 
 const userLoginReducer = (state = initialState, action) => {
@@ -11,6 +11,12 @@ const userLoginReducer = (state = initialState, action) => {
       return {
         ...state,
         modal: !state.modal,
+      };
+
+    case SAVE_USER_MESSAGES:
+      return {
+        ...state,
+        all: [...action.payload],
       };
 
     default:

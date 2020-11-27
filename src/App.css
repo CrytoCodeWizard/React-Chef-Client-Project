@@ -48,6 +48,12 @@ button {
   --moz-osx-font-smoorthing: grayscale;
 }
 
+a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
 img {
   object-fit: cover;
   width: 100%;

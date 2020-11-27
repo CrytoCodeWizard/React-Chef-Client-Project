@@ -1,0 +1,27 @@
+.Inbox-message-wrapper {
+  padding: 1.5em;
+  margin: 0 auto;
+  width: 80%;
+  border: 2px solid #333;
+}
+
+.Inbox-message-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Inbox-message {
+  width: 100%;
+  background: orange;
+  margin-bottom: 1em;
+}
+
+.Inbox-message-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Inbox-message-btn {
+  margin-left: 0.5em;
+}
