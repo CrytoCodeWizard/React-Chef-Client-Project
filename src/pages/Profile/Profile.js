@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import Calendar from "../../components/Calendar/Calendar.js";
+import BookingCalendar from "../../components/BookingCalendar/Calendar.js";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
+import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import { fetchUser } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
 import "./Profile.css";
 
 function Profile() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const token = useSelector(selectToken);
   const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
 
@@ -20,11 +17,8 @@ function Profile() {
   const [selectedDate, setSelectedDate] = useState(moment());
 
   useEffect(() => {
-    if (!token || token === null) {
-      history.push("/");
-    }
     dispatch(fetchUser(userId));
-  }, [dispatch, userId, history, token]);
+  }, [dispatch, userId]);
 
   return (
     <Container className="height">
@@ -53,13 +47,18 @@ function Profile() {
             <p className="Profile-main-detail">{chef?.city}</p>
           </div>
           <div className="Profile-main-tagbox">
+            {chef.profile?.specializationTags.map((x) => (
+              <div key={x.id} className="ChefCard-tag">
+                {x.tagName}
+              </div>
+            ))}
             <p className="Profile-main-description">{chef.profile?.description}</p>
           </div>
-          <div className="Profile-main-right">
-            <h1 className="Profile-main-right-header">Availability</h1>
+        </div>
+        <div className="Profile-main-right">
+          <h1 className="Profile-main-right-header">Availability</h1>
 
-            <Calendar selectedDate={selectedDate} onChange={setSelectedDate} />
-          </div>
+          <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
     </Container>

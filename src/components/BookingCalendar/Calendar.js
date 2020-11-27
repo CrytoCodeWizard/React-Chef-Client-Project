@@ -3,10 +3,8 @@ import moment from "moment";
 import Header from "./header";
 import buildCalendar from "./build";
 import "./styles.css";
-// import dayStyles, { availableStyles } from "./styles.js";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
-// import { addAvailableDate, removeAvailableDate } from "../../store/users/userActions";
 import Day from "./Day";
 
 export default function Calendar({ selectedDate, onChange }) {
@@ -20,7 +18,7 @@ export default function Calendar({ selectedDate, onChange }) {
   }, [selectedDate, dispatch, availableDates]);
 
   return (
-    <div className="calendar">
+    <div className="calendar-booking">
       <Header selectedDate={selectedDate} onChange={onChange} />
 
       <div className="body">
@@ -40,24 +38,7 @@ export default function Calendar({ selectedDate, onChange }) {
                 return match;
               });
 
-              return (
-                <Day key={di} same={same} day={day} selectedDate={selectedDate} />
-                // <div
-                //   key={di}
-                //   style={availableStyles(same)}
-                //   className="day"
-                //   onClick={() => {
-                //     const availableDate = day.format("YYYY-MM-DD");
-                //     if (same) {
-                //       dispatch(removeAvailableDate(availableDate));
-                //     } else {
-                //       dispatch(addAvailableDate(availableDate));
-                //     }
-                //   }}
-                // >
-                //   <div className={dayStyles(day, selectedDate)}>{day.format("D")}</div>
-                // </div>
-              );
+              return <Day key={di} same={same} day={day} selectedDate={selectedDate} />;
             })}
           </div>
         ))}

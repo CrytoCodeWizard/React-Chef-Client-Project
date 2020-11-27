@@ -1,11 +1,12 @@
 .height {
-  height: 150vh;
+  height: 100vh;
 }
 
 .Profile-top {
   padding: 4em 0 2em 0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: auto;
   grid-column-gap: 3em;
   align-items: center;
 }
@@ -35,7 +36,6 @@
 }
 
 .Profile-main {
-  height: 53em;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
@@ -49,8 +49,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  grid-column: 4 / -1;
-  grid-row: 1 / span 1;
+  grid-column: 3 / span 4;
 }
 
 .Profile-main-right-header {
@@ -78,30 +77,8 @@
   margin-bottom: 1em;
 }
 
-.Profile-main-tagInput {
-  margin: 0.5em 0 0.5em 0;
-  height: 1em;
-}
-
 .Profile-main-description {
   padding: 1em;
-  width: 80%;
+  width: 100%;
   border: 1px solid black;
-}
-
-.Profile-editMode-wrapper {
-  margin: 1em 0 1em 0;
-}
-
-.Profile-editMode-input {
-  height: 1.2em;
-  margin-bottom: 0.3em;
-}
-
-.Profile-editMode-textarea {
-  margin: 1em 0 1em 0;
-}
-
-.Profile-editMode-btn {
-  margin-right: 1em;
 }
