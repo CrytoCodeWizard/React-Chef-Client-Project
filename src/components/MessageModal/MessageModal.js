@@ -22,7 +22,7 @@ function MessageModal() {
 
     dispatch(sendMessage({ ...message }));
   };
-
+  console.log("modal");
   return (
     <div className="message-modal">
       <form onSubmit={handleSubmit}>
