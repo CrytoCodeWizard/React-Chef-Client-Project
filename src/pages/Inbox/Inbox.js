@@ -13,17 +13,17 @@ function Inbox() {
   const userId = user.id;
   const messages = useSelector(selectMessages);
   const newMessages = useSelector(newMessageCount);
-  const [openMessage, setOpenMessage] = useState(false);
 
-  console.log("MESSAGECOUNT", newMessages);
+  const sortedMessages = [...messages]
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .map((x) => ({ ...x, open: false }));
+
+  const [storedMessages, setStoredMessages] = useState(sortedMessages);
+  console.log(storedMessages);
 
   useEffect(() => {
     dispatch(fetchUserMessages(userId));
   }, [dispatch, userId]);
-
-  const sortedMessages = [...messages].sort(
-    (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-  );
 
   const newMessage = {
     background: "#5CB85C",
@@ -31,6 +31,11 @@ function Inbox() {
 
   const oldMessage = {
     background: "#C1272D",
+  };
+
+  const openMessage = (id) => () => {
+    const alteredMessages = storedMessages.map((x) => (x.id === id ? { ...x, open: !x.open } : x));
+    setStoredMessages(alteredMessages);
   };
 
   const acceptBooking = (bookingId) => () => {
@@ -51,40 +56,42 @@ function Inbox() {
               {newMessages} new messages
             </div>
           </div>
-          {sortedMessages.map((x) => (
-            <div style={x.new ? newMessage : oldMessage} key={x.id} className="Inbox-message">
-              <h5 className="Inbox-message-title">{x.title}</h5>
-              <p className="Inbox-message-sender">
-                from: {x.user.firstName} {x.user.lastName}
-              </p>
-              {openMessage ? (
-                <div className="Inbox-message-content">
-                  {`${x.content.slice(0, 100)}...`}
-                  <div style={{ cursor: "pointer" }} onClick={() => setOpenMessage(!openMessage)}>
-                    open
+          {storedMessages?.map((x) => {
+            return (
+              <div style={x.new ? newMessage : oldMessage} key={x.id} className="Inbox-message">
+                <h5 className="Inbox-message-title">{x.title}</h5>
+                <p className="Inbox-message-sender">
+                  from: {x.user.firstName} {x.user.lastName}
+                </p>
+                {x.open ? (
+                  <div className="Inbox-message-content">
+                    {`${x.content.slice(0, 60)}...`}
+                    <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
+                      Read more...
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="Inbox-message-content">
-                  {x.content}
-                  <div style={{ cursor: "pointer" }} onClick={() => setOpenMessage(!openMessage)}>
-                    close
+                ) : (
+                  <div className="Inbox-message-content">
+                    {x.content}
+                    <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
+                      close
+                    </div>
                   </div>
-                </div>
-              )}
-
-              <div className="Inbox-message-btn-wrapper">
-                {!x.booking.accepted && (
-                  <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
-                    Accept Booking
-                  </button>
                 )}
 
-                <button className="Inbox-message-btn">Reply</button>
-                <button className="Inbox-message-btn">Delete</button>
+                <div className="Inbox-message-btn-wrapper">
+                  {!x.booking.accepted && (
+                    <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                      Accept Booking
+                    </button>
+                  )}
+
+                  <button className="Inbox-message-btn">Reply</button>
+                  <button className="Inbox-message-btn">Delete</button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </div>
