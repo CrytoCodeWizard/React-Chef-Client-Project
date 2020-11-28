@@ -15,6 +15,7 @@ import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
+import { fetchUserMessages } from "../../store/messages/messageActions.js";
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function MyProfile() {
       history.push("/");
     }
     dispatch(fetchUser(userId));
+    dispatch(fetchUserMessages(userId));
   }, [dispatch, userId, history, token]);
 
   const deleteTag = (tagId) => () => {

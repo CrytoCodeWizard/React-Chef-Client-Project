@@ -13,10 +13,9 @@ function Inbox() {
   const userId = user.id;
   const messages = useSelector(selectMessages);
   const newMessages = useSelector(newMessageCount);
-
   const sortedMessages = [...messages]
-    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-    .map((x) => ({ ...x, open: false }));
+    .map((x) => ({ ...x, open: false, replyButton: false }))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   const [storedMessages, setStoredMessages] = useState(sortedMessages);
   console.log(storedMessages);
@@ -33,13 +32,26 @@ function Inbox() {
     background: "#C1272D",
   };
 
-  const openMessage = (id) => () => {
-    const alteredMessages = storedMessages.map((x) => (x.id === id ? { ...x, open: !x.open } : x));
+  const openMessage = (messageId) => () => {
+    const alteredMessages = storedMessages.map((x) =>
+      x.id === messageId ? { ...x, open: !x.open } : x
+    );
     setStoredMessages(alteredMessages);
   };
 
-  const acceptBooking = (bookingId) => () => {
+  const acceptBooking = (bookingId, messageId) => () => {
     dispatch(updateBooking(bookingId));
+    // const alteredMessages = storedMessages.map((x) =>
+    //   x.id === messageId ? { ...x, acceptButton: !x.acceptButton } : x
+    // );
+    // setStoredMessages(alteredMessages);
+  };
+
+  const reply = (messageId) => () => {
+    const alteredMessages = storedMessages.map((x) =>
+      x.id === messageId ? { ...x, replyButton: !x.replyButton } : x
+    );
+    setStoredMessages(alteredMessages);
   };
 
   return (
@@ -63,7 +75,7 @@ function Inbox() {
                 <p className="Inbox-message-sender">
                   from: {x.user.firstName} {x.user.lastName}
                 </p>
-                {x.open ? (
+                {!x.open ? (
                   <div className="Inbox-message-content">
                     {`${x.content.slice(0, 60)}...`}
                     <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
@@ -80,15 +92,22 @@ function Inbox() {
                 )}
 
                 <div className="Inbox-message-btn-wrapper">
-                  {!x.booking.accepted && (
+                  {!x.booking.accepted ? (
                     <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
                       Accept Booking
                     </button>
+                  ) : (
+                    <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                      Cancel Booking
+                    </button>
                   )}
 
-                  <button className="Inbox-message-btn">Reply</button>
+                  <button className="Inbox-message-btn" onClick={reply(x.id)}>
+                    Reply
+                  </button>
                   <button className="Inbox-message-btn">Delete</button>
                 </div>
+                {x.replyButton && <input type="text" />}
               </div>
             );
           })}
