@@ -9,3 +9,7 @@ export const selectMessages = (reduxState) => {
 export const newMessageCount = (reduxState) => {
   return reduxState.messages.all.filter((x) => x.new).length;
 };
+
+export const selectBookingDate = (reduxState) => {
+  return reduxState.messages.bookingDate;
+};

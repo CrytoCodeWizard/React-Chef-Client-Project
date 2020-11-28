@@ -1,11 +1,12 @@
-import { MODAL_SWITCH, SAVE_USER_MESSAGES } from "./messageActions";
+import { MODAL_SWITCH, SAVE_BOOKING_DATE, SAVE_USER_MESSAGES } from "./messageActions";
 
 const initialState = {
   modal: false,
   all: [],
+  bookingDate: "",
 };
 
-const userLoginReducer = (state = initialState, action) => {
+const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case MODAL_SWITCH:
       return {
@@ -19,9 +20,15 @@ const userLoginReducer = (state = initialState, action) => {
         all: [...action.payload],
       };
 
+    case SAVE_BOOKING_DATE:
+      return {
+        ...state,
+        bookingDate: { ...action.payload },
+      };
+
     default:
       return state;
   }
 };
 
-export default userLoginReducer;
+export default messageReducer;

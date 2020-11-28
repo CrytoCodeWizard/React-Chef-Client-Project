@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { updateBooking } from "../../store/bookings/bookingActions";
 import { fetchUserMessages } from "../../store/messages/messageActions";
 import { newMessageCount, selectMessages } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
@@ -21,7 +22,7 @@ function Inbox() {
   }, [dispatch, userId]);
 
   const sortedMessages = [...messages].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
   );
 
   const newMessage = {
@@ -30,6 +31,10 @@ function Inbox() {
 
   const oldMessage = {
     background: "#C1272D",
+  };
+
+  const acceptBooking = (bookingId) => () => {
+    dispatch(updateBooking(bookingId));
   };
 
   return (
@@ -69,7 +74,12 @@ function Inbox() {
               )}
 
               <div className="Inbox-message-btn-wrapper">
-                <button className="Inbox-message-btn">Accept Booking</button>
+                {!x.booking.accepted && (
+                  <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                    Accept Booking
+                  </button>
+                )}
+
                 <button className="Inbox-message-btn">Reply</button>
                 <button className="Inbox-message-btn">Delete</button>
               </div>

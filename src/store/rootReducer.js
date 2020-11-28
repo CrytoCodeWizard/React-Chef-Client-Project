@@ -4,6 +4,7 @@ import appData from "./appData/appDataReducer";
 import userLogin from "./userLogin/userLoginReducer";
 import users from "./users/userReducer";
 import messages from "./messages/messageReducer";
+import bookings from "./bookings/bookingReducer";
 
 export default combineReducers({
   appState,
@@ -11,4 +12,5 @@ export default combineReducers({
   userLogin,
   users,
   messages,
+  bookings,
 });
