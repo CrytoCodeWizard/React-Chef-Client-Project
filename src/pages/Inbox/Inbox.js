@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createBooking } from "../../store/bookings/bookingActions";
+import { updateBooking } from "../../store/bookings/bookingActions";
 import { fetchUserMessages } from "../../store/messages/messageActions";
 import { newMessageCount, selectMessages } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
@@ -33,10 +33,8 @@ function Inbox() {
     background: "#C1272D",
   };
 
-  const acceptBooking = (date, userId, profileId) => () => {
-    console.log("DATE", date, userId, profileId);
-
-    dispatch(createBooking({ date, userId, profileId }));
+  const acceptBooking = (bookingId) => () => {
+    dispatch(updateBooking(bookingId));
   };
 
   return (
@@ -76,12 +74,12 @@ function Inbox() {
               )}
 
               <div className="Inbox-message-btn-wrapper">
-                <button
-                  onClick={acceptBooking(x.date, x.userId, x.recipientUserId)}
-                  className="Inbox-message-btn"
-                >
-                  Accept Booking
-                </button>
+                {!x.booking.accepted && (
+                  <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                    Accept Booking
+                  </button>
+                )}
+
                 <button className="Inbox-message-btn">Reply</button>
                 <button className="Inbox-message-btn">Delete</button>
               </div>

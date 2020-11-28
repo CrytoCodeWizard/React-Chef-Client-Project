@@ -3,11 +3,10 @@ import { MODAL_SWITCH, SAVE_BOOKING_DATE, SAVE_USER_MESSAGES } from "./messageAc
 const initialState = {
   modal: false,
   all: [],
-  bookingDate: {},
+  bookingDate: "",
 };
 
 const messageReducer = (state = initialState, action) => {
-  console.log("WHAT IS THE PAYLOAD???!", action.payload);
   switch (action.type) {
     case MODAL_SWITCH:
       return {

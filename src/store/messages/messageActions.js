@@ -27,6 +27,7 @@ export const sendMessage = (message) => async (dispatch, getState) => {
   try {
     // eslint-disable-next-line no-unused-vars
     const response = await axios.post(`/users/${userId}/profile/message`, {
+      userId,
       recipientUserId,
       title,
       content,

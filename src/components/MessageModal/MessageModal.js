@@ -12,23 +12,21 @@ function MessageModal() {
   const profile = useSelector(selectChef);
   const user = useSelector(selectUser);
   const date = useSelector(selectBookingDate);
+  const messageDate = !date ? "" : moment(date).format("YYYY-MM-DD");
 
   const [message, setMessage] = useState({
-    userId: user.id || 0,
+    userId: user.id,
     title: "",
     content: "",
-    recipientUserId: profile.id || 0,
-    date: moment(date).format("YYYY-MM-DD"),
+    recipientUserId: profile.id,
+    date: messageDate,
   });
-
-  console.log(message);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(sendMessage({ ...message }));
   };
-  console.log("modal");
+
   return (
     <div className="message-modal">
       <form onSubmit={handleSubmit}>

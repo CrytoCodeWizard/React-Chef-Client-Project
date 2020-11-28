@@ -1,14 +1,16 @@
 import { axios } from "../../config/constants";
+import { fetchUserMessages } from "../messages/messageActions";
 
 export const SAVE_ALL_BOOKINGS = "SAVE_ALL_BOOKINGS";
 
-export const createBooking = ({ date, userId, profileId }) => async (dispatch, getState) => {
-  console.log(date);
-
+export const updateBooking = (id) => async (dispatch, getState) => {
+  const userId = getState().userLogin.id;
   try {
-    const response = await axios.post("/bookings", { date, userId, profileId });
+    const response = await axios.put("/bookings", { id });
 
-    console.log(response);
+    if (response) {
+      dispatch(fetchUserMessages(userId));
+    }
   } catch (e) {
     console.log(e.message);
   }
