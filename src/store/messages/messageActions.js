@@ -22,13 +22,15 @@ export const saveBookingDate = (day) => {
 };
 
 export const sendMessage = (message) => async (dispatch, getState) => {
-  const { userId, recipientUserId, title, content } = message;
+  console.log("MESSAFE IN SENDMESSAGE ACTION", message);
+  const { userId, recipientUserId, title, content, date } = message;
   try {
     // eslint-disable-next-line no-unused-vars
     const response = await axios.post(`/users/${userId}/profile/message`, {
       recipientUserId,
       title,
       content,
+      date,
     });
 
     if (response) {

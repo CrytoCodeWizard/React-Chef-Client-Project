@@ -32,6 +32,10 @@ function Inbox() {
     background: "#C1272D",
   };
 
+  const acceptBooking = (date) => () => {
+    console.log("DATE", date);
+  };
+
   return (
     <div className="Inbox">
       <Jumbotron>
@@ -69,7 +73,9 @@ function Inbox() {
               )}
 
               <div className="Inbox-message-btn-wrapper">
-                <button className="Inbox-message-btn">Accept Booking</button>
+                <button onClick={acceptBooking(x.date)} className="Inbox-message-btn">
+                  Accept Booking
+                </button>
                 <button className="Inbox-message-btn">Reply</button>
                 <button className="Inbox-message-btn">Delete</button>
               </div>
