@@ -21,7 +21,7 @@ function Inbox() {
   }, [dispatch, userId]);
 
   const sortedMessages = [...messages].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
   );
 
   const newMessage = {

@@ -3,6 +3,7 @@ import { showMessageWithTimeout } from "../appState/appStateActions";
 
 export const MODAL_SWITCH = "MODAL_SWITCH";
 export const SAVE_USER_MESSAGES = "SAVE_USER_MESSAGES";
+export const SAVE_BOOKING_DATE = "SAVE_BOOKING_DATE";
 
 export const switchModal = () => ({ type: MODAL_SWITCH });
 
@@ -10,6 +11,13 @@ export const saveUserMessages = (messages) => {
   return {
     type: SAVE_USER_MESSAGES,
     payload: [...messages],
+  };
+};
+
+export const saveBookingDate = (day) => {
+  return {
+    type: SAVE_BOOKING_DATE,
+    payload: { ...day },
   };
 };
 
