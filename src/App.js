@@ -16,6 +16,7 @@ import Profile from "./pages/Profile/Profile";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Inbox from "./pages/Inbox/Inbox";
 import MyBookings from "./pages/MyBookings/MyBookings";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />
       </Switch>
+      <Footer />
     </div>
   );
 }

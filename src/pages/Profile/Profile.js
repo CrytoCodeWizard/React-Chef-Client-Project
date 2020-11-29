@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import BookingCalendar from "../../components/BookingCalendar/Calendar.js";
-import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/users/userActions";
 import { selectChef } from "../../store/users/userSelectors";
@@ -22,17 +21,16 @@ function Profile() {
   }, [dispatch, userId]);
 
   return (
-    <Container className="height">
-      <div className="Profile">
-        <div className="Profile-top">
-          <div className="Profile-img-wrapper">
-            <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
-          </div>
-          <button onClick={() => dispatch(switchModal())} className="Profile-booking-btn">
-            Send message
-          </button>
+    <div className="Profile container">
+      <div className="Profile-top">
+        <div className="Profile-img-wrapper">
+          <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
         </div>
+        <button onClick={() => dispatch(switchModal())} className="Profile-booking-btn">
+          Send message
+        </button>
       </div>
+
       <div className="Profile-main">
         <div className="Profile-main-left">
           <h4 className="Profile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
@@ -59,7 +57,7 @@ function Profile() {
           <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
 
