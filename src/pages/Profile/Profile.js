@@ -26,11 +26,7 @@ function Profile() {
       <div className="Profile">
         <div className="Profile-top">
           <div className="Profile-img-wrapper">
-            <img
-              className="Profile-img"
-              src="https://artzycafe.com/wp-content/uploads/2020/05/Vocations-in-Cooking.jpg"
-              alt="chef"
-            />
+            <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
           </div>
           <button onClick={() => dispatch(switchModal())} className="Profile-booking-btn">
             Send message

@@ -39,6 +39,13 @@
   grid-row: 1 / span 1;
 }
 
+.MyProfile-booking-link {
+  align-self: start;
+  /* margin-top: 2em; */
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
 .MyProfile-booking-btn {
   align-self: start;
   margin-top: 2em;

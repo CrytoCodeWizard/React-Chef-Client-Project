@@ -14,6 +14,8 @@ import {
 import { selectChef } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 import EditMode from "./EditMode.js";
+import { newMessageCount } from "../../store/messages/messageSelectors.js";
+import { fetchUserMessages } from "../../store/messages/messageActions.js";
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ function MyProfile() {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
+  const newMessages = useSelector(newMessageCount);
 
   const userId = parseInt(user.id);
   const profileId = parseInt(chef.profile?.id);
@@ -40,7 +43,11 @@ function MyProfile() {
     if (!token || token === null) {
       history.push("/");
     }
-    dispatch(fetchUser(userId));
+
+    if (userId) {
+      dispatch(fetchUser(userId));
+      dispatch(fetchUserMessages(userId));
+    }
   }, [dispatch, userId, history, token]);
 
   const deleteTag = (tagId) => () => {
@@ -68,16 +75,15 @@ function MyProfile() {
       <div className="MyProfile">
         <div className="MyProfile-top">
           <div className="MyProfile-img-wrapper">
-            <img
-              className="MyProfile-img"
-              src="https://artzycafe.com/wp-content/uploads/2020/05/Vocations-in-Cooking.jpg"
-              alt="chef"
-            />
+            <img className="MyProfile-img" src={chef.profile.imgUrl} alt="chef" />
           </div>
           <div className="MyProfile-msg">
-            <i className="las la-envelope la-2x"></i>2 new messages
+            <i className="las la-envelope la-2x"></i>
+            {newMessages} new messages
           </div>
-          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+          <Link className="MyProfile-booking-link" to="/profile/bookings">
+            <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+          </Link>
           <Link className="MyProfile-inbox-link" to="/profile/inbox">
             <button className="MyProfile-inbox-btn">Inbox</button>
           </Link>

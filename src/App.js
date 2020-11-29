@@ -15,6 +15,7 @@ import Loading from "./components/Loading/Loading";
 import Profile from "./pages/Profile/Profile";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Inbox from "./pages/Inbox/Inbox";
+import MyBookings from "./pages/MyBookings/MyBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
+        <Route exact path="/profile/bookings" component={MyBookings} />
         <Route exact path="/profile/inbox" component={Inbox} />
         <Route exact path="/profile" component={MyProfile} />
         <Route exact path="/users/:id/profile" component={Profile} />

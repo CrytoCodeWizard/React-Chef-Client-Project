@@ -49,6 +49,6 @@ export const fetchUserMessages = (id) => async (dispatch, getState) => {
 
     dispatch(saveUserMessages(response.data));
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
   }
 };
