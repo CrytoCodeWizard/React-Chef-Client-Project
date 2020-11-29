@@ -25,3 +25,8 @@
 .Inbox-message-btn {
   margin-left: 0.5em;
 }
+
+.Inbox-message-reply {
+  width: 100%;
+  margin: 0.5em 0 0.5em 0;
+}

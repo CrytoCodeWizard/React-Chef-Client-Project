@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
-import { fetchUserMessages } from "../../store/messages/messageActions";
+import { fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
 import { newMessageCount, selectMessages } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import "./Inbox.css";
@@ -16,12 +16,21 @@ function Inbox() {
   const sortedMessages = [...messages]
     .map((x) => ({ ...x, open: false, replyButton: false }))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
   const [storedMessages, setStoredMessages] = useState(sortedMessages);
-  console.log(storedMessages);
+  const [reply, setReply] = useState({
+    userId: "",
+    recipientUserId: "",
+    title: "",
+    content: "",
+    date: "",
+  });
+
+  console.log("REPLY", reply);
 
   useEffect(() => {
-    dispatch(fetchUserMessages(userId));
+    if (userId) {
+      dispatch(fetchUserMessages(userId));
+    }
   }, [dispatch, userId]);
 
   const newMessage = {
@@ -47,11 +56,29 @@ function Inbox() {
     // setStoredMessages(alteredMessages);
   };
 
-  const reply = (messageId) => () => {
+  const replyInputActive = (messageId, x) => () => {
+    if (x) {
+      setReply({
+        bookingId: x.booking.id,
+        userId: x.recipientUserId,
+        recipientUserId: x.userId,
+        title: `Reply to booking #${x.booking.id} - ${x.title}`,
+        date: x.date,
+      });
+    }
+
     const alteredMessages = storedMessages.map((x) =>
       x.id === messageId ? { ...x, replyButton: !x.replyButton } : x
     );
+
     setStoredMessages(alteredMessages);
+  };
+  const sendReply = (reply, messageId) => (e) => {
+    console.log("REPLY SENT");
+    if (e.key === "Enter") {
+      dispatch(sendMessage(reply));
+      replyInputActive(messageId);
+    }
   };
 
   return (
@@ -77,7 +104,7 @@ function Inbox() {
                 </p>
                 {!x.open ? (
                   <div className="Inbox-message-content">
-                    {`${x.content.slice(0, 60)}...`}
+                    {`${x.content?.slice(0, 60)}...`}
                     <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
                       Read more...
                     </div>
@@ -102,12 +129,20 @@ function Inbox() {
                     </button>
                   )}
 
-                  <button className="Inbox-message-btn" onClick={reply(x.id)}>
+                  <button className="Inbox-message-btn" onClick={replyInputActive(x.id, x)}>
                     Reply
                   </button>
                   <button className="Inbox-message-btn">Delete</button>
                 </div>
-                {x.replyButton && <input type="text" />}
+                {x.replyButton && (
+                  <input
+                    className="Inbox-message-reply"
+                    onChange={(e) => setReply({ ...reply, content: e.target.value })}
+                    onKeyPress={sendReply(reply, x.id)}
+                    placeholder="write a reply..."
+                    type="text"
+                  />
+                )}
               </div>
             );
           })}

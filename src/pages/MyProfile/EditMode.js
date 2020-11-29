@@ -8,25 +8,25 @@ function EditMode({ setEditProfile, chef, editProfile }) {
       <input
         onChange={(e) => setEditProfile({ ...editProfile, yearsOfExperience: e.target.value })}
         className="MyProfile-editMode-input"
-        placeholder={editProfile.yearsOfExperience}
+        defaultValue={editProfile.yearsOfExperience}
         type="text"
       />
       <input
         onChange={(e) => setEditProfile({ ...editProfile, hourlyRate: e.target.value })}
-        placeholder={editProfile.hourlyRate}
+        defaultValue={editProfile.hourlyRate}
         className="MyProfile-editMode-input"
         type="text"
       />
       <input
         onChange={(e) => setEditProfile({ ...editProfile, position: e.target.value })}
         className="MyProfile-editMode-input"
-        placeholder={editProfile.position}
+        defaultValue={editProfile.position}
         type="text"
       />
       <input
         onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })}
         className="MyProfile-editMode-input"
-        placeholder={editProfile.city}
+        defaultValue={editProfile.city}
         type="text"
       />
       <textarea

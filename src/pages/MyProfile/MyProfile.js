@@ -43,8 +43,11 @@ function MyProfile() {
     if (!token || token === null) {
       history.push("/");
     }
-    dispatch(fetchUser(userId));
-    dispatch(fetchUserMessages(userId));
+
+    if (userId) {
+      dispatch(fetchUser(userId));
+      dispatch(fetchUserMessages(userId));
+    }
   }, [dispatch, userId, history, token]);
 
   const deleteTag = (tagId) => () => {
