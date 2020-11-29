@@ -1,3 +1,7 @@
+.Home {
+  padding: 0em 0 15em 0;
+}
+
 .Home-jumbotron {
   display: flex;
   justify-content: flex-start;

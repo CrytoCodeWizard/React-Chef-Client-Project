@@ -1,3 +1,7 @@
+.Inbox {
+  padding: 0 0 15em 0;
+}
+
 .Inbox-message-wrapper {
   padding: 1.5em;
   margin: 0 auto;
