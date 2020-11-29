@@ -20,8 +20,8 @@ function MyBookings() {
   }, [dispatch, user.id, fetchedBookings]);
 
   return (
-    <div>
-      <Jumbotron>
+    <div className="MyBookings">
+      <Jumbotron className="MyBookings-jumbo">
         <h1 className="Jumbotron-header">My Bookings</h1>
       </Jumbotron>
       <Container>

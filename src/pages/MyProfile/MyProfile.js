@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Calendar from "../../components/Calendar/Calendar.js";
 import ImageUpload from "../../components/ImageUpload/imageUpload.js";
-import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
@@ -73,25 +72,35 @@ function MyProfile() {
   };
 
   return (
-    <Container className="height">
-      <div className="MyProfile">
-        <div className="MyProfile-top">
-          <div onClick={() => console.log("click")} className="MyProfile-img-wrapper">
-            <img className="MyProfile-img" src={chef.profile.imgUrl} alt="chef" />
-            {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
-          </div>
-          <div className="MyProfile-msg">
-            <i className="las la-envelope la-2x"></i>
-            {newMessages} new messages
-          </div>
-          <Link className="MyProfile-booking-link" to="/profile/bookings">
-            <button className="MyProfile-booking-btn">My Bookings</button>{" "}
-          </Link>
-          <Link className="MyProfile-inbox-link" to="/profile/inbox">
-            <button className="MyProfile-inbox-btn">Inbox</button>
-          </Link>
+    <div className="MyProfile">
+      <div className="MyProfile-top">
+        <div onClick={() => console.log("click")} className="MyProfile-img-wrapper">
+          <img className="MyProfile-img" src={chef.profile.imgUrl} alt="chef" />
+          {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
         </div>
+        <div className="MyProfile-msg">
+          <i className="las la-envelope la-2x"></i>
+          {newMessages} new messages
+        </div>
+        <Link className="MyProfile-booking-link" to="/profile/bookings">
+          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+        </Link>
+        <Link className="MyProfile-inbox-link" to="/profile/inbox">
+          <button className="MyProfile-inbox-btn">Inbox</button>
+        </Link>
+
+        <div className="MyProfile-msg">
+          <i className="las la-envelope la-2x"></i>
+          {newMessages} new messages
+        </div>
+        <Link className="MyProfile-booking-link" to="/profile/bookings">
+          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+        </Link>
+        <Link className="MyProfile-inbox-link" to="/profile/inbox">
+          <button className="MyProfile-inbox-btn">Inbox</button>
+        </Link>
       </div>
+
       <div className="MyProfile-main">
         <div className="MyProfile-main-left">
           <h4 className="MyProfile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
@@ -155,7 +164,7 @@ function MyProfile() {
           <Calendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
 
