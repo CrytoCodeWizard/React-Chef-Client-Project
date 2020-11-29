@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Calendar from "../../components/Calendar/Calendar.js";
+import ImageUpload from "../../components/ImageUpload/imageUpload.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
@@ -29,6 +30,7 @@ function MyProfile() {
   const [selectedDate, setSelectedDate] = useState(moment());
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
+  const [imageModal, setImageModal] = useState(true);
 
   const [editProfile, setEditProfile] = useState({
     yearsOfExperience: chef.profile?.yearsOfExperience,
@@ -70,11 +72,23 @@ function MyProfile() {
   };
 
   return (
-    <div className="MyProfile container">
+    <div className="MyProfile">
       <div className="MyProfile-top">
-        <div className="MyProfile-img-wrapper">
+        <div onClick={() => console.log("click")} className="MyProfile-img-wrapper">
           <img className="MyProfile-img" src={chef.profile.imgUrl} alt="chef" />
+          {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
         </div>
+        <div className="MyProfile-msg">
+          <i className="las la-envelope la-2x"></i>
+          {newMessages} new messages
+        </div>
+        <Link className="MyProfile-booking-link" to="/profile/bookings">
+          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+        </Link>
+        <Link className="MyProfile-inbox-link" to="/profile/inbox">
+          <button className="MyProfile-inbox-btn">Inbox</button>
+        </Link>
+
         <div className="MyProfile-msg">
           <i className="las la-envelope la-2x"></i>
           {newMessages} new messages

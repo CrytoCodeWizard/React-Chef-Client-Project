@@ -35,7 +35,7 @@ function MessageModal() {
             onChange={(e) => setMessage({ ...message, title: e.target.value })}
             className="message-modal-input modal-input-title"
             type="text"
-            placeholder={`booking for... ${message.date} `}
+            defaultValue={`booking for... ${message.date}`}
           />
 
           <span onClick={() => dispatch(switchModal())} className="message-modal-close">
