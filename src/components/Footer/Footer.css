@@ -1,0 +1,50 @@
+.Footer {
+  background: #f5f5f5;
+  color: #333;
+  padding: 5em;
+}
+
+.Footer-header {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.Footer-icon {
+  padding-right: 0.6em;
+}
+
+.Footer-icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.Footer-icon-box {
+  padding: 2em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Footer-brand-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #cc3333;
+  font-size: 1.6rem;
+  font-weight: 200;
+}
+
+.Footer-copyright {
+  font-family: "Open Sans", Arial, sans-serif;
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+}
+
+.Footer-copyright-text {
+  display: flex;
+  align-items: center;
+}

@@ -77,7 +77,6 @@ function Inbox() {
     console.log("REPLY SENT");
     if (e.key === "Enter") {
       dispatch(sendMessage(reply));
-      replyInputActive(messageId);
     }
   };
 

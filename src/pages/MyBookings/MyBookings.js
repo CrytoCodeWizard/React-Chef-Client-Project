@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Jumbotron, Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBookings } from "../../store/bookings/bookingActions";
+import { selectAllBookings } from "../../store/bookings/bookingSelectors";
+import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import "./MyBookings.css";
+import moment from "moment";
 
 function MyBookings() {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const fetchedBookings = useSelector(selectAllBookings);
   const [bookings, setBookings] = useState([]);
   const isAdmin = true;
+
+  useEffect(() => {
+    dispatch(fetchBookings(user.id));
+    setBookings(fetchedBookings);
+  }, [dispatch, user.id, fetchedBookings]);
 
   return (
     <div>
@@ -17,8 +30,8 @@ function MyBookings() {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Table</th>
+                  <th>Booking date</th>
+                  <th>Date received</th>
                   {isAdmin && <th>Name</th>}
                   {isAdmin && <th>Email</th>}
                   {isAdmin && <th>Cancel</th>}
@@ -28,8 +41,8 @@ function MyBookings() {
                 {bookings.map((x) => (
                   <tr key={x.id}>
                     <td>{x.date}</td>
-                    <td>{x.tableId}</td>
-                    {isAdmin && <td>{x.user.name}</td>}
+                    <td>{moment(x.createdAt).format("YYYY-MM-DD")}</td>
+                    {isAdmin && <td>{`${x.user.firstName} ${x.user.lastName}`}</td>}
                     {isAdmin && <td>{x.user.email}</td>}
                     {isAdmin && (
                       <td>
