@@ -58,6 +58,16 @@ export const updateUserProfile = (updatedProfile, userId, profileId) => async (
   }
 };
 
+export const uploadProfileImage = async (base64EncodedImage) => {
+  try {
+    const response = await axios.post("/users/profile/upload", { data: base64EncodedImage });
+
+    console.log(response);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const addUserTag = (tagName, profileId) => async (dispatch, getState) => {
   try {
     const response = await axios.post(`/tags/user`, {

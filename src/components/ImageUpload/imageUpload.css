@@ -1,0 +1,9 @@
+.Img-upload {
+  width: 450px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  padding: 1em;
+  position: absolute;
+  background: rgba(255, 255, 255, 1);
+}

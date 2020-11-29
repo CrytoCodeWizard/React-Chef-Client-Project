@@ -11,6 +11,7 @@
 }
 
 .MyProfile-img-wrapper {
+  position: relative;
   height: 12.5em;
   width: 12.5em;
 }
