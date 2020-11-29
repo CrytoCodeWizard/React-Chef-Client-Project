@@ -14,7 +14,7 @@ function Inbox() {
   const messages = useSelector(selectMessages);
   const newMessages = useSelector(newMessageCount);
   const sortedMessages = [...messages]
-    .map((x) => ({ ...x, open: false, replyButton: false }))
+    .map((x) => ({ ...x, messageOpen: false, replyButton: false }))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const [storedMessages, setStoredMessages] = useState(sortedMessages);
   const [reply, setReply] = useState({
@@ -43,7 +43,7 @@ function Inbox() {
 
   const openMessage = (messageId) => () => {
     const alteredMessages = storedMessages.map((x) =>
-      x.id === messageId ? { ...x, open: !x.open } : x
+      x.id === messageId ? { ...x, messageOpen: !x.messageOpen } : x
     );
     setStoredMessages(alteredMessages);
   };
@@ -101,7 +101,7 @@ function Inbox() {
                 <p className="Inbox-message-sender">
                   from: {x.user.firstName} {x.user.lastName}
                 </p>
-                {!x.open ? (
+                {!x.messageOpen ? (
                   <div className="Inbox-message-content">
                     {`${x.content?.slice(0, 60)}...`}
                     <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
