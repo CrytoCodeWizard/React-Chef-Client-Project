@@ -81,7 +81,9 @@ function MyProfile() {
             <i className="las la-envelope la-2x"></i>
             {newMessages} new messages
           </div>
-          <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+          <Link className="MyProfile-booking-link" to="/profile/bookings">
+            <button className="MyProfile-booking-btn">My Bookings</button>{" "}
+          </Link>
           <Link className="MyProfile-inbox-link" to="/profile/inbox">
             <button className="MyProfile-inbox-btn">Inbox</button>
           </Link>
