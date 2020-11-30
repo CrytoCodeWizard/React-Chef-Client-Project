@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { uploadProfileImage } from "../../store/users/userActions";
 import "./imageUpload.css";
@@ -26,28 +27,29 @@ function ImageUpload({ imageModal, setImageModal }) {
     e.preventDefault();
     if (!previewSource) return;
     dispatch(uploadProfileImage(previewSource));
+    setImageModal(!imageModal);
   };
 
   return (
     <div className="Img-upload">
-      <div
-        style={{ cursor: "pointer" }}
-        onClick={() => setImageModal(!imageModal)}
-        className="Img-modal-close"
-      >
-        x
-      </div>
-      <form onSubmit={handleSubmitFile} className="img-upload-form">
+      <Form className="img-upload-form">
         {previewSource && <img src={previewSource} alt="chosen" style={{ height: "300px" }} />}
-        <input
-          className="img-upload-input"
-          onChange={handleFileInputChange}
-          value={fileInputState}
-          type="file"
-        ></input>
+        <Form.Group>
+          <Form.File
+            className="img-upload-input"
+            onChange={handleFileInputChange}
+            value={fileInputState}
+            label="Upload a profile picture..."
+          />
+        </Form.Group>
 
-        <button className="btn">Upload</button>
-      </form>
+        <Button onClick={handleSubmitFile} variant="success" className="btn">
+          Upload
+        </Button>
+        <Button variant="primary" onClick={() => setImageModal(!imageModal)} className="btn ml-2">
+          Close
+        </Button>
+      </Form>
     </div>
   );
 }
