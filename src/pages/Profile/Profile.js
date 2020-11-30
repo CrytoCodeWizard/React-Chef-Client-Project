@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button } from "react-bootstrap";
 import SendMessageModal from "../../components/SendMessageModal/SendMessageModal.js";
+import Comments from "../../components/Comments/Comments.js";
 
 function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -53,10 +54,10 @@ function Profile() {
         </div>
         <div className="Profile-main-right">
           <h1 className="Profile-main-right-header">Availability</h1>
-
           <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
+      <Comments />
     </div>
   );
 }
