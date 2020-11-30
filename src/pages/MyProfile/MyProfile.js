@@ -16,7 +16,7 @@ import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
 import TagBox from "../../components/TagBox/TagBox.js";
-import { Button, OverlayTrigger } from "react-bootstrap";
+import { Button, FormControl, InputGroup, OverlayTrigger } from "react-bootstrap";
 import HoverToolTip from "../../components/HoverToolTip/HoverToolTip.js";
 
 function MyProfile() {
@@ -53,7 +53,7 @@ function MyProfile() {
   }, [dispatch, userId, history, token, chefProfileImg]);
 
   const addTag = () => (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.type === "click") {
       dispatch(addUserTag(newTag, profileId));
     }
   };
@@ -109,13 +109,20 @@ function MyProfile() {
               <TagBox tags={tags} remove={false} />
             )}
             {editMode && (
-              <input
-                onChange={(e) => setNewTag(e.target.value)}
-                onKeyPress={addTag()}
-                className="MyProfile-main-tagInput"
-                placeholder="Add a tag"
-                type="text"
-              />
+              <InputGroup className="mb-3">
+                <FormControl
+                  onChange={(e) => setNewTag(e.target.value)}
+                  onKeyPress={addTag()}
+                  placeholder="Add a tag"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                />
+                <InputGroup.Append>
+                  <Button onClick={addTag()} variant="outline-secondary">
+                    <i className="las la-check"></i>
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
             )}
           </div>
           <p className="MyProfile-main-description">{chef.profile?.description}</p>
@@ -147,7 +154,6 @@ function MyProfile() {
         </div>
         <div className="MyProfile-main-right">
           <h1 className="MyProfile-main-right-header">Availability</h1>
-
           <Calendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
