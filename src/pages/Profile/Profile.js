@@ -3,16 +3,18 @@ import moment from "moment";
 import BookingCalendar from "../../components/BookingCalendar/Calendar.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/users/userActions";
-import { selectChef } from "../../store/users/userSelectors";
+import { selectChef, selectChefTags } from "../../store/users/userSelectors";
 import "./Profile.css";
 import { useParams } from "react-router-dom";
 import { switchModal } from "../../store/messages/messageActions.js";
+import TagBox from "../../components/TagBox/TagBox.js";
+import { Button } from "react-bootstrap";
 
 function Profile() {
   const dispatch = useDispatch();
   const params = useParams();
   const chef = useSelector(selectChef);
-
+  const tags = useSelector(selectChefTags);
   const userId = parseInt(params.id);
   const [selectedDate, setSelectedDate] = useState(moment());
 
@@ -26,9 +28,13 @@ function Profile() {
         <div className="Profile-img-wrapper">
           <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
         </div>
-        <button onClick={() => dispatch(switchModal())} className="Profile-booking-btn">
-          Send message
-        </button>
+        <Button
+          variant="primary"
+          onClick={() => dispatch(switchModal())}
+          className="Profile-msg-btn"
+        >
+          Message
+        </Button>
       </div>
 
       <div className="Profile-main">
@@ -43,11 +49,7 @@ function Profile() {
             <p className="Profile-main-detail">{chef?.city}</p>
           </div>
           <div className="Profile-main-tagbox">
-            {chef.profile?.specializationTags.map((x) => (
-              <div key={x.id} className="ChefCard-tag">
-                {x.tagName}
-              </div>
-            ))}
+            {<TagBox tags={tags} remove={false} />}
             <p className="Profile-main-description">{chef.profile?.description}</p>
           </div>
         </div>

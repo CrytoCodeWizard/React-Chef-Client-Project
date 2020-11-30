@@ -19,7 +19,6 @@
 .MyProfile-img {
   cursor: pointer;
   border-radius: 50%;
-  border: 2px solid gray;
 }
 
 .MyProfile-msg {

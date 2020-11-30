@@ -1,0 +1,14 @@
+.tagbox {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.5em;
+  height: 20%;
+}
+
+.tag {
+  height: 20px;
+}
+
+.tag-delete {
+  cursor: pointer;
+}

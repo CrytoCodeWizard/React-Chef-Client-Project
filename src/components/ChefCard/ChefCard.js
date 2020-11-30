@@ -1,25 +1,17 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import TagBox from "../TagBox/TagBox";
 import "./ChefCard.css";
 
-function ChefCard(props) {
-  const { id, name, city, img, tags } = props;
-
+function ChefCard({ id, name, city, img, tags }) {
   return (
-    <div className="ChefCard">
+    <Card style={{ width: "18rem" }} className="ml-4 p-3">
       <Link to={`/users/${id}/profile`}>
-        <div className="ChefCard-img-wrapper">
-          <img className="ChefCard-img" alt="chef" src={img} />
-        </div>
-        <h3 className="ChefCard-header">{name}</h3>
+        <Card.Img className="ChefCard-img" alt="chef" src={img} />
+        <Card.Title className="mt-2">{name}</Card.Title>
       </Link>
-      <div className="ChefCard-tagbox">
-        {tags.map((x) => (
-          <div key={x.id} className="ChefCard-tag">
-            {x.tagName}
-          </div>
-        ))}
-      </div>
+      <TagBox tags={tags} />
       <div className="ChefCard-rating">
         <i className="ChefCard-icon las la-star"></i>
         <i className="ChefCard-icon las la-star"></i>
@@ -32,7 +24,7 @@ function ChefCard(props) {
         <i className="las la-map-marker"> </i>
         {city}
       </h4>
-    </div>
+    </Card>
   );
 }
 

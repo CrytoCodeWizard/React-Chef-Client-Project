@@ -8,6 +8,7 @@
 // in render
 // instead of storedMessage.map -> messages.map
 // instead of checking x.messageOpen -> check openMessages.includes(message.id)
+
 const [openMessages, setOpenMessages] = useState([]);
 const [replyMessages, setReplyMessages] = useState([]);
 
@@ -28,3 +29,10 @@ setReplyMessagesInput(...replyMessagesInput, messageId);
 return;
 }
 };
+
+// const openMessage = (messageId) => () => {
+// const alteredMessages = storedMessages.map((x) =>
+// x.id === messageId ? { ...x, messageOpen: !x.messageOpen } : x
+// );
+// setStoredMessages(alteredMessages);
+// };

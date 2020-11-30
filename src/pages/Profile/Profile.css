@@ -18,17 +18,9 @@
 
 .Profile-img {
   border-radius: 50%;
-  border: 2px solid gray;
 }
 
-.Profile-inbox-btn {
-  align-self: start;
-  margin-top: 2em;
-  grid-column: 4 / span 1;
-  grid-row: 1 / span 1;
-}
-
-.Profile-booking-btn {
+.Profile-msg-btn {
   align-self: start;
   margin-top: 2em;
   grid-column: 5 / span 1;
@@ -80,5 +72,5 @@
 .Profile-main-description {
   padding: 1em;
   width: 100%;
-  border: 1px solid black;
+  border: 1px dashed black;
 }
