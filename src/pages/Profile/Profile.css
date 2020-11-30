@@ -21,9 +21,11 @@
 }
 
 .Profile-msg-btn {
+  position: relative;
+  right: 4.2em;
   align-self: start;
   margin-top: 2em;
-  grid-column: 5 / span 1;
+  grid-column: 3 / span 1;
   grid-row: 1 / span 1;
 }
 

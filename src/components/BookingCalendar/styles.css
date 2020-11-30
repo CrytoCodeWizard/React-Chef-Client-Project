@@ -1,7 +1,7 @@
 .calendar-booking {
   box-sizing: border-box;
   font-size: 1rem;
-  width: 650px;
+  width: 100%;
 }
 
 .calendar-booking .header {

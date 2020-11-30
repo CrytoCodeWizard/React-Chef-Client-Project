@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { postReview } from "../../store/reviews/reviewActions";
+import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import HoverRating from "../HoverRating/HoverRating";
 import "./Review.css";
 
-function Review({ userId }) {
+function Review({ profileId }) {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  const [review, setReview] = useState({
+    title: "",
+    content: "",
+    profileId: profileId,
+    userId: user.id,
+    reviewScore: 2,
+  });
+
+  const handleReviewSubmit = (review) => (e) => {
+    console.log("SUBMITTING REVIEW");
+    e.preventDefault();
+    dispatch(postReview(review, profileId));
+  };
+
+  console.log("REVIEW", review);
   return (
-    <Form className="CreateReview">
+    <Form onSubmit={handleReviewSubmit()} className="CreateReview">
       <Form.Row>
         <Col>
-          <Form.Control className="mb-2" placeholder="Title" />
+          <Form.Control
+            onChange={(e) => setReview({ ...review, title: e.target.value })}
+            className="mb-2"
+            placeholder="Title"
+          />
         </Col>
         <Col>
-          <HoverRating />
+          <HoverRating setReview={setReview} review={review} />
         </Col>
       </Form.Row>
       <Form.Group controlId="exampleForm.ControlTextarea1">
         <Form.Label>How was your experience?</Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control
+          onChange={(e) => setReview({ ...review, content: e.target.value })}
+          as="textarea"
+          rows={3}
+        />
       </Form.Group>
-      <Button>Submit</Button>
+      <Button onClick={handleReviewSubmit(review)}>Submit</Button>
     </Form>
   );
 }

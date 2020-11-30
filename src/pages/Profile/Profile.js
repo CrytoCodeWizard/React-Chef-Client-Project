@@ -64,13 +64,14 @@ function Profile() {
       </div>
       <div className="ProfileReviews">
         <h2 className="mb-4">Leave a review...</h2>
-        <Review userId={userId} />
+        <Review profileId={userId} />
         <h3>Reviews...</h3>
         <hr></hr>
         {reviews.map((x) => {
           return (
-            <div className="review">
+            <div key={x.id} className="review">
               <h5>{`${x.user.firstName} ${x.user.lastName} - ${x.user.businessName}`}</h5>
+              <h6>{x.title}</h6>
               <p>{x.content}</p>
               <SimpleRating reviewScore={x.reviewScore} />
             </div>

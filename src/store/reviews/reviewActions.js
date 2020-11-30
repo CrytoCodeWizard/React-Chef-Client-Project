@@ -22,3 +22,16 @@ export const fetchProfileReviews = (userId) => async (dispatch, getState) => {
     console.log(e);
   }
 };
+
+export const postReview = (review, profileId) => async (dispatch, getState) => {
+  console.log("WHAT IS IN REVIEW", review);
+  try {
+    const response = await axios.post(`/users/${profileId}/profile/reviews`, { ...review });
+
+    if (response) {
+      dispatch(fetchProfileReviews(profileId));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
