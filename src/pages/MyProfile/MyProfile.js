@@ -114,7 +114,7 @@ function MyProfile() {
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={addTag()}
                   placeholder="Add a tag"
-                  aria-label="Recipient's username"
+                  aria-label="add tag"
                   aria-describedby="basic-addon2"
                 />
                 <InputGroup.Append>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Jumbotron } from "react-bootstrap";
+import { Button, Container, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
 import { fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
@@ -95,8 +95,10 @@ function Inbox() {
           </div>
           {messages?.map((x) => {
             return (
-              <div style={x.new ? newMessage : oldMessage} key={x.id} className="Inbox-message">
-                <h5 className="Inbox-message-title">{x.title}</h5>
+              <div key={x.id} className="Inbox-message">
+                <h5 style={x.new ? newMessage : oldMessage} className="Inbox-message-title">
+                  {x.title}
+                </h5>
                 <p className="Inbox-message-sender">
                   from: {x.user.firstName} {x.user.lastName}
                 </p>
@@ -118,28 +120,41 @@ function Inbox() {
 
                 <div className="Inbox-message-btn-wrapper">
                   {!x.booking.accepted ? (
-                    <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                    <Button
+                      variant="success"
+                      onClick={acceptBooking(x.booking.id)}
+                      className="Inbox-message-btn"
+                    >
                       Accept Booking
-                    </button>
+                    </Button>
                   ) : (
-                    <button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                    <Button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
                       Cancel Booking
-                    </button>
+                    </Button>
                   )}
 
-                  <button className="Inbox-message-btn" onClick={replyInputActive(x.id, x)}>
+                  <Button className="Inbox-message-btn" onClick={replyInputActive(x.id, x)}>
                     Reply
-                  </button>
-                  <button className="Inbox-message-btn">Delete</button>
+                  </Button>
+                  <Button variant="danger" className="Inbox-message-btn">
+                    Delete
+                  </Button>
                 </div>
                 {replyMessages.includes(x.id) && (
-                  <input
-                    className="Inbox-message-reply"
-                    onChange={(e) => setReply({ ...reply, content: e.target.value })}
-                    onKeyPress={sendReply(reply, x.id)}
-                    placeholder="write a reply..."
-                    type="text"
-                  />
+                  <InputGroup className="mb-3 mt-2">
+                    <FormControl
+                      onChange={(e) => setReply({ ...reply, content: e.target.value })}
+                      onKeyPress={sendReply(reply, x.id)}
+                      placeholder="write a reply..."
+                      aria-label="add tag"
+                      aria-describedby="basic-addon"
+                    />
+                    <InputGroup.Append>
+                      <Button onClick={sendReply(reply, x.id)} variant="outline-secondary">
+                        <i className="las la-check"></i>
+                      </Button>
+                    </InputGroup.Append>
+                  </InputGroup>
                 )}
               </div>
             );

@@ -6,7 +6,6 @@
   padding: 1.5em;
   margin: 0 auto;
   width: 80%;
-  border: 2px solid #333;
 }
 
 .Inbox-message-header {
@@ -16,8 +15,8 @@
 }
 
 .Inbox-message {
+  padding: 2em;
   width: 100%;
-  background: orange;
   margin-bottom: 1em;
 }
 
@@ -28,9 +27,4 @@
 
 .Inbox-message-btn {
   margin-left: 0.5em;
-}
-
-.Inbox-message-reply {
-  width: 100%;
-  margin: 0.5em 0 0.5em 0;
 }
