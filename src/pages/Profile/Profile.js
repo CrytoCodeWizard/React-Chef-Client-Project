@@ -8,7 +8,7 @@ import "./Profile.css";
 import { useParams } from "react-router-dom";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button } from "react-bootstrap";
-import ModalBootStrap from "../../components/Modal/Modal.js";
+import SendMessageModal from "../../components/SendMessageModal/SendMessageModal.js";
 
 function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -32,8 +32,7 @@ function Profile() {
         <Button className="Profile-msg-btn" variant="primary" onClick={() => setModalShow(true)}>
           Message
         </Button>
-
-        <ModalBootStrap show={modalShow} onHide={() => setModalShow(false)} />
+        <SendMessageModal show={modalShow} onHide={() => setModalShow(false)} />
       </div>
 
       <div className="Profile-main">

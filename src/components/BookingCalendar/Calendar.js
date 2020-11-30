@@ -6,7 +6,7 @@ import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
 import Day from "./Day";
-import ModalBootStrap from "../Modal/Modal";
+import SendMessageModal from "../SendMessageModal/SendMessageModal";
 
 export default function Calendar({ selectedDate, onChange }) {
   const [modalShow, setModalShow] = React.useState(false);
@@ -30,7 +30,7 @@ export default function Calendar({ selectedDate, onChange }) {
             </div>
           ))}
         </div>
-        {modalShow && <ModalBootStrap show={modalShow} onHide={() => setModalShow(false)} />}
+        {modalShow && <SendMessageModal show={modalShow} onHide={() => setModalShow(false)} />}
         {calendar.map((week, wi) => (
           <div key={wi}>
             {week.map((day, di) => {

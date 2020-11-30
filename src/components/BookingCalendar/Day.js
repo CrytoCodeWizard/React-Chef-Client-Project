@@ -19,8 +19,7 @@ const Day = (props) => {
       style={availableStyles(same)}
       className="day"
       onClick={() => {
-        console.log("click");
-        console.log("DAY", day);
+        console.log("Click");
       }}
     >
       <div className={dayStyles(day, selectedDate)}>

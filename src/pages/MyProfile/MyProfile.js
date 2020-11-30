@@ -16,7 +16,8 @@ import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
 import TagBox from "../../components/TagBox/TagBox.js";
-import { Button } from "react-bootstrap";
+import { Button, OverlayTrigger } from "react-bootstrap";
+import HoverToolTip from "../../components/HoverToolTip/HoverToolTip.js";
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -28,7 +29,6 @@ function MyProfile() {
   const profile = useSelector(selectChefProfile);
   const chefProfileImg = useSelector(selectChefImage);
   const newMessages = useSelector(newMessageCount);
-
   const profileId = parseInt(chef.profile?.id);
   const [selectedDate, setSelectedDate] = useState(moment());
   const [editMode, setEditMode] = useState(false);
@@ -67,12 +67,14 @@ function MyProfile() {
     <div className="MyProfile container">
       <div className="MyProfile-top">
         <div className="MyProfile-img-wrapper">
-          <img
-            onClick={() => setImageModal(!imageModal)}
-            className="MyProfile-img"
-            src={chefProfileImg}
-            alt="chef"
-          />
+          <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }} overlay={HoverToolTip}>
+            <img
+              onClick={() => setImageModal(!imageModal)}
+              className="MyProfile-img"
+              src={chefProfileImg}
+              alt="chef"
+            />
+          </OverlayTrigger>
           {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
         </div>
         <div className="MyProfile-msg">
