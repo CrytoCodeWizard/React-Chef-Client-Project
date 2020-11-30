@@ -42,10 +42,22 @@ export const sendMessage = (message) => async (dispatch, getState) => {
   }
 };
 
+export const deleteMessage = (messageId, userId) => async (dispatch, getState) => {
+  try {
+    // eslint-disable-next-line no-unused-vars
+    const response = await axios.delete(`/users/${userId}/profile/message/${messageId}`);
+
+    if (response) {
+      dispatch(fetchUserMessages(userId));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const fetchUserMessages = (id) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`/users/${id}/profile/message`);
-    console.log("DOM: inside fetchUserMessages", response);
 
     dispatch(saveUserMessages(response.data));
   } catch (e) {

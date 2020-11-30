@@ -12,11 +12,10 @@ export const saveAllBookings = (bookings) => {
 
 export const updateBooking = (id) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
-  console.log("USERID", userId);
 
   try {
     const response = await axios.put("/bookings", { id });
-    console.log(response);
+
     if (response) {
       dispatch(fetchUserMessages(userId));
     }
@@ -31,7 +30,6 @@ export const fetchBookings = (userId) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`/bookings/${userId}`);
 
-    console.log(response.data);
     if (response) {
       dispatch(saveAllBookings(response.data));
     }

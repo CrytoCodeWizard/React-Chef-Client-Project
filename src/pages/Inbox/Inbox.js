@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
-import { fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
+import { deleteMessage, fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
 import { newMessageCount, selectMessagesSortedByDate } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
+import moment from "moment";
 import "./Inbox.css";
 
 function Inbox() {
@@ -37,8 +38,12 @@ function Inbox() {
     background: "#C1272D",
   };
 
-  const acceptBooking = (bookingId) => () => {
+  const handleAcceptBooking = (bookingId) => () => {
     dispatch(updateBooking(bookingId));
+  };
+
+  const handleDeleteMessage = (messageId, userId) => () => {
+    dispatch(deleteMessage(messageId, userId));
   };
 
   const openMessageToggle = (messageId) => {
@@ -100,8 +105,9 @@ function Inbox() {
                   {x.title}
                 </h5>
                 <p className="Inbox-message-sender">
-                  from: {x.user.firstName} {x.user.lastName}
+                  {x.user.firstName} {x.user.lastName}
                 </p>
+                <p>{moment(x.createdAt).format("YYYY-MM-DD")}</p>
                 {!openMessages.includes(x.id) ? (
                   <div className="Inbox-message-content">
                     {`${x.content?.slice(0, 60)}...`}
@@ -122,13 +128,16 @@ function Inbox() {
                   {!x.booking.accepted ? (
                     <Button
                       variant="success"
-                      onClick={acceptBooking(x.booking.id)}
+                      onClick={handleAcceptBooking(x.booking.id)}
                       className="Inbox-message-btn"
                     >
                       Accept Booking
                     </Button>
                   ) : (
-                    <Button onClick={acceptBooking(x.booking.id)} className="Inbox-message-btn">
+                    <Button
+                      onClick={handleAcceptBooking(x.booking.id)}
+                      className="Inbox-message-btn"
+                    >
                       Cancel Booking
                     </Button>
                   )}
@@ -136,7 +145,11 @@ function Inbox() {
                   <Button className="Inbox-message-btn" onClick={replyInputActive(x.id, x)}>
                     Reply
                   </Button>
-                  <Button variant="danger" className="Inbox-message-btn">
+                  <Button
+                    onClick={handleDeleteMessage(x.id, userId)}
+                    variant="danger"
+                    className="Inbox-message-btn"
+                  >
                     Delete
                   </Button>
                 </div>
@@ -156,6 +169,7 @@ function Inbox() {
                     </InputGroup.Append>
                   </InputGroup>
                 )}
+                <hr></hr>
               </div>
             );
           })}
