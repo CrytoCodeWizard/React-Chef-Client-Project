@@ -29,8 +29,6 @@ export default function HoverRating() {
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
 
-  console.log("WHAT IS VALUE?", value);
-
   return (
     <div className={classes.root}>
       <Rating
