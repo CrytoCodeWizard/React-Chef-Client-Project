@@ -106,6 +106,7 @@ function Home() {
                 city={x.city}
                 img={x.profile.imgUrl}
                 tags={x.profile.specializationTags}
+                reviews={x.profile.profileReviews}
               />
             );
           })}
