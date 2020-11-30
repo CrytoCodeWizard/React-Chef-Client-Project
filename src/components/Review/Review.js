@@ -5,7 +5,7 @@ import "./Review.css";
 
 function Review({ userId }) {
   return (
-    <Form className="review">
+    <Form className="CreateReview">
       <Form.Row>
         <Col>
           <Form.Control className="mb-2" placeholder="Title" />

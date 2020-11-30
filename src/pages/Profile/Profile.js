@@ -11,6 +11,8 @@ import { Button } from "react-bootstrap";
 import SendMessageModal from "../../components/SendMessageModal/SendMessageModal.js";
 import Review from "../../components/Review/Review.js";
 import { fetchProfileReviews } from "../../store/reviews/reviewActions.js";
+import { selectAllReviews } from "../../store/reviews/reviewSelectors.js";
+import SimpleRating from "../../components/SimpleRating/SimpleRating.js";
 
 function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -19,6 +21,7 @@ function Profile() {
   const chef = useSelector(selectChef);
   const tags = useSelector(selectChefTags);
   const userId = parseInt(params.id);
+  const reviews = useSelector(selectAllReviews);
   const [selectedDate, setSelectedDate] = useState(moment());
 
   useEffect(() => {
@@ -62,6 +65,13 @@ function Profile() {
       <div className="ProfileReviews">
         <h2 className="mb-4">Leave a review...</h2>
         <Review userId={userId} />
+        {reviews.map((x) => {
+          return (
+            <div className="review">
+              <SimpleRating reviewScore={x.reviewScore} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
