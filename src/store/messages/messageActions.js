@@ -35,7 +35,7 @@ export const sendMessage = (message) => async (dispatch, getState) => {
 
     if (response) {
       dispatch(switchModal());
-      dispatch(showMessageWithTimeout("success", false, `Booking request sent`, 1500));
+      dispatch(showMessageWithTimeout("success", false, `Message sent`, 1500));
     }
   } catch (e) {
     console.log(e.message);
@@ -50,6 +50,20 @@ export const deleteMessage = (messageId, userId) => async (dispatch, getState) =
     if (response) {
       dispatch(fetchUserMessages(userId));
     }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const updateMessageReadStatus = (messageId, userId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.put(`/users/${userId}/profile/message/${messageId}`);
+
+    if (response) {
+      dispatch(fetchUserMessages(userId));
+    }
+
+    console.log(response);
   } catch (e) {
     console.log(e);
   }

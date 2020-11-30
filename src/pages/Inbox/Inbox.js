@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
-import { deleteMessage, fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
+import {
+  deleteMessage,
+  fetchUserMessages,
+  sendMessage,
+  updateMessageReadStatus,
+} from "../../store/messages/messageActions";
 import { newMessageCount, selectMessagesSortedByDate } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import moment from "moment";
@@ -50,6 +55,7 @@ function Inbox() {
     if (openMessages.includes(messageId)) {
       const updatedMessages = openMessages.filter((x) => x.id === messageId);
       setOpenMessages([...updatedMessages]);
+      dispatch(updateMessageReadStatus(messageId, userId));
     } else {
       setOpenMessages([...openMessages, messageId]);
     }
@@ -79,8 +85,9 @@ function Inbox() {
 
   const sendReply = (reply, messageId) => (e) => {
     console.log("REPLY SENT");
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.type === "click") {
       dispatch(sendMessage(reply));
+      replyMessageToggle(messageId);
     }
   };
 
@@ -125,6 +132,7 @@ function Inbox() {
                 )}
 
                 <div className="Inbox-message-btn-wrapper">
+                  {/* CHECK THIS BUGGGGGGG! */}
                   {!x.booking.accepted ? (
                     <Button
                       variant="success"

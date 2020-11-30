@@ -18,6 +18,7 @@ import { newMessageCount } from "../../store/messages/messageSelectors.js";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button, FormControl, InputGroup, OverlayTrigger } from "react-bootstrap";
 import HoverToolTip from "../../components/HoverToolTip/HoverToolTip.js";
+import { fetchUserMessages } from "../../store/messages/messageActions.js";
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -43,14 +44,16 @@ function MyProfile() {
     description: profile.description,
   });
 
+  if (!token || token === null) {
+    history.push("/");
+  }
+
   useEffect(() => {
-    if (!token || token === null) {
-      history.push("/");
-    }
+    dispatch(fetchUserMessages(userId));
     if (userId) {
       dispatch(fetchUser(userId));
     }
-  }, [dispatch, userId, history, token, chefProfileImg]);
+  }, [dispatch, userId, chefProfileImg]);
 
   const addTag = () => (e) => {
     if (e.key === "Enter" || e.type === "click") {

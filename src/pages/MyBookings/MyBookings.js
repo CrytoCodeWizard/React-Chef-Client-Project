@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Container, Jumbotron, Table } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button, Container, Jumbotron, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBookings } from "../../store/bookings/bookingActions";
 import { selectAllBookings } from "../../store/bookings/bookingSelectors";
@@ -11,51 +11,51 @@ function MyBookings() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const fetchedBookings = useSelector(selectAllBookings);
-  const [bookings, setBookings] = useState([]);
-  const isAdmin = true;
+  console.log("FETCHED BOOKIGNS", fetchedBookings);
 
   useEffect(() => {
     dispatch(fetchBookings(user.id));
-    setBookings(fetchedBookings);
-  }, [dispatch, user.id, fetchedBookings]);
+  }, [dispatch, user.id]);
 
   return (
     <div className="MyBookings">
       <Jumbotron className="MyBookings-jumbo">
-        <h1 className="Jumbotron-header">My Bookings</h1>
+        <h1>My Bookings</h1>
       </Jumbotron>
       <Container>
-        <div className="Reservations-wrapper">
-          <div className="Reservations-table">
+        <div className="MyBookings-wrapper">
+          <div className="MyBookings-table">
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>Booking date</th>
                   <th>Date received</th>
-                  {isAdmin && <th>Name</th>}
-                  {isAdmin && <th>Email</th>}
-                  {isAdmin && <th>Cancel</th>}
+                  <th>Booker</th>
+                  <th>Company</th>
+                  <th>Email</th>
+                  <th>Cancel</th>
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((x) => (
-                  <tr key={x.id}>
-                    <td>{x.date}</td>
-                    <td>{moment(x.createdAt).format("YYYY-MM-DD")}</td>
-                    {isAdmin && <td>{`${x.user.firstName} ${x.user.lastName}`}</td>}
-                    {isAdmin && <td>{x.user.email}</td>}
-                    {isAdmin && (
+                {fetchedBookings
+                  .filter((x) => x.accepted)
+                  .map((x) => (
+                    <tr key={x.id}>
+                      <td>{x.date}</td>
+                      <td>{moment(x.createdAt).format("YYYY-MM-DD")}</td>
+                      <td>{`${x.user.firstName} ${x.user.lastName}`}</td>
+                      <td>{x.user.businessName}</td>
+                      <td>{x.user.email}</td>
                       <td>
-                        <button
+                        <Button
                           onClick={() => console.log("click")}
-                          className="Reservations-cancel-btn"
+                          className="MyBookings-cancel-btn"
                         >
                           Cancel
-                        </button>
+                        </Button>
                       </td>
-                    )}
-                  </tr>
-                ))}
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </div>
