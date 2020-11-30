@@ -15,6 +15,7 @@ const messageReducer = (state = initialState, action) => {
       };
 
     case SAVE_USER_MESSAGES:
+      console.log("DOM: inside SAVE_USER_MESSAGES", action.payload);
       return {
         ...state,
         all: [...action.payload],

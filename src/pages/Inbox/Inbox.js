@@ -3,7 +3,7 @@ import { Container, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
 import { fetchUserMessages, sendMessage } from "../../store/messages/messageActions";
-import { newMessageCount, selectMessages } from "../../store/messages/messageSelectors";
+import { newMessageCount, selectMessagesSortedByDate } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import "./Inbox.css";
 
@@ -11,12 +11,10 @@ function Inbox() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const userId = user.id;
-  const messages = useSelector(selectMessages);
+  const messages = useSelector(selectMessagesSortedByDate);
   const newMessages = useSelector(newMessageCount);
-  const sortedMessages = [...messages]
-    .map((x) => ({ ...x, messageOpen: false, replyButton: false }))
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  const [storedMessages, setStoredMessages] = useState(sortedMessages);
+  const [openMessages, setOpenMessages] = useState([]);
+  const [replyMessages, setReplyMessages] = useState([]);
   const [reply, setReply] = useState({
     userId: "",
     recipientUserId: "",
@@ -24,8 +22,6 @@ function Inbox() {
     content: "",
     date: "",
   });
-
-  console.log("REPLY", reply);
 
   useEffect(() => {
     if (userId) {
@@ -41,21 +37,27 @@ function Inbox() {
     background: "#C1272D",
   };
 
-  const openMessage = (messageId) => () => {
-    const alteredMessages = storedMessages.map((x) =>
-      x.id === messageId ? { ...x, messageOpen: !x.messageOpen } : x
-    );
-    setStoredMessages(alteredMessages);
-  };
-
-  const acceptBooking = (bookingId, messageId) => () => {
+  const acceptBooking = (bookingId) => () => {
     dispatch(updateBooking(bookingId));
-    // const alteredMessages = storedMessages.map((x) =>
-    //   x.id === messageId ? { ...x, acceptButton: !x.acceptButton } : x
-    // );
-    // setStoredMessages(alteredMessages);
   };
 
+  const openMessageToggle = (messageId) => {
+    if (openMessages.includes(messageId)) {
+      const updatedMessages = openMessages.filter((x) => x.id === messageId);
+      setOpenMessages([...updatedMessages]);
+    } else {
+      setOpenMessages([...openMessages, messageId]);
+    }
+  };
+
+  const replyMessageToggle = (messageId) => {
+    if (replyMessages.includes(messageId)) {
+      const updatedMessages = replyMessages.filter((x) => x.id === messageId);
+      setReplyMessages([...updatedMessages]);
+    } else {
+      setReplyMessages([...replyMessages, messageId]);
+    }
+  };
   const replyInputActive = (messageId, x) => () => {
     if (x) {
       setReply({
@@ -67,12 +69,9 @@ function Inbox() {
       });
     }
 
-    const alteredMessages = storedMessages.map((x) =>
-      x.id === messageId ? { ...x, replyButton: !x.replyButton } : x
-    );
-
-    setStoredMessages(alteredMessages);
+    replyMessageToggle(messageId);
   };
+
   const sendReply = (reply, messageId) => (e) => {
     console.log("REPLY SENT");
     if (e.key === "Enter") {
@@ -94,24 +93,24 @@ function Inbox() {
               {newMessages} new messages
             </div>
           </div>
-          {storedMessages?.map((x) => {
+          {messages?.map((x) => {
             return (
               <div style={x.new ? newMessage : oldMessage} key={x.id} className="Inbox-message">
                 <h5 className="Inbox-message-title">{x.title}</h5>
                 <p className="Inbox-message-sender">
                   from: {x.user.firstName} {x.user.lastName}
                 </p>
-                {!x.messageOpen ? (
+                {!openMessages.includes(x.id) ? (
                   <div className="Inbox-message-content">
                     {`${x.content?.slice(0, 60)}...`}
-                    <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
+                    <div style={{ cursor: "pointer" }} onClick={() => openMessageToggle(x.id)}>
                       Read more...
                     </div>
                   </div>
                 ) : (
                   <div className="Inbox-message-content">
                     {x.content}
-                    <div style={{ cursor: "pointer" }} onClick={openMessage(x.id)}>
+                    <div style={{ cursor: "pointer" }} onClick={() => openMessageToggle(x.id)}>
                       close
                     </div>
                   </div>
@@ -133,7 +132,7 @@ function Inbox() {
                   </button>
                   <button className="Inbox-message-btn">Delete</button>
                 </div>
-                {x.replyButton && (
+                {replyMessages.includes(x.id) && (
                   <input
                     className="Inbox-message-reply"
                     onChange={(e) => setReply({ ...reply, content: e.target.value })}

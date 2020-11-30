@@ -11,7 +11,7 @@ import {
   fetchUser,
   updateUserProfile,
 } from "../../store/users/userActions";
-import { selectChef } from "../../store/users/userSelectors";
+import { selectChef, selectChefImage } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
@@ -23,6 +23,7 @@ function MyProfile() {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
   const chef = useSelector(selectChef);
+  const chefProfileImg = useSelector(selectChefImage);
   const newMessages = useSelector(newMessageCount);
 
   const userId = parseInt(user.id);
@@ -30,7 +31,7 @@ function MyProfile() {
   const [selectedDate, setSelectedDate] = useState(moment());
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
-  const [imageModal, setImageModal] = useState(true);
+  const [imageModal, setImageModal] = useState(false);
 
   const [editProfile, setEditProfile] = useState({
     yearsOfExperience: chef.profile?.yearsOfExperience,
@@ -49,7 +50,7 @@ function MyProfile() {
       dispatch(fetchUser(userId));
       dispatch(fetchUserMessages(userId));
     }
-  }, [dispatch, userId, history, token]);
+  }, [dispatch, userId, history, token, chefProfileImg]);
 
   const deleteTag = (tagId) => () => {
     dispatch(deleteUserTag(tagId, userId));
@@ -72,10 +73,15 @@ function MyProfile() {
   };
 
   return (
-    <div className="MyProfile">
+    <div className="MyProfile container">
       <div className="MyProfile-top">
-        <div onClick={() => console.log("click")} className="MyProfile-img-wrapper">
-          <img className="MyProfile-img" src={chef.profile.imgUrl} alt="chef" />
+        <div className="MyProfile-img-wrapper">
+          <img
+            onClick={() => setImageModal(!imageModal)}
+            className="MyProfile-img"
+            src={chefProfileImg}
+            alt="chef"
+          />
           {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
         </div>
         <div className="MyProfile-msg">
@@ -88,11 +94,6 @@ function MyProfile() {
         <Link className="MyProfile-inbox-link" to="/profile/inbox">
           <button className="MyProfile-inbox-btn">Inbox</button>
         </Link>
-
-        <div className="MyProfile-msg">
-          <i className="las la-envelope la-2x"></i>
-          {newMessages} new messages
-        </div>
         <Link className="MyProfile-booking-link" to="/profile/bookings">
           <button className="MyProfile-booking-btn">My Bookings</button>{" "}
         </Link>

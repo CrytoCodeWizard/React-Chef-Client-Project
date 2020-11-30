@@ -31,13 +31,10 @@ export const fetchAllUsers = () => async (dispatch, getState) => {
 };
 
 export const fetchUser = (id) => async (dispatch, getState) => {
-  dispatch(appLoading());
-
   try {
     const response = await axios.get(`/users/${id}`);
 
     dispatch(saveUser(response.data));
-    dispatch(appDoneLoading());
   } catch (e) {
     console.log(e.message);
   }
@@ -58,9 +55,13 @@ export const updateUserProfile = (updatedProfile, userId, profileId) => async (
   }
 };
 
-export const uploadProfileImage = async (base64EncodedImage) => {
+export const uploadProfileImage = (base64EncodedImage) => async (dispatch, getState) => {
+  const userId = getState().userLogin.id;
+
   try {
     const response = await axios.post("/users/profile/upload", { data: base64EncodedImage });
+
+    dispatch(fetchUser(userId));
 
     console.log(response);
   } catch (e) {

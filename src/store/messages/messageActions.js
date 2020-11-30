@@ -22,7 +22,6 @@ export const saveBookingDate = (day) => {
 };
 
 export const sendMessage = (message) => async (dispatch, getState) => {
-  console.log("MESSAFE IN SENDMESSAGE ACTION", message);
   const { userId, recipientUserId, title, content, date } = message;
   try {
     // eslint-disable-next-line no-unused-vars
@@ -46,6 +45,7 @@ export const sendMessage = (message) => async (dispatch, getState) => {
 export const fetchUserMessages = (id) => async (dispatch, getState) => {
   try {
     const response = await axios.get(`/users/${id}/profile/message`);
+    console.log("DOM: inside fetchUserMessages", response);
 
     dispatch(saveUserMessages(response.data));
   } catch (e) {

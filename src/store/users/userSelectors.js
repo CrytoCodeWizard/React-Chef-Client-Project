@@ -6,6 +6,10 @@ export const selectChef = (reduxState) => {
   return reduxState.users.single;
 };
 
+export const selectChefImage = (reduxState) => {
+  return reduxState.users.single.profile.imgUrl;
+};
+
 export const selectAvailableDates = (reduxState) => {
   return reduxState.users.single.profile.availableDates;
 };
