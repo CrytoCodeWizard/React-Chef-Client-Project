@@ -1,15 +1,16 @@
 import React from "react";
 import dayStyles, { availableStyles } from "./styles.js";
 import { useDispatch } from "react-redux";
-import { saveBookingDate, switchModal } from "../../store/messages/messageActions.js";
+import { saveBookingDate } from "../../store/messages/messageActions.js";
+import { Button } from "react-bootstrap";
 
 const Day = (props) => {
   const dispatch = useDispatch();
-  const { dayIndex, same, day, selectedDate } = props;
+  const { dayIndex, same, day, selectedDate, setModalShow } = props;
 
   const handleBookingClick = (day) => {
     dispatch(saveBookingDate(day));
-    dispatch(switchModal());
+    setModalShow(true);
   };
 
   return (
@@ -25,9 +26,9 @@ const Day = (props) => {
       <div className={dayStyles(day, selectedDate)}>
         {day.format("D")}
         {same && (
-          <button onClick={() => handleBookingClick(day)} className="book-btn">
-            book
-          </button>
+          <Button size="sm" className="book-btn" variant="primary" onClick={handleBookingClick}>
+            Book
+          </Button>
         )}
       </div>
     </div>

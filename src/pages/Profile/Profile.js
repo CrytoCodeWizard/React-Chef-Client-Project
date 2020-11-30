@@ -6,11 +6,12 @@ import { fetchUser } from "../../store/users/userActions";
 import { selectChef, selectChefTags } from "../../store/users/userSelectors";
 import "./Profile.css";
 import { useParams } from "react-router-dom";
-import { switchModal } from "../../store/messages/messageActions.js";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button } from "react-bootstrap";
+import ModalBootStrap from "../../components/Modal/Modal.js";
 
 function Profile() {
+  const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const params = useParams();
   const chef = useSelector(selectChef);
@@ -28,13 +29,11 @@ function Profile() {
         <div className="Profile-img-wrapper">
           <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
         </div>
-        <Button
-          variant="primary"
-          onClick={() => dispatch(switchModal())}
-          className="Profile-msg-btn"
-        >
+        <Button className="Profile-msg-btn" variant="primary" onClick={() => setModalShow(true)}>
           Message
         </Button>
+
+        <ModalBootStrap show={modalShow} onHide={() => setModalShow(false)} />
       </div>
 
       <div className="Profile-main">

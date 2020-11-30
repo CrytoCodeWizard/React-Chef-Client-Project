@@ -6,15 +6,14 @@ import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAvailableDates } from "../../store/users/userSelectors";
 import Day from "./Day";
-import MessageModal from "../MessageModal/MessageModal";
-import { selectModal } from "../../store/messages/messageSelectors";
+import ModalBootStrap from "../Modal/Modal";
 
 export default function Calendar({ selectedDate, onChange }) {
+  const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const availableDates = useSelector(selectAvailableDates);
   const [calendar, setCalendar] = useState([]);
   const availableDatesArray = availableDates.map((d) => moment(d.date));
-  const modal = useSelector(selectModal);
 
   useEffect(() => {
     setCalendar(buildCalendar(selectedDate));
@@ -31,7 +30,7 @@ export default function Calendar({ selectedDate, onChange }) {
             </div>
           ))}
         </div>
-        {modal && <MessageModal />}
+        {modalShow && <ModalBootStrap show={modalShow} onHide={() => setModalShow(false)} />}
         {calendar.map((week, wi) => (
           <div key={wi}>
             {week.map((day, di) => {
@@ -41,7 +40,15 @@ export default function Calendar({ selectedDate, onChange }) {
                 return match;
               });
 
-              return <Day key={di} same={same} day={day} selectedDate={selectedDate} />;
+              return (
+                <Day
+                  key={di}
+                  same={same}
+                  day={day}
+                  selectedDate={selectedDate}
+                  setModalShow={setModalShow}
+                />
+              );
             })}
           </div>
         ))}

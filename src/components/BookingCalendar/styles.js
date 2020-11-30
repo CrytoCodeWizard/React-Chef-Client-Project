@@ -26,6 +26,3 @@ export default function dayStyles(day, selectedDate) {
   if (isToday(day)) return "date-box today";
   return "";
 }
-
-// if (day < moment(new Date()).startOf("day")) return;
-// onChange(day);

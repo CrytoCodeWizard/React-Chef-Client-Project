@@ -33,23 +33,21 @@
   width: 100%;
 }
 
-.MyProfile-inbox-link {
+.MyProfile-inbox-link,
+.MyProfile-booking-btn {
   align-self: start;
   margin-top: 2em;
   grid-column: 4 / span 1;
   grid-row: 1 / span 1;
 }
 
+.MyProfile-booking-btn {
+  grid-column: 5 / span 1;
+}
+
 .MyProfile-booking-link {
   align-self: start;
   /* margin-top: 2em; */
-  grid-column: 5 / span 1;
-  grid-row: 1 / span 1;
-}
-
-.MyProfile-booking-btn {
-  align-self: start;
-  margin-top: 2em;
   grid-column: 5 / span 1;
   grid-row: 1 / span 1;
 }
@@ -86,10 +84,6 @@
   margin: 0;
 }
 
-.MyProfile-main-description {
-  font-size: 0.85rem;
-}
-
 .MyProfile-main-tagbox {
   width: 75%;
   display: flex;
@@ -103,9 +97,10 @@
 }
 
 .MyProfile-main-description {
+  font-size: 0.85rem;
   padding: 1em;
   width: 80%;
-  border: 1px solid black;
+  border: 1px dashed black;
 }
 
 .MyProfile-editMode-wrapper {
@@ -118,6 +113,7 @@
 }
 
 .MyProfile-editMode-textarea {
+  padding: 0.75em;
   margin: 1em 0 1em 0;
 }
 

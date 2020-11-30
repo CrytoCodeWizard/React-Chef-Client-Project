@@ -85,10 +85,11 @@
 }
 
 .book-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
+  font-size: 0.7rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: absolute !important;
   left: 50%;
   top: 70%;
   padding: 0;
@@ -98,17 +99,4 @@
   width: 75%;
   height: 20%;
   transition: 100ms ease-in all;
-}
-
-.book-btn:hover {
-  background: gold;
-}
-
-.book-btn:focus {
-  outline: none;
-}
-
-.message-box {
-  position: absolute;
-  background-color: tomato;
 }
