@@ -9,6 +9,10 @@ import { useParams } from "react-router-dom";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button } from "react-bootstrap";
 import SendMessageModal from "../../components/SendMessageModal/SendMessageModal.js";
+import Review from "../../components/Review/Review.js";
+import { fetchProfileReviews } from "../../store/reviews/reviewActions.js";
+import { selectAllReviews } from "../../store/reviews/reviewSelectors.js";
+import SimpleRating from "../../components/SimpleRating/SimpleRating.js";
 
 function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -17,10 +21,12 @@ function Profile() {
   const chef = useSelector(selectChef);
   const tags = useSelector(selectChefTags);
   const userId = parseInt(params.id);
+  const reviews = useSelector(selectAllReviews);
   const [selectedDate, setSelectedDate] = useState(moment());
 
   useEffect(() => {
     dispatch(fetchUser(userId));
+    dispatch(fetchProfileReviews(userId));
   }, [dispatch, userId]);
 
   return (
@@ -53,9 +59,24 @@ function Profile() {
         </div>
         <div className="Profile-main-right">
           <h1 className="Profile-main-right-header">Availability</h1>
-
           <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
+      </div>
+      <div className="ProfileReviews">
+        <h2 className="mb-4">Leave a review...</h2>
+        <Review profileId={userId} />
+        <h3>Reviews...</h3>
+        <hr></hr>
+        {reviews.map((x) => {
+          return (
+            <div key={x.id} className="review">
+              <h5>{`${x.user.firstName} ${x.user.lastName} - ${x.user.businessName}`}</h5>
+              <h6>{x.title}</h6>
+              <p>{x.content}</p>
+              <SimpleRating reviewScore={x.reviewScore} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

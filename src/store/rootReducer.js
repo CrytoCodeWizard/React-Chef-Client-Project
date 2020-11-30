@@ -5,6 +5,7 @@ import userLogin from "./userLogin/userLoginReducer";
 import users from "./users/userReducer";
 import messages from "./messages/messageReducer";
 import bookings from "./bookings/bookingReducer";
+import reviews from "./reviews/reviewReducer";
 
 export default combineReducers({
   appState,
@@ -13,4 +14,5 @@ export default combineReducers({
   users,
   messages,
   bookings,
+  reviews,
 });
