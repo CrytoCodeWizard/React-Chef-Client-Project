@@ -9,7 +9,8 @@ import { useParams } from "react-router-dom";
 import TagBox from "../../components/TagBox/TagBox.js";
 import { Button } from "react-bootstrap";
 import SendMessageModal from "../../components/SendMessageModal/SendMessageModal.js";
-import Comments from "../../components/Comments/Comments.js";
+import Review from "../../components/Review/Review.js";
+import { fetchProfileReviews } from "../../store/reviews/reviewActions.js";
 
 function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -22,6 +23,7 @@ function Profile() {
 
   useEffect(() => {
     dispatch(fetchUser(userId));
+    dispatch(fetchProfileReviews(userId));
   }, [dispatch, userId]);
 
   return (
@@ -57,7 +59,10 @@ function Profile() {
           <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
-      <Comments />
+      <div className="ProfileReviews">
+        <h2 className="mb-4">Leave a review...</h2>
+        <Review userId={userId} />
+      </div>
     </div>
   );
 }

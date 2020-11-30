@@ -30,6 +30,7 @@
 .Profile-main {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  padding-bottom: 6em;
 }
 
 .Profile-main-left {
