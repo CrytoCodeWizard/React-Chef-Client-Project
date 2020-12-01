@@ -10,6 +10,18 @@ export const saveAllBookings = (bookings) => {
   };
 };
 
+export const fetchBookings = (userId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.get(`/bookings/${userId}`);
+
+    if (response) {
+      dispatch(saveAllBookings(response.data));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const updateBooking = (id) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
 
@@ -18,20 +30,22 @@ export const updateBooking = (id) => async (dispatch, getState) => {
 
     if (response) {
       dispatch(fetchUserMessages(userId));
+      dispatch(fetchBookings(userId));
     }
   } catch (e) {
     console.log(e.message);
   }
 };
 
-export const fetchBookings = (userId) => async (dispatch, getState) => {
-  console.log("USERID", userId);
+export const deleteBooking = (id) => async (dispatch, getState) => {
+  const userId = getState().userLogin.id;
+  console.log(userId);
 
   try {
-    const response = await axios.get(`/bookings/${userId}`);
+    const response = await axios.delete(`/bookings/${id}`);
 
     if (response) {
-      dispatch(saveAllBookings(response.data));
+      dispatch(fetchBookings(userId));
     }
   } catch (e) {
     console.log(e);

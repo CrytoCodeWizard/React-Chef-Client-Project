@@ -49,8 +49,8 @@ function MyProfile() {
   }
 
   useEffect(() => {
-    dispatch(fetchUserMessages(userId));
     if (userId) {
+      dispatch(fetchUserMessages(userId));
       dispatch(fetchUser(userId));
     }
   }, [dispatch, userId, chefProfileImg]);

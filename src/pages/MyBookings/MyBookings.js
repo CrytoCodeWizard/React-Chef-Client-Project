@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, Container, Jumbotron, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBookings } from "../../store/bookings/bookingActions";
+import { deleteBooking, fetchBookings, updateBooking } from "../../store/bookings/bookingActions";
 import { selectAllBookings } from "../../store/bookings/bookingSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import "./MyBookings.css";
@@ -11,11 +11,24 @@ function MyBookings() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const fetchedBookings = useSelector(selectAllBookings);
-  console.log("FETCHED BOOKIGNS", fetchedBookings);
+
+  const bookingsSortedByDateReceived = [...fetchedBookings].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   useEffect(() => {
-    dispatch(fetchBookings(user.id));
+    if (user.id) {
+      dispatch(fetchBookings(user.id));
+    }
   }, [dispatch, user.id]);
+
+  const handleDeleteBooking = (bookingId) => () => {
+    dispatch(deleteBooking(bookingId));
+  };
+
+  const handleUpdateBooking = (bookingId) => () => {
+    dispatch(updateBooking(bookingId));
+  };
 
   return (
     <div className="MyBookings">
@@ -33,12 +46,13 @@ function MyBookings() {
                   <th>Booker</th>
                   <th>Company</th>
                   <th>Email</th>
-                  <th>Cancel</th>
+                  <th>Status</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {fetchedBookings
-                  .filter((x) => x.accepted)
+                {bookingsSortedByDateReceived
+                  // .filter((x) => x.accepted)
                   .map((x) => (
                     <tr key={x.id}>
                       <td>{x.date}</td>
@@ -47,11 +61,18 @@ function MyBookings() {
                       <td>{x.user.businessName}</td>
                       <td>{x.user.email}</td>
                       <td>
+                        {x.accepted ? (
+                          <Button onClick={handleUpdateBooking(x.id)}>Cancel</Button>
+                        ) : (
+                          <Button onClick={handleUpdateBooking(x.id)}>Accept</Button>
+                        )}
+                      </td>
+                      <td>
                         <Button
-                          onClick={() => console.log("click")}
+                          onClick={handleDeleteBooking(x.id)}
                           className="MyBookings-cancel-btn"
                         >
-                          Cancel
+                          Delete
                         </Button>
                       </td>
                     </tr>
