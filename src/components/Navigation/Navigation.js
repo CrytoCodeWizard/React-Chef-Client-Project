@@ -24,6 +24,7 @@ function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavBarItem align path="/" linkText="Home" />
+
           {!token || history.location.pathname === "/profile" ? null : (
             <NavBarItem align path="/profile" linkText="My Profile" />
           )}

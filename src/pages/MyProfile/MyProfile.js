@@ -38,8 +38,6 @@ function MyProfile() {
     description: "",
   });
 
-  console.log("EDITPROFILE ", editProfile);
-
   if (!token || token === null) {
     history.push("/");
   }

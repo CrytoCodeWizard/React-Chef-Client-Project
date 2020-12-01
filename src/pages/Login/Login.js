@@ -13,6 +13,12 @@ function Login() {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+    description: "",
+    name: "Roibin OToole",
+    id: Math.ceil(Math.random() * 10000),
+    role: "Member",
+    imgUrl:
+      "https://media.gq-magazine.co.uk/photos/5d13a8ad003d754254ae74f1/master/pass/adam-handling-gq-17apr19_b.jpg",
   });
 
   useEffect(() => {
@@ -23,11 +29,11 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ ...loginData }));
+    dispatch(login({ email: loginData.email, password: loginData.password }));
     setLoginData({ email: "", password: "" });
-  };
 
-  console.log(loginData);
+    localStorage.setItem("currentTalkjsUser", JSON.stringify(loginData));
+  };
 
   return (
     <Container>
