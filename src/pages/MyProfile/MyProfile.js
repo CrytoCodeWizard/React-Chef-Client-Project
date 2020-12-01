@@ -6,12 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import { addUserTag, fetchUser, updateUserProfile } from "../../store/users/userActions";
-import {
-  selectChef,
-  selectChefImage,
-  selectChefProfile,
-  selectChefTags,
-} from "../../store/users/userSelectors";
+import { selectChef, selectChefImage, selectChefTags } from "../../store/users/userSelectors";
 import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
@@ -27,7 +22,6 @@ function MyProfile() {
   const userId = useSelector(selectUser).id;
   const chef = useSelector(selectChef);
   const tags = useSelector(selectChefTags);
-  const profile = useSelector(selectChefProfile);
   const chefProfileImg = useSelector(selectChefImage);
   const newMessages = useSelector(newMessageCount);
   const profileId = parseInt(chef.profile?.id);
@@ -37,12 +31,14 @@ function MyProfile() {
   const [imageModal, setImageModal] = useState(false);
 
   const [editProfile, setEditProfile] = useState({
-    yearsOfExperience: profile.yearsOfExperience,
-    hourlyRate: profile.hourlyRate,
-    position: profile.position,
-    city: chef.city,
-    description: profile.description,
+    yearsOfExperience: 0,
+    hourlyRate: 0,
+    position: "",
+    city: "",
+    description: "",
   });
+
+  console.log("EDITPROFILE ", editProfile);
 
   if (!token || token === null) {
     history.push("/");

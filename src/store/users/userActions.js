@@ -51,7 +51,7 @@ export const updateUserProfile = (updatedProfile, userId, profileId) => async (
 
     console.log(response);
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
   }
 };
 

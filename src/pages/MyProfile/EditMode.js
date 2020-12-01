@@ -16,7 +16,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, yearsOfExperience: e.target.value })}
-          defaultValue={editProfile.yearsOfExperience}
+          defaultValue={chef.profile.yearsOfExperience}
           aria-label="experience"
         />
       </InputGroup>
@@ -28,7 +28,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, hourlyRate: e.target.value })}
-          defaultValue={editProfile.hourlyRate}
+          defaultValue={chef.profile.hourlyRate}
           aria-label="rate"
         />
       </InputGroup>
@@ -40,7 +40,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, position: e.target.value })}
-          defaultValue={editProfile.position}
+          defaultValue={chef.profile.position}
           aria-label="rate"
         />
       </InputGroup>
@@ -52,7 +52,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })}
-          defaultValue={editProfile.city}
+          defaultValue={chef.city}
           aria-label="rate"
         />
       </InputGroup>
@@ -60,7 +60,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
       <InputGroup>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, description: e.target.value })}
-          defaultValue={chef && chef.profile.description}
+          defaultValue={chef.profile.description}
           as="textarea"
           aria-label="description"
           rows={6}

@@ -12,13 +12,10 @@ function Home() {
   const dispatch = useDispatch();
   const chefs = useSelector(selectAllChefs);
   const tags = useSelector(selectAllTags);
-  // eslint-disable-next-line no-unused-vars
   const [selectDate, setSelectDate] = useState("");
   const [selectTagOne, setSelectTagOne] = useState("");
   const [selectTagTwo, setSelectTagTwo] = useState("");
-  // eslint-disable-next-line no-unused-vars
   const [selectRating, setSelectRating] = useState(0);
-  console.log(selectRating);
 
   const sortChefsByTagsAndDate = chefs.filter((chef) => {
     const chefTags = chef.profile.specializationTags;
@@ -26,9 +23,6 @@ function Home() {
     const reviews = chef.profile.profileReviews;
     const reviewSum = reviews.reduce((a, b) => a + b.reviewScore, 0);
     const chefAverageRating = reviewSum / reviews.length;
-    console.log(typeof chefAverageRating);
-    console.log(typeof selectRating);
-    console.log(`CHEF AVERAGE ${chefAverageRating} - SELECTEDRATING ${selectRating} `);
 
     if (selectDate) {
       return (
