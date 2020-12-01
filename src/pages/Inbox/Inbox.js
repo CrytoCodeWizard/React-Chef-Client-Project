@@ -132,21 +132,20 @@ function Inbox() {
                 )}
 
                 <div className="Inbox-message-btn-wrapper">
-                  {/* CHECK THIS BUGGGGGGG! */}
-                  {!x.booking.accepted ? (
+                  {!x.booking ? null : x.booking.accepted ? (
+                    <Button
+                      onClick={handleAcceptBooking(x.booking.id)}
+                      className="Inbox-message-btn"
+                    >
+                      Cancel Booking
+                    </Button>
+                  ) : (
                     <Button
                       variant="success"
                       onClick={handleAcceptBooking(x.booking.id)}
                       className="Inbox-message-btn"
                     >
                       Accept Booking
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={handleAcceptBooking(x.booking.id)}
-                      className="Inbox-message-btn"
-                    >
-                      Cancel Booking
                     </Button>
                   )}
 
