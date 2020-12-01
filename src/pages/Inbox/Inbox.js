@@ -29,8 +29,6 @@ function Inbox() {
     date: "",
   });
 
-  console.log("MESSAGES", messages);
-
   useEffect(() => {
     if (userId) {
       dispatch(fetchUserMessages(userId));

@@ -18,16 +18,44 @@ function Home() {
   const [selectTagTwo, setSelectTagTwo] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [selectRating, setSelectRating] = useState(0);
+  console.log(selectRating);
 
-  const sortChefsByTags = chefs.filter((chef) => {
+  const sortChefsByTagsAndDate = chefs.filter((chef) => {
     const chefTags = chef.profile.specializationTags;
-    return (
-      chefTags.some((tag) => tag.tagName === selectTagOne) ||
-      chefTags.some((tag) => tag.tagName === selectTagTwo)
-    );
+    const chefAvailableDates = chef.profile.availableDates;
+    const reviews = chef.profile.profileReviews;
+    const reviewSum = reviews.reduce((a, b) => a + b.reviewScore, 0);
+    const chefAverageRating = reviewSum / reviews.length;
+    console.log(typeof chefAverageRating);
+    console.log(typeof selectRating);
+    console.log(`CHEF AVERAGE ${chefAverageRating} - SELECTEDRATING ${selectRating} `);
+
+    if (selectDate) {
+      return (
+        chefAverageRating >= selectRating &&
+        chefAvailableDates.some((date) => date.date === selectDate) &&
+        (chefTags.some((tag) => tag.tagName === selectTagOne) ||
+          chefTags.some((tag) => tag.tagName === selectTagTwo))
+      );
+    } else if (!selectDate) {
+      return (
+        chefAverageRating >= selectRating &&
+        (chefTags.some((tag) => tag.tagName === selectTagOne) ||
+          chefTags.some((tag) => tag.tagName === selectTagTwo))
+      );
+    } else {
+      return chef;
+    }
   });
 
-  const sortedChefs = selectTagOne === "" && selectTagTwo === "" ? chefs : sortChefsByTags;
+  const sortedChefs =
+    selectTagOne === "" &&
+    selectTagTwo === "" &&
+    selectDate === "" &&
+    selectRating === 0 &&
+    selectDate === ""
+      ? chefs
+      : sortChefsByTagsAndDate;
 
   useEffect(() => {
     dispatch(fetchAllUsers());
@@ -92,6 +120,7 @@ function Home() {
               <option value="3">3 star</option>
               <option value="2">2 star</option>
               <option value="1">1 star</option>
+              <option value="0">no rating</option>
             </select>
           </div>
         </div>
