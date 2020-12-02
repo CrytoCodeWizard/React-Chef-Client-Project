@@ -70,29 +70,31 @@ export const uploadProfileImage = (base64EncodedImage) => async (dispatch, getSt
 };
 
 export const addUserTag = (tagName, profileId) => async (dispatch, getState) => {
+  console.log("TAGNAME AND PROFILEID", tagName, profileId);
+
   try {
     const response = await axios.post(`/tags/user`, {
       tagName,
       profileId,
     });
 
-    dispatch(fetchUser(getState().users.single.id));
-
-    console.log("ADD USER TAG", response.data);
+    if (response) {
+      dispatch(fetchUser(profileId));
+    }
   } catch (e) {
     console.log(e.message);
   }
 };
 
-export const deleteUserTag = (tagId, userId) => async (dispatch, getState) => {
+export const deleteUserTag = (userTagId, userId) => async (dispatch, getState) => {
   try {
     const response = await axios.delete(`/tags/user`, {
-      headers: { tagId },
+      headers: { userTagId },
     });
 
-    dispatch(fetchUser(userId));
-
-    console.log(response);
+    if (response) {
+      dispatch(fetchUser(userId));
+    }
   } catch (e) {
     console.log(e.message);
   }

@@ -52,6 +52,7 @@ function MyProfile() {
   const addTag = () => (e) => {
     if (e.key === "Enter" || e.type === "click") {
       dispatch(addUserTag(newTag, profileId));
+      setNewTag("");
     }
   };
 
@@ -110,6 +111,7 @@ function MyProfile() {
                 <FormControl
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={addTag()}
+                  value={newTag}
                   placeholder="Add a tag"
                   aria-label="add tag"
                   aria-describedby="basic-addon2"

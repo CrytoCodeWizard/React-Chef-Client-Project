@@ -1,8 +1,7 @@
 .tagbox {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 0.5em;
-  height: 80px;
+  padding: 0.5em 0 0.5em 0;
 }
 
 .tag {

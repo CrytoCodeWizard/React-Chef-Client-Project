@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import { deleteUserTag } from "../../store/users/userActions";
@@ -8,9 +8,15 @@ import "./TagBox.css";
 function TagBox({ tags, remove }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const deleteTag = (tagId) => () => {
-    dispatch(deleteUserTag(tagId, user.id));
+  const deleteTag = (userTagId) => () => {
+    dispatch(deleteUserTag(userTagId, user.id));
   };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Click to remove
+    </Tooltip>
+  );
 
   return (
     <div>
@@ -25,14 +31,20 @@ function TagBox({ tags, remove }) {
       ) : (
         <div className="tagbox mb-2">
           {tags.map((x) => (
-            <Badge
-              key={x.id}
-              variant="danger"
-              onClick={deleteTag(x.id)}
-              className="m-1 tag tag-delete"
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 300, hide: 100 }}
+              overlay={renderTooltip}
             >
-              {x.tagName}
-            </Badge>
+              <Badge
+                key={x.id}
+                variant="danger"
+                onClick={deleteTag(x.userTags.id)}
+                className="m-1 tag tag-delete"
+              >
+                {x.tagName}
+              </Badge>
+            </OverlayTrigger>
           ))}
         </div>
       )}
