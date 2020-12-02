@@ -21,6 +21,11 @@ function Review({ profileId }) {
   const handleReviewSubmit = (review) => (e) => {
     e.preventDefault();
     dispatch(postReview(review, profileId));
+
+    setReview({
+      title: "",
+      content: "",
+    });
   };
 
   console.log("REVIEW", review);
@@ -31,6 +36,7 @@ function Review({ profileId }) {
           <Form.Control
             onChange={(e) => setReview({ ...review, title: e.target.value })}
             className="mb-2"
+            value={review.title}
             placeholder="Title"
           />
         </Col>
@@ -44,6 +50,7 @@ function Review({ profileId }) {
           onChange={(e) => setReview({ ...review, content: e.target.value })}
           as="textarea"
           rows={3}
+          value={review.content}
         />
       </Form.Group>
       <Button onClick={handleReviewSubmit(review)}>Submit</Button>
