@@ -9,7 +9,7 @@ function Footer() {
           <i className="las la-utensils la-2x"></i>
           <h2 className="Footer-header">
             {" "}
-            <span>chef</span>_Available()
+            <span>Chef</span>_Available()
           </h2>
         </div>
         <div className="Footer-icon-box">
