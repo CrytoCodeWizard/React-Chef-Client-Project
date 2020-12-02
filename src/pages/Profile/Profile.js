@@ -13,8 +13,10 @@ import Review from "../../components/Review/Review.js";
 import { fetchProfileReviews } from "../../store/reviews/reviewActions.js";
 import { selectAllReviews } from "../../store/reviews/reviewSelectors.js";
 import SimpleRating from "../../components/SimpleRating/SimpleRating.js";
+import { selectToken } from "../../store/userLogin/userLoginSelectors.js";
 
 function Profile() {
+  const token = useSelector(selectToken);
   const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const params = useParams();
@@ -35,9 +37,11 @@ function Profile() {
         <div className="Profile-img-wrapper">
           <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
         </div>
-        <Button className="Profile-msg-btn" variant="primary" onClick={() => setModalShow(true)}>
-          Message
-        </Button>
+        {token && (
+          <Button className="Profile-msg-btn" variant="primary" onClick={() => setModalShow(true)}>
+            Message
+          </Button>
+        )}
         <SendMessageModal show={modalShow} onHide={() => setModalShow(false)} />
       </div>
 
@@ -62,22 +66,25 @@ function Profile() {
           <BookingCalendar selectedDate={selectedDate} onChange={setSelectedDate} />
         </div>
       </div>
-      <div className="ProfileReviews">
-        <h2 className="mb-4">Leave a review...</h2>
-        <Review profileId={userId} />
-        <h3>Reviews...</h3>
-        <hr></hr>
-        {reviews.map((x) => {
-          return (
-            <div key={x.id} className="review">
-              <h5>{`${x.user.firstName} ${x.user.lastName} - ${x.user.businessName}`}</h5>
-              <h6>{x.title}</h6>
-              <p>{x.content}</p>
-              <SimpleRating reviewScore={x.reviewScore} />
-            </div>
-          );
-        })}
-      </div>
+
+      {token && (
+        <div className="ProfileReviews">
+          <h2 className="mb-4">Leave a review...</h2>
+          <Review profileId={userId} />
+          <h3>Reviews...</h3>
+          <hr></hr>
+          {reviews.map((x) => {
+            return (
+              <div key={x.id} className="review">
+                <h5>{`${x.user.firstName} ${x.user.lastName} - ${x.user.businessName}`}</h5>
+                <h6>{x.title}</h6>
+                <p>{x.content}</p>
+                <SimpleRating reviewScore={x.reviewScore} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

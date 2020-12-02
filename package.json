@@ -20,7 +20,6 @@
     "react-scripts": "4.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "talkjs": "^0.14.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
