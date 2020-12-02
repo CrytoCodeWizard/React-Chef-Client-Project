@@ -20,32 +20,36 @@ function TagBox({ tags, remove }) {
 
   return (
     <div>
-      {!remove ? (
-        <div className="tagbox mb-2">
-          {tags.map((x) => (
-            <Badge key={x.id} variant="success" className="m-1 tag">
-              {x.tagName}
-            </Badge>
-          ))}
-        </div>
-      ) : (
-        <div className="tagbox mb-2">
-          {tags.map((x) => (
-            <OverlayTrigger
-              placement="right"
-              delay={{ show: 300, hide: 100 }}
-              overlay={renderTooltip}
-            >
-              <Badge
-                key={x.id}
-                variant="danger"
-                onClick={deleteTag(x.userTags.id)}
-                className="m-1 tag tag-delete"
-              >
-                {x.tagName}
-              </Badge>
-            </OverlayTrigger>
-          ))}
+      {tags.length === 0 ? null : (
+        <div>
+          {!remove ? (
+            <div className="tagbox mb-2">
+              {tags.map((x) => (
+                <Badge key={x.id} variant="success" className="m-1 tag">
+                  {x.tagName}
+                </Badge>
+              ))}
+            </div>
+          ) : (
+            <div className="tagbox mb-2">
+              {tags.map((x) => (
+                <OverlayTrigger
+                  placement="right"
+                  delay={{ show: 300, hide: 100 }}
+                  overlay={renderTooltip}
+                >
+                  <Badge
+                    key={x.id}
+                    variant="danger"
+                    onClick={deleteTag(x.userTags.id)}
+                    className="m-1 tag tag-delete"
+                  >
+                    {x.tagName}
+                  </Badge>
+                </OverlayTrigger>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

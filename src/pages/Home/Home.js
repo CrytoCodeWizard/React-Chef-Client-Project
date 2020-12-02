@@ -24,12 +24,17 @@ function Home() {
     const reviewSum = reviews.reduce((a, b) => a + b.reviewScore, 0);
     const chefAverageRating = reviewSum / reviews.length;
 
-    if (selectDate) {
+    if ((selectTagOne || selectTagTwo) && selectDate) {
       return (
         chefAverageRating >= selectRating &&
         chefAvailableDates.some((date) => date.date === selectDate) &&
         (chefTags.some((tag) => tag.tagName === selectTagOne) ||
           chefTags.some((tag) => tag.tagName === selectTagTwo))
+      );
+    } else if (selectDate) {
+      return (
+        chefAverageRating >= selectRating &&
+        chefAvailableDates.some((date) => date.date === selectDate)
       );
     } else if (!selectDate) {
       return (

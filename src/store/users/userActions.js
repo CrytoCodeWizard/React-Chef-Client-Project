@@ -57,9 +57,13 @@ export const updateUserProfile = (updatedProfile, userId, profileId) => async (
 
 export const uploadProfileImage = (base64EncodedImage) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
+  console.log("UserId", userId);
 
   try {
-    const response = await axios.post("/users/profile/upload", { data: base64EncodedImage });
+    const response = await axios.post("/users/profile/upload", {
+      data: base64EncodedImage,
+      userId,
+    });
 
     dispatch(fetchUser(userId));
 

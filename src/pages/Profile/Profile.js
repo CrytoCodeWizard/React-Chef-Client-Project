@@ -50,11 +50,33 @@ function Profile() {
           <h4 className="Profile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
           <div className="Profile-main-detail-wrapper">
             <p className="Profile-main-detail">
+              <span className="mr-2">
+                {" "}
+                <i className="las la-user-cog"></i>
+              </span>
               Years of experience: {chef.profile?.yearsOfExperience}
             </p>
-            <p className="Profile-main-detail">Hourly rate: {chef.profile?.hourlyRate}</p>
-            <p className="Profile-main-detail">{chef.profile?.position}</p>
-            <p className="Profile-main-detail">{chef?.city}</p>
+            <p className="Profile-main-detail">
+              <span className="mr-2">
+                {" "}
+                <i className="las la-euro-sign"></i>
+              </span>
+              Hourly rate: {chef.profile.hourlyRate}
+            </p>
+            <p className="Profile-main-detail">
+              <span className="mr-2">
+                {" "}
+                <i className="las la-user-tag"></i>
+              </span>
+              {chef.profile?.position}
+            </p>
+            <p className="Profile-main-detail">
+              <span className="mr-2">
+                {" "}
+                <i className="las la-map-marker-alt"></i>
+              </span>
+              {chef?.city}
+            </p>
           </div>
           <div className="Profile-main-tagbox">
             {<TagBox tags={tags} remove={false} />}
