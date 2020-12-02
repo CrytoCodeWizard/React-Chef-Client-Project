@@ -21,8 +21,9 @@ export const saveBookingDate = (day) => {
   };
 };
 
-export const sendMessage = (message) => async (dispatch, getState) => {
+export const sendMessage = (message, isReply) => async (dispatch, getState) => {
   const { userId, recipientUserId, title, content, date } = message;
+
   try {
     // eslint-disable-next-line no-unused-vars
     const response = await axios.post(`/users/${userId}/profile/message`, {
@@ -31,6 +32,7 @@ export const sendMessage = (message) => async (dispatch, getState) => {
       title,
       content,
       date,
+      isReply,
     });
 
     if (response) {

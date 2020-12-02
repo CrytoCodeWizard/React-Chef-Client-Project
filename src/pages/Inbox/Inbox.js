@@ -9,11 +9,14 @@ import {
   updateMessageReadStatus,
 } from "../../store/messages/messageActions";
 import { newMessageCount, selectMessagesSortedByDate } from "../../store/messages/messageSelectors";
-import { selectUser } from "../../store/userLogin/userLoginSelectors";
+import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import moment from "moment";
 import "./Inbox.css";
+import { useHistory } from "react-router-dom";
 
 function Inbox() {
+  const history = useHistory();
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const userId = user.id;
@@ -28,6 +31,10 @@ function Inbox() {
     content: "",
     date: "",
   });
+
+  if (!token || token === null) {
+    history.push("/");
+  }
 
   useEffect(() => {
     if (userId) {
@@ -72,10 +79,12 @@ function Inbox() {
   const replyInputActive = (messageId, x) => () => {
     if (x) {
       setReply({
-        bookingId: x.booking.id,
+        bookingId: x.booking ? x.booking.id : null,
         userId: x.recipientUserId,
         recipientUserId: x.userId,
-        title: `Reply to booking #${x.booking.id} - ${x.title}`,
+        title: x.booking
+          ? `Reply to booking #${x.booking.id} - ${x.title}`
+          : `Reply to: ${x.title}`,
         date: x.date,
       });
     }
@@ -84,9 +93,10 @@ function Inbox() {
   };
 
   const sendReply = (reply, messageId) => (e) => {
-    console.log("REPLY SENT");
+    const isReply = true;
+
     if (e.key === "Enter" || e.type === "click") {
-      dispatch(sendMessage(reply));
+      dispatch(sendMessage(reply, isReply));
       replyMessageToggle(messageId);
     }
   };

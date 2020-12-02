@@ -3,11 +3,14 @@ import { Button, Container, Jumbotron, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBooking, fetchBookings, updateBooking } from "../../store/bookings/bookingActions";
 import { selectAllBookings } from "../../store/bookings/bookingSelectors";
-import { selectUser } from "../../store/userLogin/userLoginSelectors";
+import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import "./MyBookings.css";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 function MyBookings() {
+  const history = useHistory();
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const fetchedBookings = useSelector(selectAllBookings);
@@ -21,6 +24,10 @@ function MyBookings() {
       dispatch(fetchBookings(user.id));
     }
   }, [dispatch, user.id]);
+
+  if (!token || token === null) {
+    history.push("/");
+  }
 
   const handleDeleteBooking = (bookingId) => () => {
     dispatch(deleteBooking(bookingId));
