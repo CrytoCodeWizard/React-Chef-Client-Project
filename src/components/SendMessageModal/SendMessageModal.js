@@ -6,17 +6,19 @@ import { selectUser } from "../../store/userLogin/userLoginSelectors";
 import { selectChef } from "../../store/users/userSelectors";
 import moment from "moment";
 import { Button, Form, Modal } from "react-bootstrap";
+import { selectCurrentDate } from "../../store/appState/appStateSelectors";
 
 function SendMessageModal(props) {
   const dispatch = useDispatch();
   const profile = useSelector(selectChef);
   const user = useSelector(selectUser);
   const date = useSelector(selectBookingDate);
+  const currentDate = useSelector(selectCurrentDate);
   const messageDate = !date ? "" : moment(date).format("YYYY-MM-DD");
 
   const [message, setMessage] = useState({
     userId: user.id,
-    title: "",
+    title: `Message sent on ${currentDate}`,
     content: "",
     recipientUserId: profile.id,
     date: messageDate,

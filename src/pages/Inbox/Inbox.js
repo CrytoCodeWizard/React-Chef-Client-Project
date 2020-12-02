@@ -50,8 +50,8 @@ function Inbox() {
     background: "#C1272D",
   };
 
-  const handleAcceptBooking = (bookingId) => () => {
-    dispatch(updateBooking(bookingId));
+  const handleAcceptBooking = (bookingId, bookingDate) => () => {
+    dispatch(updateBooking(bookingId, bookingDate));
   };
 
   const handleDeleteMessage = (messageId, userId) => () => {
@@ -144,7 +144,7 @@ function Inbox() {
                 <div className="Inbox-message-btn-wrapper">
                   {!x.booking ? null : x.booking.accepted ? (
                     <Button
-                      onClick={handleAcceptBooking(x.booking.id)}
+                      onClick={handleAcceptBooking(x.booking.id, x.booking.date)}
                       className="Inbox-message-btn"
                     >
                       Cancel Booking
@@ -152,7 +152,7 @@ function Inbox() {
                   ) : (
                     <Button
                       variant="success"
-                      onClick={handleAcceptBooking(x.booking.id)}
+                      onClick={handleAcceptBooking(x.booking.id, x.booking.date)}
                       className="Inbox-message-btn"
                     >
                       Accept Booking

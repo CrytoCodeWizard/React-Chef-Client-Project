@@ -33,7 +33,12 @@ const Day = (props) => {
       <div className={dayStyles(day, selectedDate)}>
         {day.format("D")}
         {same && (
-          <Button size="sm" className="book-btn" variant="primary" onClick={handleBookingClick}>
+          <Button
+            size="sm"
+            className="book-btn"
+            variant="primary"
+            onClick={() => handleBookingClick(day)}
+          >
             Book
           </Button>
         )}

@@ -75,10 +75,12 @@ function MyProfile() {
           </OverlayTrigger>
           {imageModal && <ImageUpload setImageModal={setImageModal} imageModal={imageModal} />}
         </div>
-        <div className="MyProfile-msg">
-          <i className="las la-envelope la-2x"></i>
-          {newMessages} new messages
-        </div>
+        <Link className="MyProfile-link" to="/profile/inbox">
+          <div className="MyProfile-msg">
+            <i className="las la-envelope la-2x"></i>
+            {newMessages} new messages
+          </div>
+        </Link>
         <Link className="MyProfile-booking-link" to="/profile/bookings">
           <Button variant="primary" className="MyProfile-booking-btn">
             My Bookings

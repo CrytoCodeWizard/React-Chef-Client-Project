@@ -22,11 +22,11 @@ export const fetchBookings = (userId) => async (dispatch, getState) => {
   }
 };
 
-export const updateBooking = (id) => async (dispatch, getState) => {
+export const updateBooking = (bookingId, bookingDate) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
 
   try {
-    const response = await axios.put("/bookings", { id });
+    const response = await axios.put("/bookings", { bookingId, bookingDate, userId });
 
     if (response) {
       dispatch(fetchUserMessages(userId));
@@ -39,7 +39,6 @@ export const updateBooking = (id) => async (dispatch, getState) => {
 
 export const deleteBooking = (id) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
-  console.log(userId);
 
   try {
     const response = await axios.delete(`/bookings/${id}`);
