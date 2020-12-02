@@ -19,7 +19,6 @@ function Review({ profileId }) {
   });
 
   const handleReviewSubmit = (review) => (e) => {
-    console.log("SUBMITTING REVIEW");
     e.preventDefault();
     dispatch(postReview(review, profileId));
   };
