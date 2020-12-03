@@ -8,6 +8,11 @@
   width: 80%;
 }
 
+.Inbox-message-title {
+  color: white !important;
+  padding: 0.3em;
+}
+
 .Inbox-message-header {
   display: flex;
   align-items: center;
