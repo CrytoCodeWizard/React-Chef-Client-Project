@@ -36,7 +36,7 @@ export const updateBooking = (bookingId, bookingDate) => async (dispatch, getSta
       dispatch(fetchBookings(userId));
     }
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
   }
 };
 

@@ -31,6 +31,8 @@ function Home() {
         (chefTags.some((tag) => tag.tagName === selectTagOne) ||
           chefTags.some((tag) => tag.tagName === selectTagTwo))
       );
+    } else if (!selectDate && !selectTagOne && !selectTagTwo && selectRating) {
+      return chefAverageRating >= selectRating;
     } else if (selectDate) {
       return (
         chefAverageRating >= selectRating &&

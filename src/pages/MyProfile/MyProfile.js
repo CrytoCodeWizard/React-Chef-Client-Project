@@ -24,11 +24,11 @@ function MyProfile() {
   const history = useHistory();
   const token = useSelector(selectToken);
   const userId = useSelector(selectUser).id;
-  const chef = useSelector(selectSingleUser);
+  const singleUser = useSelector(selectSingleUser);
   const tags = useSelector(selectSingleUserTags);
   const chefProfileImg = useSelector(selectSingleUserImage);
   const newMessages = useSelector(newMessageCount);
-  const profileId = parseInt(chef.profile?.id);
+  const profileId = parseInt(singleUser.profile?.id);
   const [selectedDate, setSelectedDate] = useState(moment());
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
@@ -97,35 +97,37 @@ function MyProfile() {
 
       <div className="MyProfile-main">
         <div className="MyProfile-main-left">
-          <h4 className="MyProfile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
+          <h4 className="MyProfile-main-heading">
+            Chef {`${singleUser.firstName} ${singleUser.lastName}`}
+          </h4>
           <div className="MyProfile-main-detail-wrapper">
             <p className="MyProfile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-cog"></i>
               </span>
-              Years of experience: {chef.profile?.yearsOfExperience}
+              Years of experience: {singleUser.profile?.yearsOfExperience}
             </p>
             <p className="MyProfile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-euro-sign"></i>
               </span>
-              Hourly rate: {chef.profile.hourlyRate}
+              Hourly rate: {singleUser.profile.hourlyRate}
             </p>
             <p className="MyProfile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-tag"></i>
               </span>
-              {chef.profile?.position}
+              {singleUser.profile?.position}
             </p>
             <p className="MyProfile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-map-marker-alt"></i>
               </span>
-              {chef?.city}
+              {singleUser?.city}
             </p>
           </div>
           <div className="MyProfile-main-tagbox">
@@ -152,9 +154,9 @@ function MyProfile() {
               </InputGroup>
             )}
           </div>
-          <p className="MyProfile-main-description">{chef.profile?.description}</p>
+          <p className="MyProfile-main-description">{singleUser.profile?.description}</p>
           {editMode && (
-            <EditMode setEditProfile={setEditProfile} chef={chef} editProfile={editProfile} />
+            <EditMode setEditProfile={setEditProfile} chef={singleUser} editProfile={editProfile} />
           )}
           {editMode ? (
             <div>
