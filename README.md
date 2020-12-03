@@ -69,8 +69,6 @@ project.
 
 [Backend](https://github.com/RDOToole89/chef-available-server)
 
-<br/>
-
 ## Version control
 Proper version control is important in any project, for the purpose of bringing home
 this concept with myself I have tried to add:
