@@ -40,3 +40,6 @@ As an employer I want to leave reviews about chefs I have worked with.
 
 [Project Board](https://github.com/RDOToole89/chef-available-client/projects/1)
       
+## Video Demo
+[![Chef Available!? Demo](https://img.youtube.com/vi/u8zJCZMMB9k/0.jpg)](https://www.youtube.com/watch?v=u8zJCZMMB9k)
+
