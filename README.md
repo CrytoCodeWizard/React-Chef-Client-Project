@@ -24,6 +24,8 @@ password: test <br/>
 <img align="left" alt="Redux" width="24px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redux/redux.png" />
 <img align="left" alt="MySQL" width="24px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png" />
 <img align="left" alt="Git" width="24px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" />
+<br/> <br/>
+
 
 ## User Stories
 
@@ -66,6 +68,7 @@ project.
 ## Project Board
 
 [Project Board](https://github.com/RDOToole89/chef-available-client/projects/1)
+<br/>
 
 ## Version control
 Proper version control is important in any project, for the purpose of bringing home
