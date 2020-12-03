@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
+import { Button, Container, FormControl, InputGroup, Jumbotron, Badge } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings/bookingActions";
 import {
@@ -62,9 +62,9 @@ function Inbox() {
     if (openMessages.includes(messageId)) {
       const updatedMessages = openMessages.filter((x) => x.id === messageId);
       setOpenMessages([...updatedMessages]);
-      dispatch(updateMessageReadStatus(messageId, userId));
     } else {
       setOpenMessages([...openMessages, messageId]);
+      dispatch(updateMessageReadStatus(messageId, userId));
     }
   };
 
@@ -109,7 +109,7 @@ function Inbox() {
       <Container>
         <div className="Inbox-message-wrapper">
           <div className="Inbox-message-header">
-            <div>from:</div>
+            <div>FROM:</div>
             <div>
               <i className="las la-envelope la-2x"></i>
               {newMessages} new messages
@@ -119,6 +119,11 @@ function Inbox() {
             return (
               <div key={x.id} className="Inbox-message">
                 <h5 style={x.new ? newMessage : oldMessage} className="Inbox-message-title">
+                  {x.new ? (
+                    <i className="lar la-envelope"></i>
+                  ) : (
+                    <i className="las la-envelope-open"></i>
+                  )}{" "}
                   {x.title}
                 </h5>
                 <p className="Inbox-message-sender">
@@ -128,16 +133,27 @@ function Inbox() {
                 {!openMessages.includes(x.id) ? (
                   <div className="Inbox-message-content">
                     {`${x.content?.slice(0, 60)}...`}
-                    <div style={{ cursor: "pointer" }} onClick={() => openMessageToggle(x.id)}>
+                    <br />
+                    <Badge
+                      variant="light"
+                      className="mt-3"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => openMessageToggle(x.id)}
+                    >
                       Read more...
-                    </div>
+                    </Badge>
                   </div>
                 ) : (
                   <div className="Inbox-message-content">
-                    {x.content}
-                    <div style={{ cursor: "pointer" }} onClick={() => openMessageToggle(x.id)}>
+                    {x.content} <br />
+                    <Badge
+                      variant="light"
+                      className="mt-3"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => openMessageToggle(x.id)}
+                    >
                       close
-                    </div>
+                    </Badge>
                   </div>
                 )}
 
