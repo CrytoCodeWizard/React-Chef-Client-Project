@@ -53,6 +53,10 @@ to follow proper structure by planning and creating wireframes, database models 
 a line of code was ever written. Please find below all the preparatory work that I did before starting on the
 project.
 
+## Project Board
+
+[Project Board](https://github.com/RDOToole89/chef-available-client/projects/1)
+
 ## Wireframe
 
 [Wireframe](https://wireframepro.mockflow.com/view/M1a7cdbf85114bbbc76b1f601042341311605703879138)
@@ -65,9 +69,6 @@ project.
 
 [Backend](https://github.com/RDOToole89/chef-available-server)
 
-## Project Board
-
-[Project Board](https://github.com/RDOToole89/chef-available-client/projects/1)
 <br/>
 
 ## Version control
