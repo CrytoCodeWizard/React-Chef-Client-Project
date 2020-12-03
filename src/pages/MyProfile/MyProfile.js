@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import { addUserTag, fetchUser, updateUserProfile } from "../../store/users/userActions";
-import { selectChef, selectChefImage, selectChefTags } from "../../store/users/userSelectors";
+import {
+  selectSingleUser,
+  selectSingleUserImage,
+  selectSingleUserTags,
+} from "../../store/users/userSelectors";
 import "./MyProfile.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
@@ -20,9 +24,9 @@ function MyProfile() {
   const history = useHistory();
   const token = useSelector(selectToken);
   const userId = useSelector(selectUser).id;
-  const chef = useSelector(selectChef);
-  const tags = useSelector(selectChefTags);
-  const chefProfileImg = useSelector(selectChefImage);
+  const chef = useSelector(selectSingleUser);
+  const tags = useSelector(selectSingleUserTags);
+  const chefProfileImg = useSelector(selectSingleUserImage);
   const newMessages = useSelector(newMessageCount);
   const profileId = parseInt(chef.profile?.id);
   const [selectedDate, setSelectedDate] = useState(moment());

@@ -115,6 +115,7 @@ function Inbox() {
               {newMessages} new messages
             </div>
           </div>
+          {messages.length === 0 && <h3 className="no-messages mt-5">No messages...</h3>}
           {messages?.map((x) => {
             return (
               <div key={x.id} className="Inbox-message">

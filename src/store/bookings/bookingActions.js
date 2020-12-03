@@ -11,8 +11,10 @@ export const saveAllBookings = (bookings) => {
 };
 
 export const fetchBookings = (userId, userType) => async (dispatch, getState) => {
+  console.log("FETCHBOKKIGNS USERTYPE:", userType);
+
   try {
-    const response = await axios.get(`/bookings/${userId}`, { userType });
+    const response = await axios.get(`/bookings/${userId}/${userType}`);
 
     if (response) {
       dispatch(saveAllBookings(response.data));

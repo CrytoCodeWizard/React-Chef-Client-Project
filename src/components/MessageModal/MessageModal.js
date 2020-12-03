@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMessage, switchModal } from "../../store/messages/messageActions";
 import { selectBookingDate } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
-import { selectChef } from "../../store/users/userSelectors";
+import { selectSingleUser } from "../../store/users/userSelectors";
 import moment from "moment";
 import "./MessageModal.css";
 
 function MessageModal() {
   const dispatch = useDispatch();
-  const profile = useSelector(selectChef);
+  const profile = useSelector(selectSingleUser);
   const user = useSelector(selectUser);
   const date = useSelector(selectBookingDate);
   const messageDate = !date ? "" : moment(date).format("YYYY-MM-DD");

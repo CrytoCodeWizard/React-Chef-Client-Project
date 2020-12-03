@@ -21,7 +21,7 @@ function MyBookings() {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  console.log("USER", user);
+  console.log(userType);
 
   useEffect(() => {
     if (userId) {

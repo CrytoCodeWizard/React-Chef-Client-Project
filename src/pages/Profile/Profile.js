@@ -3,7 +3,7 @@ import moment from "moment";
 import BookingCalendar from "../../components/BookingCalendar/Calendar.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/users/userActions";
-import { selectChef, selectChefTags } from "../../store/users/userSelectors";
+import { selectSingleUser, selectSingleUserTags } from "../../store/users/userSelectors";
 import "./Profile.css";
 import { useParams } from "react-router-dom";
 import TagBox from "../../components/TagBox/TagBox.js";
@@ -20,8 +20,8 @@ function Profile() {
   const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const params = useParams();
-  const chef = useSelector(selectChef);
-  const tags = useSelector(selectChefTags);
+  const singleUser = useSelector(selectSingleUser);
+  const tags = useSelector(selectSingleUserTags);
   const userId = parseInt(params.id);
   const reviews = useSelector(selectAllReviews);
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -35,7 +35,7 @@ function Profile() {
     <div className="Profile container">
       <div className="Profile-top">
         <div className="Profile-img-wrapper">
-          <img className="Profile-img" src={chef.profile.imgUrl} alt="chef" />
+          <img className="Profile-img" src={singleUser.profile.imgUrl} alt="chef" />
         </div>
         {token && (
           <Button className="Profile-msg-btn" variant="primary" onClick={() => setModalShow(true)}>
@@ -47,40 +47,42 @@ function Profile() {
 
       <div className="Profile-main">
         <div className="Profile-main-left">
-          <h4 className="Profile-main-heading">Chef {`${chef.firstName} ${chef.lastName}`}</h4>
+          <h4 className="Profile-main-heading">
+            Chef {`${singleUser.firstName} ${singleUser.lastName}`}
+          </h4>
           <div className="Profile-main-detail-wrapper">
             <p className="Profile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-cog"></i>
               </span>
-              Years of experience: {chef.profile?.yearsOfExperience}
+              Years of experience: {singleUser.profile?.yearsOfExperience}
             </p>
             <p className="Profile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-euro-sign"></i>
               </span>
-              Hourly rate: {chef.profile.hourlyRate}
+              Hourly rate: {singleUser.profile.hourlyRate}
             </p>
             <p className="Profile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-tag"></i>
               </span>
-              {chef.profile?.position}
+              {singleUser.profile?.position}
             </p>
             <p className="Profile-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-map-marker-alt"></i>
               </span>
-              {chef?.city}
+              {singleUser?.city}
             </p>
           </div>
           <div className="Profile-main-tagbox">
             {<TagBox tags={tags} remove={false} />}
-            <p className="Profile-main-description">{chef.profile?.description}</p>
+            <p className="Profile-main-description">{singleUser.profile?.description}</p>
           </div>
         </div>
         <div className="Profile-main-right">

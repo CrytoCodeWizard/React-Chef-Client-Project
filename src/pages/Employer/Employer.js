@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { selectToken, selectUser } from "../../store/userLogin/userLoginSelectors";
 import { addUserTag, fetchUser, updateUserProfile } from "../../store/users/userActions";
-import { selectChef, selectChefImage, selectChefTags } from "../../store/users/userSelectors";
+import {
+  selectSingleUser,
+  selectSingleUserImage,
+  selectSingleUserTags,
+} from "../../store/users/userSelectors";
 import "./Employer.css";
 import EditMode from "./EditMode.js";
 import { newMessageCount } from "../../store/messages/messageSelectors.js";
@@ -18,21 +22,21 @@ function EmployerProfile() {
   const history = useHistory();
   const token = useSelector(selectToken);
   const userId = useSelector(selectUser).id;
-  const chef = useSelector(selectChef);
-  const tags = useSelector(selectChefTags);
-  const chefProfileImg = useSelector(selectChefImage);
+  const singleUser = useSelector(selectSingleUser);
+  const tags = useSelector(selectSingleUserTags);
+  const chefProfileImg = useSelector(selectSingleUserImage);
   const newMessages = useSelector(newMessageCount);
-  const profileId = parseInt(chef.profile?.id);
+  const profileId = parseInt(singleUser.profile?.id);
   const [editMode, setEditMode] = useState(false);
   const [newTag, setNewTag] = useState("");
   const [imageModal, setImageModal] = useState(false);
 
   const [editProfile, setEditProfile] = useState({
-    yearsOfExperience: 0,
-    hourlyRate: 0,
-    position: "",
-    city: "",
-    description: "",
+    yearsOfExperience: singleUser.profile.yearsOfExperience,
+    hourlyRate: singleUser.profile.hourlyRate,
+    position: singleUser.profile.position,
+    city: singleUser.city,
+    description: singleUser.profile.description,
   });
 
   if (!token || token === null) {
@@ -90,36 +94,36 @@ function EmployerProfile() {
 
       <div className="Employer-main">
         <div className="Employer-main-left">
-          <h3 className="Employer-main-heading">{`${chef.businessName}`}</h3>
-          <p className="Employer-main-heading">{`${chef.firstName} ${chef.lastName}`}</p>
+          <h3 className="Employer-main-heading">{`${singleUser.businessName}`}</h3>
+          <p className="Employer-main-heading">{`${singleUser.firstName} ${singleUser.lastName}`}</p>
           <div className="Employer-main-detail-wrapper">
             <p className="Employer-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-cog"></i>
               </span>
-              Open Since: {chef.profile?.yearsOfExperience}
+              Open Since: {singleUser.profile?.yearsOfExperience}
             </p>
             <p className="Employer-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-euro-sign"></i>
               </span>
-              Hourly rate: {chef.profile.hourlyRate}
+              Hourly rate: {singleUser.profile.hourlyRate}
             </p>
             <p className="Employer-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-user-tag"></i>
               </span>
-              {chef.profile?.position}
+              {singleUser.profile?.position}
             </p>
             <p className="Employer-main-detail">
               <span className="mr-2">
                 {" "}
                 <i className="las la-map-marker-alt"></i>
               </span>
-              {chef?.city}
+              {singleUser?.city}
             </p>
           </div>
           <div className="Employer-main-tagbox">
@@ -146,9 +150,9 @@ function EmployerProfile() {
               </InputGroup>
             )}
           </div>
-          <p className="Employer-main-description">{chef.profile?.description}</p>
+          <p className="Employer-main-description">{singleUser.profile?.description}</p>
           {editMode && (
-            <EditMode setEditProfile={setEditProfile} chef={chef} editProfile={editProfile} />
+            <EditMode setEditProfile={setEditProfile} chef={singleUser} editProfile={editProfile} />
           )}
           {editMode ? (
             <div>

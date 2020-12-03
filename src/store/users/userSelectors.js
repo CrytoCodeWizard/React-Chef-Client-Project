@@ -2,19 +2,19 @@ export const selectAllChefs = (reduxState) => {
   return reduxState.users.all;
 };
 
-export const selectChef = (reduxState) => {
+export const selectSingleUser = (reduxState) => {
   return reduxState.users.single;
 };
 
-export const selectChefTags = (reduxState) => {
+export const selectSingleUserTags = (reduxState) => {
   return reduxState.users.single.profile.specializationTags;
 };
 
-export const selectChefProfile = (reduxState) => {
+export const selectSingleUserProfile = (reduxState) => {
   return reduxState.users.single.profile;
 };
 
-export const selectChefImage = (reduxState) => {
+export const selectSingleUserImage = (reduxState) => {
   return reduxState.users.single.profile.imgUrl;
 };
 

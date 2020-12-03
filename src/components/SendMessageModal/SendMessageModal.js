@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../store/messages/messageActions";
 import { selectBookingDate } from "../../store/messages/messageSelectors";
 import { selectUser } from "../../store/userLogin/userLoginSelectors";
-import { selectChef } from "../../store/users/userSelectors";
+import { selectSingleUser } from "../../store/users/userSelectors";
 import moment from "moment";
 import { Button, Form, Modal } from "react-bootstrap";
 import { selectCurrentDate } from "../../store/appState/appStateSelectors";
 
 function SendMessageModal(props) {
   const dispatch = useDispatch();
-  const profile = useSelector(selectChef);
+  const profile = useSelector(selectSingleUser);
   const user = useSelector(selectUser);
   const date = useSelector(selectBookingDate);
   const currentDate = useSelector(selectCurrentDate);
