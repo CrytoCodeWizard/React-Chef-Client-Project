@@ -1,0 +1,133 @@
+.Employer {
+  padding: 0 0 10em 0;
+}
+
+.Employer-top {
+  padding: 4em 0 2em 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 3em;
+  align-items: center;
+}
+
+.Employer-img-wrapper {
+  position: relative;
+  height: 12.5em;
+  width: 12.5em;
+}
+
+.Employer-img {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.Employer-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Employer-inbox-btn {
+  width: 100%;
+}
+
+.Employer-inbox-link,
+.Employer-booking-btn {
+  align-self: start;
+  margin-top: 2em;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.Employer-booking-btn {
+  grid-column: 5 / span 1;
+}
+
+.Employer-booking-link {
+  align-self: start;
+  /* margin-top: 2em; */
+  grid-column: 5 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.Employer-main {
+  height: 53em;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.Employer-main-left {
+  grid-column: 1 / span 2;
+}
+
+.Employer-main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column: 3 / span 4;
+}
+
+.Employer-main-right-header {
+  margin-bottom: 1.5em;
+}
+
+.Employer-main-detail-wrapper {
+  padding: 1em 0 1em 0;
+}
+
+.Employer-main-detail {
+  font-size: 0.85rem;
+  padding: 0 0 0 0.3em;
+  margin: 0;
+}
+
+.Employer-main-tagbox {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.Employer-main-tagInput {
+  margin: 0.5em 0 0.5em 0;
+  height: 1em;
+}
+
+.Employer-link {
+  grid-column: 2 / span 2;
+  margin-top: 2em;
+  align-self: start;
+  font-size: 0.8rem;
+  text-decoration: none !important;
+  width: 11em;
+}
+.Employer-link:hover {
+  text-decoration: none !important;
+  width: 11em;
+}
+
+.Employer-main-description {
+  font-size: 0.85rem;
+  padding: 1em;
+  width: 80%;
+  border: 1px dashed black;
+}
+
+.Employer-editMode-wrapper {
+  margin: 1em 0 1em 0;
+}
+
+.Employer-editMode-input {
+  height: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.Employer-editMode-textarea {
+  padding: 0.75em;
+  margin: 1em 0 1em 0;
+}
+
+.Employer-editMode-btn {
+  margin-right: 1em;
+}

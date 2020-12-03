@@ -13,17 +13,21 @@ function MyBookings() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const userId = user.id;
+  const userType = user.userType;
   const fetchedBookings = useSelector(selectAllBookings);
 
-  const bookingsSortedByDateReceived = [...fetchedBookings].sort(
+  let bookingsSortedByDateReceived = [...fetchedBookings].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
+  console.log("USER", user);
+
   useEffect(() => {
-    if (user.id) {
-      dispatch(fetchBookings(user.id));
+    if (userId) {
+      dispatch(fetchBookings(userId, userType));
     }
-  }, [dispatch, user.id]);
+  }, [dispatch, userId, userType]);
 
   if (!token || token === null) {
     history.push("/");
@@ -50,7 +54,7 @@ function MyBookings() {
                 <tr>
                   <th>Booking date</th>
                   <th>Date received</th>
-                  <th>Booker</th>
+                  {userType === " chef " ? <th>Booker</th> : <th>Chef Booked</th>}
                   <th>Company</th>
                   <th>Email</th>
                   <th>Status</th>
