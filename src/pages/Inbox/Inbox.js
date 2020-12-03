@@ -127,7 +127,7 @@ function Inbox() {
                   )}{" "}
                   {x.title}
                 </h5>
-                <p className="Inbox-message-sender">
+                <p className="Inbox-message-sender font-weight-bold">
                   {x.user.firstName} {x.user.lastName}
                 </p>
                 <p>{moment(x.createdAt).format("YYYY-MM-DD")}</p>

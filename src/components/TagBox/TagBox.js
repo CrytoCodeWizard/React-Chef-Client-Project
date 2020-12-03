@@ -34,6 +34,7 @@ function TagBox({ tags, remove }) {
             <div className="tagbox mb-2">
               {tags.map((x) => (
                 <OverlayTrigger
+                  key={x.id}
                   placement="right"
                   delay={{ show: 300, hide: 100 }}
                   overlay={renderTooltip}

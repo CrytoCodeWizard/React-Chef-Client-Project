@@ -27,8 +27,6 @@ function Review({ profileId }) {
       content: "",
     });
   };
-
-  console.log("REVIEW", review);
   return (
     <Form onSubmit={handleReviewSubmit()} className="CreateReview">
       <Form.Row>

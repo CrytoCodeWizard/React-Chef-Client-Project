@@ -10,8 +10,6 @@ const saveAllReviews = (reviews) => {
 };
 
 export const fetchProfileReviews = (userId) => async (dispatch, getState) => {
-  console.log("USERID", userId);
-
   try {
     const response = await axios.get(`/users/${userId}/profile/reviews`);
 

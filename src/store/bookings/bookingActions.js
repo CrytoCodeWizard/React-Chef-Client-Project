@@ -11,14 +11,11 @@ export const saveAllBookings = (bookings) => {
 };
 
 export const fetchBookings = (userId, userType) => async (dispatch, getState) => {
-  console.log("FETCHBOKKIGNS USERTYPE:", userType);
-
   try {
     const response = await axios.get(`/bookings/${userId}/${userType}`);
 
     if (response) {
       dispatch(saveAllBookings(response.data));
-      console.log(response);
     }
   } catch (e) {
     console.log(e);
@@ -26,6 +23,7 @@ export const fetchBookings = (userId, userType) => async (dispatch, getState) =>
 };
 
 export const updateBooking = (bookingId, bookingDate) => async (dispatch, getState) => {
+  const userType = getState().userLogin.userType;
   const userId = getState().userLogin.id;
 
   try {
@@ -33,7 +31,7 @@ export const updateBooking = (bookingId, bookingDate) => async (dispatch, getSta
 
     if (response) {
       dispatch(fetchUserMessages(userId));
-      dispatch(fetchBookings(userId));
+      dispatch(fetchBookings(userId, userType));
     }
   } catch (e) {
     console.log(e);
@@ -42,12 +40,13 @@ export const updateBooking = (bookingId, bookingDate) => async (dispatch, getSta
 
 export const deleteBooking = (id) => async (dispatch, getState) => {
   const userId = getState().userLogin.id;
+  const userType = getState().userLogin.userType;
 
   try {
     const response = await axios.delete(`/bookings/${id}`);
 
     if (response) {
-      dispatch(fetchBookings(userId));
+      dispatch(fetchBookings(userId, userType));
     }
   } catch (e) {
     console.log(e);

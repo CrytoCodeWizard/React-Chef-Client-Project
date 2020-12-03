@@ -35,11 +35,11 @@ function MyProfile() {
   const [imageModal, setImageModal] = useState(false);
 
   const [editProfile, setEditProfile] = useState({
-    yearsOfExperience: 0,
-    hourlyRate: 0,
-    position: "",
-    city: "",
-    description: "",
+    yearsOfExperience: singleUser.profile.yearsOfExperience || "Experience...",
+    hourlyRate: singleUser.profile.hourlyRate || "Hourly Rate...",
+    position: singleUser.profile.position || "Position...",
+    city: singleUser.city || "City...",
+    description: singleUser.profile.description || "Description...",
   });
 
   if (!token || token === null) {

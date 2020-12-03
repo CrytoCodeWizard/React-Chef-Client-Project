@@ -3,7 +3,7 @@ import { FormControl, InputGroup } from "react-bootstrap";
 
 import "./MyProfile.css";
 
-function EditMode({ setEditProfile, chef, editProfile }) {
+function EditMode({ setEditProfile, editProfile }) {
   return (
     <div className="MyProfile-editMode-wrapper">
       <h5>Edit profile details...</h5>
@@ -16,7 +16,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, yearsOfExperience: e.target.value })}
-          defaultValue={chef.profile.yearsOfExperience}
+          defaultValue={editProfile.yearsOfExperience}
           aria-label="experience"
         />
       </InputGroup>
@@ -28,7 +28,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, hourlyRate: e.target.value })}
-          defaultValue={chef.profile.hourlyRate}
+          defaultValue={editProfile.hourlyRate}
           aria-label="rate"
         />
       </InputGroup>
@@ -40,7 +40,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, position: e.target.value })}
-          defaultValue={chef.profile.position}
+          defaultValue={editProfile.position}
           aria-label="rate"
         />
       </InputGroup>
@@ -52,7 +52,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
         </InputGroup.Prepend>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })}
-          defaultValue={chef.city}
+          defaultValue={editProfile.city}
           aria-label="rate"
         />
       </InputGroup>
@@ -60,7 +60,7 @@ function EditMode({ setEditProfile, chef, editProfile }) {
       <InputGroup>
         <FormControl
           onChange={(e) => setEditProfile({ ...editProfile, description: e.target.value })}
-          defaultValue={chef.profile.description}
+          defaultValue={editProfile.description}
           as="textarea"
           aria-label="description"
           rows={6}

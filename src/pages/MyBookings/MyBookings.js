@@ -21,8 +21,6 @@ function MyBookings() {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  console.log(userType);
-
   useEffect(() => {
     if (userId) {
       dispatch(fetchBookings(userId, userType));
@@ -54,7 +52,7 @@ function MyBookings() {
                 <tr>
                   <th>Booking date</th>
                   <th>Date received</th>
-                  {userType === " chef " ? <th>Booker</th> : <th>Chef Booked</th>}
+                  {userType === "Chef" ? <th>Booker</th> : <th>Chef Booked</th>}
                   <th>Company</th>
                   <th>Email</th>
                   <th>Status</th>
