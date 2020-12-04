@@ -71,13 +71,18 @@ function MyBookings() {
                       <td>{x.user.email}</td>
                       <td>
                         {x.accepted ? (
-                          <Button onClick={handleUpdateBooking(x.id)}>Cancel</Button>
+                          <Button variant="secondary" onClick={handleUpdateBooking(x.id)}>
+                            Cancel
+                          </Button>
                         ) : (
-                          <Button onClick={handleUpdateBooking(x.id)}>Accept</Button>
+                          <Button variant="success" onClick={handleUpdateBooking(x.id)}>
+                            Accept
+                          </Button>
                         )}
                       </td>
                       <td>
                         <Button
+                          variant="danger"
                           onClick={handleDeleteBooking(x.id)}
                           className="MyBookings-cancel-btn"
                         >
