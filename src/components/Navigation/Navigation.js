@@ -34,17 +34,20 @@ function Navigation() {
           ) : (
             <NavBarItem align path="/profile/employer" linkText="Employer Profile" />
           )}
-          <div style={{ width: "200px" }}>
-            <SearchBar
-              options={chefs}
-              id="id"
-              label="firstName"
-              label2="lastName"
-              prompt="Search chef..."
-              value={value}
-              onChange={(val) => setValue(val)}
-            />
-          </div>
+          {token && history.location.pathname === "/" ? (
+            <div style={{ width: "200px" }}>
+              <SearchBar
+                options={chefs}
+                id="id"
+                label="firstName"
+                label2="lastName"
+                prompt="Search chef..."
+                value={value}
+                onChange={(val) => setValue(val)}
+              />
+            </div>
+          ) : null}
+
           {token ? <LoggedIn /> : <LoggedOut />}
         </Nav>
       </Navbar.Collapse>

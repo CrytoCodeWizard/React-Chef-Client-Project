@@ -9,20 +9,25 @@ function SearchBar({ options, id, label, label2, prompt, value, onChange }) {
   const [selectedId, setSelectedId] = useState(1);
   const [query, setQuery] = useState("");
   const ref = useRef(null);
-
   useEffect(() => {
     document.addEventListener("click", toggle);
     return () => document.removeEventListener("click", toggle);
   }, []);
+
+  console.log(selectedId);
 
   function toggle(e) {
     setOpen(e && e.target === ref.current);
   }
 
   function filter(options) {
-    return options.filter(
-      (option) => option[label].toLowerCase().indexOf(query.toLowerCase()) > -1
-    );
+    return options.filter((option) => {
+      if (option[label].toLowerCase().indexOf(query.toLowerCase()) > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 
   function displayValue() {
@@ -38,7 +43,6 @@ function SearchBar({ options, id, label, label2, prompt, value, onChange }) {
   }
 
   const handleKeyPress = (e, value) => {
-    console.log(e);
     if (e.charCode === 13) {
       history.push(`/users/${value}/profile`);
     }
@@ -72,9 +76,10 @@ function SearchBar({ options, id, label, label2, prompt, value, onChange }) {
         {filter(options).map((option) => (
           <div
             key={option[id]}
+            onChange={(e) => setSelectedId(option.id)}
             className={`option ${value === option ? "selected" : null}`}
             onClick={() => {
-              setSelectedId(option.id);
+              // setSelectedId(option.id);
               selectOption(option);
               handleSearchClick(option.id);
             }}
