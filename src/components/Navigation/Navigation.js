@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBarItem from "./NavBarItem";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
@@ -7,11 +7,15 @@ import { selectToken, selectUser } from "../../store/userLogin/userLoginSelector
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import "./Navigation.css";
+import SearchBar from "../SearchBar/SearchBar";
+import { selectAllChefs } from "../../store/users/userSelectors";
 
 function Navigation() {
+  const [value, setValue] = useState(null);
   const history = useHistory();
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
+  const chefs = useSelector(selectAllChefs);
 
   return (
     <Navbar className="Navbar" expand="lg" bg="dark" variant="dark">
@@ -30,6 +34,20 @@ function Navigation() {
           ) : (
             <NavBarItem align path="/profile/employer" linkText="Employer Profile" />
           )}
+          {token && history.location.pathname === "/" ? (
+            <div style={{ width: "200px" }}>
+              <SearchBar
+                options={chefs}
+                id="id"
+                label="firstName"
+                label2="lastName"
+                prompt="Search chef..."
+                value={value}
+                onChange={(val) => setValue(val)}
+              />
+            </div>
+          ) : null}
+
           {token ? <LoggedIn /> : <LoggedOut />}
         </Nav>
       </Navbar.Collapse>
