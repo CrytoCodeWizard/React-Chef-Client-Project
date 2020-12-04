@@ -34,15 +34,17 @@ function Navigation() {
           ) : (
             <NavBarItem align path="/profile/employer" linkText="Employer Profile" />
           )}
-          <SearchBar
-            options={chefs}
-            id="id"
-            label="firstName"
-            label2="lastName"
-            prompt="Select chef..."
-            value={value}
-            onChange={(val) => setValue(val)}
-          />
+          <div style={{ width: "200px" }}>
+            <SearchBar
+              options={chefs}
+              id="id"
+              label="firstName"
+              label2="lastName"
+              prompt="Search chef..."
+              value={value}
+              onChange={(val) => setValue(val)}
+            />
+          </div>
           {token ? <LoggedIn /> : <LoggedOut />}
         </Nav>
       </Navbar.Collapse>
