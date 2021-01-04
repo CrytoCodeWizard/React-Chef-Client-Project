@@ -1,6 +1,6 @@
-import React from "react";
-import { Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 function NavBarItem(props) {
   return (

@@ -14,8 +14,6 @@ function SearchBar({ options, id, label, label2, prompt, value, onChange }) {
     return () => document.removeEventListener("click", toggle);
   }, []);
 
-  console.log(selectedId);
-
   function toggle(e) {
     setOpen(e && e.target === ref.current);
   }

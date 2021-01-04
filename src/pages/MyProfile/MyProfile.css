@@ -3,7 +3,7 @@
 }
 
 .MyProfile-top {
-  padding: 4em 0 2em 0;
+  padding: 4em 0em 3em 0em;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 3em;
@@ -51,6 +51,7 @@
 }
 
 .MyProfile-main {
+  padding: 0 0;
   height: 53em;
   display: grid;
   grid-template-columns: repeat(6, 1fr);

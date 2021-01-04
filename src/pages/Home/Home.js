@@ -69,7 +69,7 @@ function Home() {
         <h1 className="Home-jumbotron-header">Home</h1>
       </Jumbotron>
 
-      <Container>
+      <Container className="Home-container">
         <h1 className="Home-header">Meet our chefs</h1>
         <div className="Home-selector-wrapper">
           <div className="Home-selector-date">
