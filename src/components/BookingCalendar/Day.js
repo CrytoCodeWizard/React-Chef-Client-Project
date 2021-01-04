@@ -13,12 +13,9 @@ const Day = (props) => {
   const dispatch = useDispatch();
   const { dayIndex, same, day, selectedDate, setModalShow } = props;
 
+  // TAKES MOMENT DAY OBJECTS AND FORMATS IT TO COMPARABLE DATE
   const dayPast = moment(same).format('YYYY-MM-DD');
   const currDay = moment(selectedDate).format('YYYY-MM-DD');
-
-  console.log('SAME', same);
-  console.log('dayPast', dayPast);
-  console.log('currDay', currDay);
 
   const handleBookingClick = (day) => {
     if (token) {
