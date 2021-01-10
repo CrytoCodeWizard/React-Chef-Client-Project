@@ -38,8 +38,6 @@ function Signup() {
     });
   };
 
-  console.log(signupData);
-
   const handleChange = (e) => {
     const { value, name } = e.target;
 
