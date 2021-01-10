@@ -32,6 +32,8 @@ function Inbox() {
     date: '',
   });
 
+  console.log('REPLY', reply);
+
   if (!token || token === null) {
     history.push('/');
   }

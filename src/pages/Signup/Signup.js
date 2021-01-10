@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { signup } from "../../store/userLogin/userLoginActions";
-import "./Signup.css";
+import React, { useState } from 'react';
+import { Button, Col, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../store/userLogin/userLoginActions';
+import './Signup.css';
 
 function Signup() {
   const dispatch = useDispatch();
   const [signupData, setSignupData] = useState({
-    firstName: "",
-    lastName: "",
-    userType: "",
-    password: "",
-    email: "",
-    businessName: "",
-    dateOfBirth: "",
-    address: "",
-    city: "",
-    postalCode: "",
+    firstName: '',
+    lastName: '',
+    userType: '',
+    password: '',
+    email: '',
+    businessName: '',
+    dateOfBirth: '',
+    address: '',
+    city: '',
+    postalCode: '',
   });
 
   const handleSubmit = (e) => {
@@ -25,126 +25,123 @@ function Signup() {
     dispatch(signup({ ...signupData }));
 
     setSignupData({
-      firstName: "",
-      lastName: "",
-      userType: "",
-      password: "",
-      email: "",
-      businessName: "",
-      dateOfBirth: "",
-      address: "",
-      city: "",
-      postalCode: "",
+      firstName: '',
+      lastName: '',
+      userType: '',
+      password: '',
+      email: '',
+      businessName: '',
+      dateOfBirth: '',
+      address: '',
+      city: '',
+      postalCode: '',
     });
   };
 
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+
+    setSignupData({ ...signupData, [name]: value });
+  };
+
   return (
-    <div className="Signup container">
-      <Form as={Col} md={{ span: 4, offset: 2 }} className="Signup-form" onSubmit={handleSubmit}>
-        <h1 className="Signup-form mt-5 mb-5">Signup</h1>
-        <Form.Group controlId="formBasicFirstname">
+    <div className='Signup container'>
+      <Form
+        as={Col}
+        md={{ span: 4, offset: 2 }}
+        className='Signup-form'
+        onSubmit={handleSubmit}
+      >
+        <h1 className='Signup-form mt-5 mb-5'>Signup</h1>
+        <Form.Group controlId='formBasicFirstname'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, firstName: e.target.value });
-            }}
+            name='firstName'
+            onChange={handleChange}
             value={signupData.firstName}
-            type="text"
-            placeholder="Firstname"
+            type='text'
+            placeholder='Firstname'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicLastname">
+        <Form.Group controlId='formBasicLastname'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, lastName: e.target.value });
-            }}
+            name='lastName'
+            onChange={handleChange}
             value={signupData.lastName}
-            type="text"
-            placeholder="Lastname"
+            type='text'
+            placeholder='Lastname'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicSelect">
-          <Form.Control
-            as="select"
-            onChange={(e) => {
-              setSignupData({ ...signupData, userType: e.target.value });
-            }}
-          >
-            <option value="">User type</option>
-            <option value="Chef">Chef</option>
-            <option value="Employer">Employer</option>
+        <Form.Group controlId='formBasicSelect'>
+          <Form.Control name='userType' as='select' onChange={handleChange}>
+            <option value=''>User type</option>
+            <option value='Chef'>Chef</option>
+            <option value='Employer'>Employer</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId='formBasicPassword'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, password: e.target.value });
-            }}
+            name='password'
+            onChange={handleChange}
             value={signupData.password}
-            type="password"
-            placeholder="Password"
+            type='password'
+            placeholder='Password'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicBusiness">
+        <Form.Group controlId='formBasicBusiness'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, businessName: e.target.value });
-            }}
+            name='businessName'
+            onChange={handleChange}
             value={signupData.businessName}
-            type="text"
-            placeholder="Business name"
+            type='text'
+            placeholder='Business name'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId='formBasicEmail'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, email: e.target.value });
-            }}
+            name='email'
+            onChange={handleChange}
             value={signupData.email}
-            type="text"
-            placeholder="Email"
+            type='text'
+            placeholder='Email'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicDate">
+        <Form.Group controlId='formBasicDate'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, dateOfBirth: e.target.value });
-            }}
+            name='dateOfBirth'
+            onChange={handleChange}
             value={signupData.dateOfBirth}
-            type="date"
+            type='date'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicAddress">
+        <Form.Group controlId='formBasicAddress'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, address: e.target.value });
-            }}
+            name='address'
+            onChange={handleChange}
             value={signupData.address}
-            type="text"
-            placeholder="address"
+            type='text'
+            placeholder='address'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicCity">
+        <Form.Group controlId='formBasicCity'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, city: e.target.value });
-            }}
+            name='city'
+            onChange={handleChange}
             value={signupData.city}
-            type="text"
-            placeholder="City"
+            type='text'
+            placeholder='City'
           />
         </Form.Group>
-        <Form.Group controlId="formBasicPostalCode">
+        <Form.Group controlId='formBasicPostalCode'>
           <Form.Control
-            onChange={(e) => {
-              setSignupData({ ...signupData, postalCode: e.target.value });
-            }}
+            name='postalCode'
+            onChange={handleChange}
             value={signupData.postalCode}
-            type="text"
-            placeholder="Postal Code"
+            type='text'
+            placeholder='Postal Code'
           />
         </Form.Group>
-        <Form.Group className="mt-4">
-          <Button onClick={handleSubmit} variant="primary" type="submit">
+        <Form.Group className='mt-4'>
+          <Button onClick={handleSubmit} variant='primary' type='submit'>
             Submit
           </Button>
         </Form.Group>
