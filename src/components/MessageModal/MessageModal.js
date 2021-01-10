@@ -25,14 +25,9 @@ function MessageModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(sendMessage({ ...message }));
-    setMessage({
-      userId: user.id,
-      title: '',
-      content: '',
-      recipientUserId: profile.id,
-      date: messageDate,
-    });
   };
+
+  console.log('MESSAGE', message);
 
   return (
     <div className='message-modal'>

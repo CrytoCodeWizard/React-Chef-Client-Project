@@ -27,6 +27,7 @@ function SendMessageModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(sendMessage({ ...message }));
+    setMessage('');
   };
 
   console.log('MESSAGE', message);
