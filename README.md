@@ -1,7 +1,7 @@
 # Chef Available!?
 
 ## Description
-Chef available?! is an application where chefs of all levels can create an account and share their availability with potential employers. In the hospitality sector there is always a need for chefs. At times somebody will not show up, or a staff member gets sick. In these moments it is essential for employers to find a replacement quickly. On the other hand chefs sometimes have odd schedules, or just want to make an extra buck on days that they are available. The service is intended as a low key way of connecting chefs with employers.
+Chef available?! is an application where chefs can create an account and share their availability with potential employers. In the hospitality sector there is always a need for chefs. At times somebody will not show up, or a staff member gets sick. In these moments it is essential for employers to find a replacement quickly. On the other hand chefs sometimes have odd schedules, or just want to make an extra buck on days that they are available. The service is intended as a low key way of connecting chefs with employers.
 
 The app allows chefs to create a profile which describes their skills and experience. Chefs can add their availability to a calender on their profile which allows employers to see when they are available. Employers can search for chefs based on selected criteria and required date. If a chef is available an employer can send him or her a message to discuss further details and perform a booking if mutual terms are met.
 
